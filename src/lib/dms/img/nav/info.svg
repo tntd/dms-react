@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="34px" height="34px" viewBox="0 0 34 34" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 57.1 (83088) - https://sketch.com -->
+    <title>info</title>
+    <desc>Created with Sketch.</desc>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="画板" transform="translate(-339.000000, -25.000000)">
+            <g id="info" transform="translate(339.000000, 25.000000)">
+                <path d="M1,1 L1,33 L33,33 L33,1 L1,1 Z" id="矩形" stroke="#BDB195" stroke-width="2" fill="#E4D9AC"></path>
+                <path d="M10,24 L10,26 L2,26 L2,24 L10,24 Z M10,16 L10,18 L2,18 L2,16 L10,16 Z M10,8 L10,10 L2,10 L2,8 L10,8 Z" id="形状结合" fill="#BDB195"></path>
+                <path d="M32,24 L32,26 L24,26 L24,24 L32,24 Z M32,16 L32,18 L24,18 L24,16 L32,16 Z M32,8 L32,10 L24,10 L24,8 L32,8 Z" id="形状结合备份-3" fill="#BDB195"></path>
+                <path d="M19.7500098,14.7500097 L19.7500098,23.7500227 L22.000013,23.7500227 L22.000013,26.000026 L13,26.000026 L13,23.7500227 L15.2500033,23.7500227 L15.2500033,17.000013 L13,17.000013 L13,14.7500097 L19.7500098,14.7500097 Z M18.0625073,8 C18.9906337,8 19.7500032,8.7593761 19.7500032,9.68750244 L19.7500032,10.8125041 C19.7500032,11.7406304 18.9906337,12.5 18.0625073,12.5 L16.9375057,12.5 C16.0093793,12.5 15.2500032,11.7406304 15.2500032,10.8125041 L15.2500032,9.68750244 C15.2500032,8.7593761 16.0093793,8 16.9375057,8 L18.0625073,8 Z" id="形状结合" stroke="#BDB195" fill="#FFFFFF" fill-rule="nonzero"></path>
+            </g>
+        </g>
+    </g>
+</svg>

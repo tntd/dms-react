@@ -1,11 +1,19 @@
 import React from "react";
-import { TextInput } from "../lib";
+import Dms from "../lib";
+import { mockJson } from "./mock";
 
 const App = () => (
-  <div style={{ width: 640, margin: "15px auto" }}>
-    <h1>Hello React</h1>
-    <TextInput label="Email Address" placeholder="name@example.com" />
-  </div>
+    <Dms
+        action={({ value }) => {
+            return new Promise(resolve => {
+                setTimeout(() => {
+                    resolve(
+                        mockJson
+                    );
+                }, 500);
+            });
+        }}
+    />
 );
 
 export default App;

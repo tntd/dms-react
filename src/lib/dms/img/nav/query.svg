@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="34px" height="34px" viewBox="0 0 34 34" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 57.1 (83088) - https://sketch.com -->
+    <title>控制台</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="0%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#696969" offset="0%"></stop>
+            <stop stop-color="#414141" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="画板" transform="translate(-409.000000, -25.000000)" fill-rule="nonzero">
+            <g id="控制台" transform="translate(409.000000, 25.000000)">
+                <path d="M2.2312526,3.00315328e-14 C0.998966885,3.00315328e-14 -9.75312766e-08,1.33195443 -9.75312766e-08,2.975 L-9.75312766e-08,31.025 C-9.75312766e-08,32.6680459 0.998966885,34 2.2312525,34 L31.7687869,34 C33.0010724,34 34.0000394,32.6680459 34.0000394,31.0250003 L34.0000394,2.97500032 C34.0000394,1.33195475 33.0010724,3.00315328e-14 31.7687868,3.00315328e-14 L2.2312526,3.00315328e-14 Z M32,32 L2,32 L2,2 L32,2 L32,32 Z" id="形状" fill="#A0A2A5"></path>
+                <path d="M4,4 L4,30 L30,30 L30,4 L4,4 Z" id="形状" stroke="#2C2C2C" stroke-width="2" fill="url(#linearGradient-1)"></path>
+                <path d="M19.1912555,14.6332963 L19.1912555,16 L13.6670965,16 L13.6670965,14.6332963 L19.1912555,14.6332963 Z M8.97639509,8 L12.917192,11.899889 L8.97639509,15.7997779 L8,14.8335184 L10.9644018,11.899889 L8,8.9662595 L8.97639509,8 Z" id="形状结合" fill="#B2DA93"></path>
+            </g>
+        </g>
+    </g>
+</svg>

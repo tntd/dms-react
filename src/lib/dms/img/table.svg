@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="50px" height="36px" viewBox="0 0 50 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 57.1 (83088) - https://sketch.com -->
+    <title>table</title>
+    <desc>Created with Sketch.</desc>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="画板" transform="translate(0.000000, -7.000000)" fill-rule="nonzero">
+            <g id="table" transform="translate(0.000000, 7.000000)">
+                <polygon id="路径" fill="#9CBFEE" points="48 16 48 27 2 27 2 16"></polygon>
+                <polygon id="路径" fill="#3980DE" points="-1.42108547e-14 0 50 0 50 9 -1.42108547e-14 9"></polygon>
+                <path d="M2,34 L2,9 L0,9.02252516 L0,36 L50,36 L50,9 L48,9 L48,34 L2,34 Z M16,9 L16,35 L18,35 L18,9 L16,9 Z M32,9 L32,35 L34,35 L34,9 L32,9 Z" id="形状" fill="#3980DE"></path>
+            </g>
+        </g>
+    </g>
+</svg>

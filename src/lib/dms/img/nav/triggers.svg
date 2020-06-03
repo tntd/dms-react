@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="34px" height="34px" viewBox="0 0 34 34" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 57.1 (83088) - https://sketch.com -->
+    <title>triggers</title>
+    <desc>Created with Sketch.</desc>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="画板" transform="translate(-263.000000, -25.000000)">
+            <g id="triggers" transform="translate(263.000000, 25.000000)">
+                <rect id="矩形" stroke="#83B3F1" stroke-width="2" fill="#E8EBF6" x="1" y="1" width="11" height="32"></rect>
+                <rect id="矩形备份-7" stroke="#83B3F1" stroke-width="2" fill="#E8EBF6" x="22" y="1" width="11" height="32"></rect>
+                <path d="M13,25 L13,27 L2,27 L2,25 L13,25 Z M13,18 L13,20 L2,20 L2,18 L13,18 Z M13,11 L13,13 L2,13 L2,11 L13,11 Z M13,0 L13,6 L0,6 L0,0 L13,0 Z" id="形状结合" fill="#83B3F1"></path>
+                <path d="M34,25 L34,27 L23,27 L23,25 L34,25 Z M34,18 L34,20 L23,20 L23,18 L34,18 Z M34,11 L34,13 L23,13 L23,11 L34,11 Z M34,0 L34,6 L21,6 L21,0 L34,0 Z" id="形状结合备份" fill="#83B3F1"></path>
+                <rect id="矩形" fill="#83B3F1" x="21" y="2" width="2" height="30"></rect>
+                <rect id="矩形备份-5" fill="#83B3F1" x="11" y="2" width="2" height="30"></rect>
+                <polygon id="路径" fill="#F39D5B" fill-rule="nonzero" transform="translate(16.411765, 19.000000) scale(-1, 1) rotate(106.000000) translate(-16.411765, -19.000000) " points="21.9705882 5 9 19 14.3529412 20.4411765 10.2352941 33 23.8235294 19.2058824 18.4705882 17.7647059"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

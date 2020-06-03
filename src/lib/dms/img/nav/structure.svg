@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="34px" height="34px" viewBox="0 0 34 34" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 57.1 (83088) - https://sketch.com -->
+    <title>结构</title>
+    <desc>Created with Sketch.</desc>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="画板" transform="translate(-43.000000, -25.000000)">
+            <g id="结构" transform="translate(43.000000, 25.000000)">
+                <rect id="矩形" fill="#959595" x="22" y="18" width="12" height="3"></rect>
+                <rect id="矩形备份-3" fill="#959595" x="11" y="28" width="23" height="3"></rect>
+                <rect id="矩形" fill="#959595" x="19" y="21" width="3" height="13"></rect>
+                <rect id="矩形备份-4" fill="#959595" x="28" y="12" width="3" height="22"></rect>
+                <path d="M1,1 L1,33 L8.0981939,33 L33,9.13576916 L33,1 L1,1 Z" id="矩形" stroke="#BDB195" stroke-width="2" fill="#E4D9AC"></path>
+                <rect id="矩形" fill="#BDB195" x="16" y="2" width="2" height="22"></rect>
+                <rect id="矩形" fill="#BDB195" x="2" y="16" width="23" height="2"></rect>
+                <rect id="矩形备份" fill="#BDB195" x="2" y="24" width="15" height="2"></rect>
+                <rect id="矩形备份-2" fill="#BDB195" x="2" y="8" width="30" height="2"></rect>
+            </g>
+        </g>
+    </g>
+</svg>

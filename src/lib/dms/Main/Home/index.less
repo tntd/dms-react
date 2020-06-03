@@ -1,0 +1,138 @@
+.dms-page {
+    .body-main {
+        .home-page {
+            & {
+                display: flex;
+                height: calc(~"100vh - 60px");
+                overflow: hidden;
+            }
+
+            .home-page-aside {
+                & {
+                    width: 250px;
+                    border-right: 1px solid #e6e6e6;
+                    background: #fff;
+                }
+
+                .aside-header {
+                    & {
+                        height: 48px;
+                        line-height: 48px;
+                        clear: both;
+                        border-bottom: 1px solid #e6e6e6;
+                        padding: 0 10px;
+                    }
+
+                    h3 {
+                        float: left;
+                        font-size: 12px;
+                        font-weight: normal;
+                        margin-bottom: 0;
+                    }
+
+                    .ant-btn {
+                        position: relative;
+                        top: 10px;
+                        float: right;
+                        font-size: 12px;
+                    }
+                }
+
+                .aside-body {
+                    & {
+                        padding-left: 0;
+                        height: calc(100vh - 109px);
+                        overflow-x: hidden;
+                        overflow-y: auto;
+                    }
+
+                    ul {
+                        & {
+                            list-style: none;
+                            padding: 0;
+                            padding-top: 10px;
+                            clear: both;
+                        }
+
+                        li {
+                            & {
+                                height: 28px;
+                                line-height: 28px;
+                                padding: 0 15px;
+                                cursor: pointer;
+                                font-size: 12px;
+                            }
+
+                            &.active {
+                                background: #d6dde8;
+                            }
+
+                            i {
+                                font-size: 15px;
+                                position: relative;
+                                top: 1px;
+                                display: inline-block;
+                                margin-right: 6px;
+                            }
+                        }
+
+                        li:hover {
+                            background: #f2f3f4;
+
+                            .action {
+                                opacity: 1;
+                            }
+                        }
+
+                        .action {
+                            float: right;
+                            opacity: 0;
+
+                            i {
+                                font-size: 12px;
+                                margin-left: 8px;
+                                margin-right: 0;
+                                color: #999;
+                                cursor: pointer;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .home-page-main {
+                & {
+                    flex: 1;
+                }
+
+                .main-header {
+                    & {
+                        height: 48px;
+                        line-height: 48px;
+                        clear: both;
+                        border-bottom: 1px solid #e6e6e6;
+                        padding: 0 10px;
+                        background: #fff;
+                    }
+
+                    h3 {
+                        float: left;
+                        font-size: 12px;
+                        font-weight: normal;
+                        margin-bottom: 0;
+                    }
+                }
+
+                .main-body {
+                    padding: 10px;
+
+                    .ant-table {
+                        background: #fff;
+                        font-size: 12px;
+                        width: calc(~"100vw - 490px");
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,54 @@
+.dms-aside {
+    & {}
+
+    .aside-header {
+        padding: 10px;
+        border-bottom: 1px solid #e6e6e6;
+    }
+
+    .aside-body {
+        & {
+            padding: 10 0 0px;
+        }
+
+        .table-list {
+            & {
+                list-style: none;
+                padding-left: 0;
+                height: calc(~"100vh - 109px");
+                overflow-x: hidden;
+                overflow-y: auto;
+                padding-top: 10px;
+            }
+
+            li {
+                & {
+                    height: 28px;
+                    line-height: 28px;
+                    padding: 0 15px;
+                    cursor: pointer;
+                    font-size: 12px;
+                }
+
+                i {
+                    position: relative;
+                    vertical-align: middle;
+                    width: 14px;
+                    height: 11px;
+                    display: inline-block;
+                    background: url(../img/table.svg) no-repeat;
+                    background-size: contain;
+                    margin-right: 6px;
+                }
+
+                &:hover {
+                    background: #f2f3f4;
+                }
+
+                &.active {
+                    background: #d6dde8;
+                }
+            }
+        }
+    }
+}

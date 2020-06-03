@@ -1,3 +1,3 @@
-import TextInput from "./components/TextInput";
+import Dms from "./dms";
 
-export { TextInput };
+export default Dms;

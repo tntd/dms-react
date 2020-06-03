@@ -1,0 +1,96 @@
+.dms-page {
+    .simple-header {
+        & {
+            display: flex;
+            background: #F0F2F3;
+            box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.10), 0 10px 12px 0 rgba(170, 182, 206, 0.20);
+        }
+
+        .logo {
+            & {
+                width: 200px;
+                height: 60px;
+                display: flex;
+            }
+
+            img {
+                width: 40px;
+                margin-right: 10px;
+            }
+
+            h3 {
+                flex: 1;
+                font-size: 18px;
+                font-weight: normal;
+
+                span {
+                    background: #f1f2f3;
+                    border: 1px solid #d6dde8;
+                    padding: 2px 5px;
+                    font-size: 14px;
+                    color: #738daf;
+                    margin-left: 5px;
+                    border-radius: 3px;
+
+                    em {
+                        display: inline-block;
+                        margin-left: 6px;
+                        font-size: 12px;
+                        font-style: normal;
+                    }
+                }
+            }
+        }
+
+        .nav {
+            overflow: hidden;
+
+            a {
+                & {
+                    width: 72px;
+                    height: 60px;
+                    text-align: center;
+                    display: inline-block;
+                    color: #666;
+                    font-size: 12px;
+                }
+
+                &.active {
+                    background: #d4d7da;
+                }
+
+                img {
+                    position: relative;
+                    top: 10px;
+                    width: 24px;
+                    height: 24px;
+                    margin-left: auto;
+                    margin-right: auto;
+                    user-select: none;
+                    display: block;
+                }
+
+                span {
+                    position: relative;
+                    bottom: 7px;
+                    line-height: 1;
+                    display: inline-block;
+                }
+            }
+        }
+    }
+
+    .simple-body {
+        .body-sider {
+            background: #E8EBED;
+        }
+
+        .body-main {
+            height: calc(~"100vh - 60px");
+            overflow-x: hidden;
+            overflow-y: auto;
+            background: #F3F5F6;
+            box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.10), 0 10px 24px 0 rgba(0, 0, 0, 0.06);
+        }
+    }
+}
