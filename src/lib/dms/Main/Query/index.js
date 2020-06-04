@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Toolbar from "./Toolbar";
 import TableContent from "./TableContent";
 import Template from "./Template";
@@ -38,7 +38,7 @@ export default props => {
                 <div className="main-content-body">
                     <div className="sql-text">
                         <CodeMirror
-                            value={querySqlText || ""}
+                            value={querySqlInfo.querySqlText || ""}
                             onChange={(value) => {
                                 setQuerySqlInfo({
                                     ...querySqlInfo,

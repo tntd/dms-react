@@ -1,5 +1,4 @@
-import { PureComponent } from "react";
-import { connect } from "dva";
+import React, { PureComponent } from "react";
 import { Button, Select, Icon, Dropdown, Menu, message } from "antd";
 import { trim, get } from "lodash";
 import { getSchema } from "../../../util";

@@ -1,5 +1,4 @@
-import { PureComponent } from "react";
-import { connect } from "dva";
+import React, { PureComponent } from "react";
 import { Button, Select } from "antd";
 import Tree from "./Tree";
 

@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import React, { Fragment } from "react";
 import { saveToLocal } from "./util";
 import logo from "./img/dms-logo.svg";
 

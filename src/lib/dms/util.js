@@ -17,7 +17,8 @@ export const saveToLocal = (field, value) => {
 };
 
 export const getSchema = (dataSource) => {
-    return Object.keys(dataSource[0]).forEach((key, index) => {
+    const schema = []
+    Object.keys(dataSource[0]).forEach((key, index) => {
         schema.push({
             dataIndex: `COLUMN_${index}`,
             resizable: true,
@@ -25,4 +26,5 @@ export const getSchema = (dataSource) => {
             text: key,
         });
     });
+    return schema;
 }

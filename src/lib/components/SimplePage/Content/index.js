@@ -1,3 +1,4 @@
+import React from "react";
 import Content from "./Content";
 import Sider from "./Sider";
 import Main from "./Main";

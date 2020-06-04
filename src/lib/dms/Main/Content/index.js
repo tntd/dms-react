@@ -1,4 +1,4 @@
-import { PureComponent } from "react";
+import React, { PureComponent } from "react";
 import { Table } from "antd";
 import moment from "moment";
 import { getSchema } from "../../util";
@@ -35,7 +35,7 @@ export default props => {
     return (
         <div className="content-page">
             <Table
-                dataSource={content}
+                dataSource={tableContentList}
                 columns={columns}
                 size="middle"
                 scroll={{

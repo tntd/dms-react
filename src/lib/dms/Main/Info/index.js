@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Row, Col } from "antd";
 import moment from "moment";
 import { bytesToSize } from "@tntd/utils";
@@ -6,8 +6,8 @@ import CodeMirror from "../components/CodeMirror";
 import "./index.less";
 
 export default props => {
-    const { createSql, selectDatabase, selectTable } = props;
-
+    const { createSql, selectDatabase, selectTable, baseInfo = {} } = props;
+    // TODO这里的baseInfo需要从props引入
     return (
         <div className="info-page">
             <div className="section-box">

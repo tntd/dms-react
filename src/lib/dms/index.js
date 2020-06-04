@@ -1,6 +1,4 @@
-import { useEffect, useState, Fragment } from "react";
-import { Input, Select, message, Modal } from "antd";
-import { connect } from "dva";
+import React, { useEffect, useState, Fragment } from "react";
 import Page from "../components/SimplePage";
 import HeaderContent from "./Header";
 import SideMenus from "./SideMenus";
@@ -33,8 +31,6 @@ export default props => {
 
 
     const init = () => {
-        const { dispatch, store: { querySqlInfo } } = this.props;
-
         // 这里判断localStorage在缓存中的多种复杂情况
         if (localStorage.hasOwnProperty("dmsInfo")) {
             // 缓存中是否存在currentApp
@@ -91,8 +87,6 @@ export default props => {
     }
 
     const getDatabaseList = () => {
-        const { dispatch } = this.props;
-
         action({
             value: "SHOW DATABASES"
         }).then((data) => {

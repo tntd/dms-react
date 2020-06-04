@@ -25,7 +25,8 @@
     ],
     "dependencies": {
         "@tntd/utils": "^0.1.4",
-        "antd": "^3.26.17"
+        "antd": "^3.26.17",
+        "codemirror": "^5.54.0"
     },
     "devDependencies": {
         "babel-cli": "^6.26.0",

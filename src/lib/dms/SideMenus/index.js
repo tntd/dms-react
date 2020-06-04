@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Select } from "antd";
 import { saveToLocal } from "../util";
 import "./index.less";
@@ -8,7 +8,7 @@ const { Option } = Select;
 export default props => {
     const { databaseList, tableList, getTableList, selectDatabase, tableContentList, setTableContentList, selectTable, setSelectTable, getStructure, getCreateSql, action } = props;
 
-    getTableContent = () => {
+    const getTableContent = () => {
         const { dispatch, store } = this.props;
         const { selectDatabase, selectTable } = store;
 
@@ -59,7 +59,7 @@ export default props => {
                                         setSelectTable(name);
                                         await getStructure(selectDatabase, name);
                                         await getCreateSql(selectDatabase, name);
-                                        await this.getTableContent();
+                                        await getTableContent();
                                     }}
                                     className={selectTable === name ? "active" : ""}
                                 >
