@@ -1,5 +1,5 @@
 import React, { useEffect, useState, Fragment } from "react";
-import Page from "../components/SimplePage";
+import Page from "./SimplePage";
 import HeaderContent from "./Header";
 import SideMenus from "./SideMenus";
 import MainContent from "./Main/index";
@@ -13,7 +13,7 @@ const { Sider, Main } = Content;
 
 
 export default props => {
-    const { action } = props;
+    const { action, title = '罗盘DMS' } = props;
     const [selectDatabase, setSelectDatabase] = useState(null);
     const [selectTable, setSelectTable] = useState(null);
     const [selectNav, setSelectNav] = useState(null);
@@ -118,9 +118,10 @@ export default props => {
         <Page className="dms-page">
             <Header>
                 <HeaderContent
+                    action={action}
+                    title={title}
                     selectNav={selectNav}
                     setSelectNav={setSelectNav}
-                    action={action}
                 />
             </Header>
             <Content className="form-editor-wrap">

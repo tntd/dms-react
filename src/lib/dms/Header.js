@@ -3,7 +3,7 @@ import { saveToLocal } from "./util";
 import logo from "./img/dms-logo.svg";
 
 export default props => {
-    const { selectNav, setSelectNav } = props;
+    const { selectNav, setSelectNav, title } = props;
 
     const navList = [
         {
@@ -46,12 +46,10 @@ export default props => {
     return (
         <Fragment>
             <div className="logo">
-                <img src={logo} alt="logo" />
+                <img src={logo} alt="dms logo" />
                 <h3>
-                    罗盘
-						<span>DMS
-							<em>0.0.1</em>
-                    </span>
+                    {title}
+                    <span><em>v 0.0.1</em></span>
                 </h3>
             </div>
             <div className="nav">

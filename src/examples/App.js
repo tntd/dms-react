@@ -4,13 +4,12 @@ import { mockJson } from "./mock";
 
 const App = () => (
     <Dms
+        title='精致DMS'
         action={({ value }) => {
             return new Promise(resolve => {
-                setTimeout(() => {
-                    resolve(
-                        mockJson
-                    );
-                }, 500);
+                resolve(
+                    mockJson
+                );
             });
         }}
     />
