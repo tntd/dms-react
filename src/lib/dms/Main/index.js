@@ -9,7 +9,7 @@ import Info from "./Info";
 import Query from "./Query";
 
 export default props => {
-    const { selectNav, structure, createSql, tableContentList, selectDatabase, selectTable } = props;
+    const { action, selectNav, structure, createSql, tableContentList, selectDatabase, selectTable } = props;
 
     return (
         <div className="body-main-content">
@@ -44,7 +44,9 @@ export default props => {
             }
             {
                 selectNav === "query" &&
-                <Query />
+                <Query
+                    action={action}
+                />
             }
         </div>
     );

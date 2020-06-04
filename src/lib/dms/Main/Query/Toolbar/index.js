@@ -2,12 +2,13 @@ import { PureComponent } from "react";
 import { connect } from "dva";
 import { Button, Select, Icon, Dropdown, Menu, message } from "antd";
 import { trim, get } from "lodash";
+import { getSchema } from "../../../util";
 
 const { Option } = Select;
 
 export default props => {
-    const { store, dispatch } = props;
-    const { querySqlInfo, querySqlInfo: { querySqlText } } = store;
+    const { action, querySqlInfo, setQuerySqlInfo } = props;
+    const { querySqlText } = querySqlInfo;
 
     const menu = (
         <Menu>
@@ -31,74 +32,55 @@ export default props => {
                         message.warning("请输入SQL语句");
                         return;
                     }
-                    querySqlInfo["loading"] = true;
-                    dispatch({
-                        type: "dms/updateState",
-                        payload: {
-                            querySqlInfo
-                        }
-                    });
-                    // loading
-                    dispatch({
-                        type: "dms/executeSql",
-                        payload: {
-                            value: querySqlText
-                        }
+
+                    // 设置loading
+                    setQuerySqlInfo({
+                        ...querySqlInfo,
+                        loading: true
+                    })
+
+                    action({
+                        value: querySqlText
                     }).then((data) => {
                         if (data.error) {
-                            dispatch({
-                                type: "dms/updateState",
-                                payload: {
-                                    querySqlInfo: {
-                                        loading: false,
-                                        querySqlText,
-                                        schema: [],
-                                        content: [],
-                                        resultTab: "message",
-                                        errorInfo: get(data, "error.original")
-                                    }
-                                }
-                            });
+                            setQuerySqlInfo({
+                                loading: false,
+                                querySqlText,
+                                schema: [],
+                                content: [],
+                                resultTab: "message",
+                                errorInfo: get(data, "error.original")
+                            })
                         } else {
-                            const { schema = [], content = [] } = data;
-                            dispatch({
-                                type: "dms/updateState",
-                                payload: {
-                                    querySqlInfo: {
-                                        querySqlText,
-                                        loading: false,
-                                        schema,
-                                        content,
-                                        resultTab: "result",
-                                        errorInfo: null
-                                    }
-                                }
-                            });
+                            // 获取schema
+                            const schema = getSchema(data);
+
+                            setQuerySqlInfo({
+                                querySqlText,
+                                loading: false,
+                                schema,
+                                content: data,
+                                resultTab: "result",
+                                errorInfo: null
+                            })
                         }
                     }).catch((res) => {
-                        dispatch({
-                            type: "dms/updateState",
-                            payload: {
-                                querySqlInfo: {
-                                    loading: false,
-                                    querySqlText,
-                                    schema: [],
-                                    content: [],
-                                    resultTab: "message",
-                                    errorInfo: null
-                                }
-                            }
-                        });
+                        setQuerySqlInfo({
+                            loading: false,
+                            querySqlText,
+                            schema: [],
+                            content: [],
+                            resultTab: "message",
+                            errorInfo: null
+                        })
                     });
                 }}
             >
                 运行
-				</Button>
-            <Button
-                icon="interaction"
-            >
+			</Button>
+            <Button icon="interaction">
                 格式化
-				</Button>
+			</Button>
             <Dropdown overlay={menu}>
                 <Button>
                     我的SQL <Icon type="down" />

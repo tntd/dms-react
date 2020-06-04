@@ -2,12 +2,19 @@ import { useEffect, useState } from "react";
 import Toolbar from "./Toolbar";
 import TableContent from "./TableContent";
 import Template from "./Template";
-
 import CodeMirror from "../components/CodeMirror";
 import "./index.less";
 
 export default props => {
-    const [querySqlInfo, setQuerySqlInfo] = useState({});
+    const { action } = props;
+    const [querySqlInfo, setQuerySqlInfo] = useState({
+        querySqlText: "",
+        loading: false,
+        schema: [],
+        content: [],
+        resultTab: "result",
+        errorInfo: {}
+    });
 
     useEffect(() => {
         init();
@@ -23,7 +30,11 @@ export default props => {
     return (
         <div className="query-page">
             <div className="main-content">
-                <Toolbar />
+                <Toolbar
+                    action={action}
+                    querySqlInfo={querySqlInfo}
+                    setQuerySqlInfo={setQuerySqlInfo}
+                />
                 <div className="main-content-body">
                     <div className="sql-text">
                         <CodeMirror
@@ -38,10 +49,18 @@ export default props => {
                             height={200}
                         />
                     </div>
-                    <TableContent />
+                    <TableContent
+                        action={action}
+                        querySqlInfo={querySqlInfo}
+                        setQuerySqlInfo={setQuerySqlInfo}
+                    />
                 </div>
             </div>
-            <Template />
+            <Template
+                action={action}
+                querySqlInfo={querySqlInfo}
+                setQuerySqlInfo={setQuerySqlInfo}
+            />
         </div>
     );
 }

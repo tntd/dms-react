@@ -1,2 +1,2 @@
-# react npm 脚手架
-配置babel，编译react为es5。
+# dms react
+小而美的dms web管理系统
