@@ -146,6 +146,8 @@ export default props => {
                         tableContentList={tableContentList}
                         createSql={createSql}
                         structure={structure}
+                        selectNav={selectNav}
+                        setSelectNav={setSelectNav}
                     />
                 </Main>
             </Content>

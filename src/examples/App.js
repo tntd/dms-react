@@ -1,6 +1,7 @@
 import React from "react";
 import Dms from "../lib";
 import { mockJson } from "./mock";
+import 'antd/dist/antd.css';
 
 const App = () => (
     <Dms
