@@ -3,9 +3,9 @@ import { Table } from "antd";
 import "./index.less";
 
 export default props => {
-    const { structure } = props;
+    const { columns, tableStatus } = props;
 
-    const columns = [
+    const antColumns = [
         {
             title: "列名",
             dataIndex: "Field",
@@ -18,7 +18,7 @@ export default props => {
             render: ((text, record) => {
                 return (
                     <span>
-                        {text.split("(")[0]}
+                        {text && text.split("(")[0]}
                     </span>
                 );
             })
@@ -73,13 +73,12 @@ export default props => {
     return (
         <div className="structure-page">
             <Table
-                dataSource={structure}
-                columns={columns}
+                dataSource={columns}
+                columns={antColumns}
                 pagination={false}
                 rowKey="Field"
                 size="middle"
             />
         </div>
     );
-
 }

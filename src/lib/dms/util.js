@@ -16,15 +16,17 @@ export const saveToLocal = (field, value) => {
     }
 };
 
-export const getSchema = (dataSource) => {
+export const getSchema = (dataSource = []) => {
     const schema = []
-    Object.keys(dataSource[0]).forEach((key, index) => {
-        schema.push({
-            dataIndex: `COLUMN_${index}`,
-            resizable: true,
-            sortable: true,
-            text: key,
+    if (dataSource && dataSource.length > 0) {
+        Object.keys(dataSource[0]).forEach((key, index) => {
+            schema.push({
+                dataIndex: `COLUMN_${index}`,
+                resizable: true,
+                sortable: true,
+                text: key,
+            });
         });
-    });
+    }
     return schema;
 }

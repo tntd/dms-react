@@ -1,16 +1,14 @@
-import React, { PureComponent } from "react";
+import React from "react";
 
-export default class Sider extends PureComponent {
-    render() {
-        const { className = "", width = 200 } = this.props;
+export default props => {
+    const { className = "", width = 200 } = props;
 
-        return (
-            <div
-                className={`body-sider ${className}`}
-                style={{ width: width + "px" }}
-            >
-                {this.props.children}
-            </div>
-        );
-    }
+    return (
+        <div
+            className={`body-sider ${className}`}
+            style={{ width: width + "px" }}
+        >
+            {props.children}
+        </div>
+    );
 }

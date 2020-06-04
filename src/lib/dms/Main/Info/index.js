@@ -6,8 +6,9 @@ import CodeMirror from "../components/CodeMirror";
 import "./index.less";
 
 export default props => {
-    const { createSql, selectDatabase, selectTable, baseInfo = {} } = props;
-    // TODO这里的baseInfo需要从props引入
+    const { createSql = "No content", selectDatabase, selectTable, tableStatus = {}, columns = [] } = props;
+    // TODO这里的tableStatus需要从props引入
+
     return (
         <div className="info-page">
             <div className="section-box">
@@ -45,7 +46,7 @@ export default props => {
 									引擎
 								</div>
                             <div className="text">
-                                {baseInfo.Engine}
+                                {tableStatus.Engine}
                             </div>
                         </Col>
                         <Col span={12}>
@@ -54,7 +55,7 @@ export default props => {
 									字符集
 								</div>
                             <div className="text">
-                                {baseInfo.Collation && baseInfo.Collation.split("_")[0]}
+                                {tableStatus.Collation && tableStatus.Collation.split("_")[0]}
                             </div>
                         </Col>
                         <Col span={12}>
@@ -63,7 +64,7 @@ export default props => {
 									校验规则
 								</div>
                             <div className="text">
-                                {baseInfo.Collation}
+                                {tableStatus.Collation}
                             </div>
                         </Col>
                         <Col span={12}>
@@ -72,7 +73,7 @@ export default props => {
 									创建时间
 								</div>
                             <div className="text">
-                                {moment(baseInfo.Create_time).format("YYYY-MM-DD HH:mm:ss")}
+                                {moment(tableStatus.Create_time).format("YYYY-MM-DD HH:mm:ss")}
                             </div>
                         </Col>
                         <Col span={12}>
@@ -81,7 +82,7 @@ export default props => {
 									更新时间
 								</div>
                             <div className="text">
-                                {moment(baseInfo.Update_time).format("YYYY-MM-DD HH:mm:ss")}
+                                {moment(tableStatus.Update_time).format("YYYY-MM-DD HH:mm:ss")}
                             </div>
                         </Col>
                         <Col span={12}>
@@ -90,7 +91,7 @@ export default props => {
 									行数
 								</div>
                             <div className="text">
-                                {baseInfo.Rows}
+                                {tableStatus.Rows}
                             </div>
                         </Col>
                         <Col span={12}>
@@ -99,7 +100,7 @@ export default props => {
 									数据容量
 								</div>
                             <div className="text">
-                                {bytesToSize(baseInfo.Data_length)}
+                                {bytesToSize(tableStatus.Data_length)}
                             </div>
                         </Col>
                         <Col span={12}>
@@ -108,7 +109,7 @@ export default props => {
 									主键自动
 								</div>
                             <div className="text">
-                                {baseInfo.Auto_increment}
+                                {tableStatus.Auto_increment}
                             </div>
                         </Col>
                         <Col span={24}>
@@ -117,7 +118,7 @@ export default props => {
 									备注
 								</div>
                             <div className="text">
-                                {baseInfo.Comment}
+                                {tableStatus.Comment}
                             </div>
                         </Col>
                     </Row>
@@ -132,10 +133,10 @@ export default props => {
                             <div className="label">
                                 <i className="iconfont icon-project"></i>
 									建表语句
-								</div>
+							</div>
                             <div className="text">
                                 <CodeMirror
-                                    value={createSql || ""}
+                                    value={createSql}
                                     height={"auto"}
                                 />
                             </div>

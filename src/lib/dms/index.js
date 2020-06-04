@@ -1,4 +1,4 @@
-import React, { useEffect, useState, Fragment } from "react";
+import React, { useEffect, useState } from "react";
 import Page from "./SimplePage";
 import HeaderContent from "./Header";
 import SideMenus from "./SideMenus";
@@ -11,7 +11,6 @@ import "./index.less";
 const { Header, Content } = Page;
 const { Sider, Main } = Content;
 
-
 export default props => {
     const { action, title = '罗盘DMS' } = props;
     const [selectDatabase, setSelectDatabase] = useState(null);
@@ -22,13 +21,13 @@ export default props => {
     const [tableList, setTableList] = useState([]);
     const [tableContentList, setTableContentList] = useState([]);
     const [createSql, setCreateSql] = useState([]);
-    const [structure, setStructure] = useState([]);
+    const [tableStatus, setTableStatus] = useState([]);
+    const [columns, setColumns] = useState([]);
 
     useEffect(() => {
         init();
         getDatabaseList();
     }, []);
-
 
     const init = () => {
         // 这里判断localStorage在缓存中的多种复杂情况
@@ -46,18 +45,22 @@ export default props => {
                 if (dmsInfoObj.selectDatabase) {
                     action({
                         value: `SHOW TABLES FROM ${dmsInfoObj.selectDatabase}`
-                    }).then((res) => {
-                        const { content = [] } = res;
-                        let newList = content.map((item, index) => {
+                    }).then((data) => {
+                        let newList = data.map((item, index) => {
                             return item["Tables_in_" + dmsInfoObj.selectDatabase];
                         });
-
                         setTableList(newList)
                     });
                 }
                 if (dmsInfoObj.selectTable) {
+                    // 获取列信息
+                    getColumns(dmsInfoObj.selectDatabase, dmsInfoObj.selectTable);
+
+                    // 获取表格内容
+                    getTableContent(dmsInfoObj.selectDatabase, dmsInfoObj.selectTable);
+
                     // getStructure 获取结构
-                    getStructure(dmsInfoObj.selectDatabase, dmsInfoObj.selectTable)
+                    getTableStatus(dmsInfoObj.selectDatabase, dmsInfoObj.selectTable)
 
                     // getCreateSql 获取表的创建语句
                     getCreateSql(dmsInfoObj.selectDatabase, dmsInfoObj.selectTable)
@@ -69,12 +72,20 @@ export default props => {
             }));
         }
     }
-
-    const getStructure = (databaseName, tableName) => {
+    //
+    const getColumns = (databaseName, tableName) => {
         action({
             value: `SHOW COLUMNS FROM ${databaseName}.${tableName}`
         }).then((data) => {
-            setStructure(data);
+            setColumns(data);
+        });
+    }
+
+    const getTableStatus = (databaseName, tableName) => {
+        action({
+            value: `SHOW TABLE STATUS FROM ${databaseName} LIKE "${tableName}"`
+        }).then((data) => {
+            setTableStatus(data[0]);
         });
     }
 
@@ -82,7 +93,7 @@ export default props => {
         action({
             value: `SHOW CREATE TABLE ${databaseName}.${tableName}`
         }).then((data) => {
-            setCreateSql(data);
+            setCreateSql(data && data[0]['Create Table']);
         });
     }
 
@@ -98,7 +109,6 @@ export default props => {
     }
 
     const getTableList = (databaseName) => {
-
         // 缓存中是否存在currentApp
         saveToLocal("selectDatabase", databaseName);
         setSelectDatabase(databaseName)
@@ -108,9 +118,17 @@ export default props => {
             value: `SHOW TABLES FROM ${databaseName}`
         }).then((data) => {
             let newList = data.map((item, index) => {
-                return item["Database"];
+                return item["Tables_in_" + databaseName];
             });
-            setDatabaseList(newList)
+            setTableList(newList);
+        });
+    }
+
+    const getTableContent = (databaseName, tableName) => {
+        action({
+            value: `select * from ${databaseName}.${tableName} limit 499`
+        }).then((data) => {
+            setTableContentList(data || [])
         });
     }
 
@@ -131,11 +149,13 @@ export default props => {
                         databaseList={databaseList}
                         getTableList={getTableList}
                         tableList={tableList}
+                        getTableContent={getTableContent}
                         setTableContentList={setTableContentList}
                         selectDatabase={selectDatabase}
                         selectTable={selectTable}
                         setSelectTable={setSelectTable}
-                        getStructure={getStructure}
+                        getColumns={getColumns}
+                        getTableStatus={getTableStatus}
                         getCreateSql={getCreateSql}
                     />
                 </Sider>
@@ -146,7 +166,8 @@ export default props => {
                         selectTable={selectTable}
                         tableContentList={tableContentList}
                         createSql={createSql}
-                        structure={structure}
+                        columns={columns}
+                        tableStatus={tableStatus}
                         selectNav={selectNav}
                         setSelectNav={setSelectNav}
                     />

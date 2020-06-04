@@ -1,9 +1,7 @@
-import React, { PureComponent } from "react";
-import { Button, Select, Icon, Dropdown, Menu, message } from "antd";
+import React from "react";
+import { Button, Icon, Dropdown, Menu, message } from "antd";
 import { trim, get } from "lodash";
 import { getSchema } from "../../../util";
-
-const { Option } = Select;
 
 export default props => {
     const { action, querySqlInfo, setQuerySqlInfo } = props;

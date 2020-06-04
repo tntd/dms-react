@@ -1,9 +1,7 @@
-import React, { PureComponent } from "react";
-import { Button, Select } from "antd";
+import React from "react";
 import Tree from "./Tree";
 
 import { sqlTemplateList } from "../../constant";
-const { Option } = Select;
 
 export default props => {
     const { action, querySqlInfo, setQuerySqlInfo } = props;

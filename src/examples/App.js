@@ -5,7 +5,8 @@ import 'antd/dist/antd.css';
 
 const App = () => (
     <Dms
-        title='精致DMS'
+        isDevelopmentEnv={true}
+        title='星辰DMS'
         action={({ value }) => {
             return new Promise(resolve => {
                 resolve(

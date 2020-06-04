@@ -6,18 +6,9 @@ import "./index.less";
 const { Option } = Select;
 
 export default props => {
-    const { databaseList, tableList, getTableList, selectDatabase, tableContentList, setTableContentList, selectTable, setSelectTable, getStructure, getCreateSql, action } = props;
+    const { databaseList, tableList, getTableList, selectDatabase, tableContentList, getTableContent, setTableContentList, selectTable, setSelectTable, getTableStatus, getCreateSql, getColumns, action } = props;
 
-    const getTableContent = () => {
-        const { dispatch, store } = this.props;
-        const { selectDatabase, selectTable } = store;
-
-        action({
-            value: `select * from ${selectDatabase}.${selectTable} limit 499`
-        }).then((data) => {
-            setTableContentList(data || [])
-        });
-    }
+    console.log('props', props);
 
     return (
         <div className="dms-aside">
@@ -57,9 +48,10 @@ export default props => {
                                         saveToLocal("selectTable", name);
 
                                         setSelectTable(name);
-                                        await getStructure(selectDatabase, name);
+                                        await getColumns(selectDatabase, name);
+                                        await getTableStatus(selectDatabase, name);
                                         await getCreateSql(selectDatabase, name);
-                                        await getTableContent();
+                                        await getTableContent(selectDatabase, name);
                                     }}
                                     className={selectTable === name ? "active" : ""}
                                 >

@@ -9,7 +9,8 @@ import Info from "./Info";
 import Query from "./Query";
 
 export default props => {
-    const { action, selectNav, structure, createSql, tableContentList, selectDatabase, selectTable } = props;
+    const { action, selectNav, columns, tableStatus, createSql, tableContentList, selectDatabase, selectTable } = props;
+    console.log("createSql", props);
 
     return (
         <div className="body-main-content">
@@ -20,7 +21,10 @@ export default props => {
             }
             {
                 selectNav === "structure" &&
-                <Structure structure={structure} />
+                <Structure
+                    columns={columns}
+                    tableStatus={tableStatus}
+                />
             }
             {
                 selectNav === "content" &&
@@ -38,6 +42,8 @@ export default props => {
                 selectNav === "info" &&
                 <Info
                     createSql={createSql}
+                    columns={columns}
+                    tableStatus={tableStatus}
                     selectDatabase={selectDatabase}
                     selectTable={selectTable}
                 />

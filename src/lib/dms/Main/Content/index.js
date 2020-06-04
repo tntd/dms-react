@@ -1,11 +1,11 @@
-import React, { PureComponent } from "react";
+import React from "react";
 import { Table } from "antd";
 import moment from "moment";
 import { getSchema } from "../../util";
 import "./index.less";
 
 export default props => {
-    const { tableContentList } = props;
+    const { tableContentList = [] } = props;
     const schema = getSchema(tableContentList);
     const columns = schema.map((item, index, arr) => {
         let obj = {

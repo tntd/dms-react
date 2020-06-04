@@ -1,17 +1,12 @@
-import React, { PureComponent } from "react";
+import React from "react";
 
-export default class Main extends PureComponent {
-    constructor(props) {
-        super(props);
-    }
+export default props => {
 
-    render() {
-        const { className = "" } = this.props;
+    const { className = "" } = props;
 
-        return (
-            <div className={`body-main ${className}`}>
-                {this.props.children}
-            </div>
-        );
-    }
+    return (
+        <div className={`body-main ${className}`}>
+            {props.children}
+        </div>
+    );
 }
