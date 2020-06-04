@@ -1,11 +1,12 @@
-import React, { useState } from "react";
-import { Table } from "antd";
-import "./index.less";
+import React, { useState, useEffect } from 'react';
+import { Table } from 'antd';
+import { getTableColumns } from '../../excuteActions';
+import './index.less';
 
 export default props => {
-    const { columns, tableStatus } = props;
-
-    const antColumns = [
+    const { action, database, tableName } = props;
+    const [dataSource, setDataSource] = useState([]);
+    const columns = [
         {
             title: "列名",
             dataIndex: "Field",
@@ -70,11 +71,17 @@ export default props => {
         }
     ];
 
+    useEffect(() => {
+        getTableColumns(action, database, tableName).then(
+            data => setDataSource(data)
+        );
+    }, [database, tableName]);
+
     return (
         <div className="structure-page">
             <Table
-                dataSource={columns}
-                columns={antColumns}
+                dataSource={dataSource}
+                columns={columns}
                 pagination={false}
                 rowKey="Field"
                 size="middle"

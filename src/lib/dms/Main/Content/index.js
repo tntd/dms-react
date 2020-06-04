@@ -1,45 +1,59 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Table } from "antd";
 import moment from "moment";
+import ActionContext from '../../ActionContext';
 import { getSchema } from "../../util";
-import "./index.less";
+import './index.less';
 
 export default props => {
-    const { tableContentList = [] } = props;
-    const schema = getSchema(tableContentList);
-    const columns = schema.map((item, index, arr) => {
-        let obj = {
-            title: item.text,
-            dataIndex: item.text,
-            key: item.dataIndex,
-            ellipsis: true,
-            width: 180,
-            render: ((text, record) => {
-                if (item.text === "gmt_create" || item.text === "gmt_modify") {
-                    text = moment(text).format("YYYY-MM-DD HH:mm:ss");
-                }
-                return (
-                    <span>
-                        {text}
-                    </span>
-                );
-            })
-        };
-        if (index === 0 && arr.length > 5) {
-            obj["fixed"] = "left";
-        }
+    const { database, tableName } = props;
+    const excuteActions = useContext(ActionContext);
+    const [records, setRecords] = useState([]);
+    const [columns, setColumns] = useState([]);
 
-        return obj;
-    });
+    useEffect(() => {
+        excuteActions.getTableContent(database, tableName).then(data => {
+            console.log('data...', data)
+            setRecords(data);
+            setColumns(
+                getSchema(data).map((item, index, arr) => {
+                    const obj = {
+                        title: item.text,
+                        dataIndex: item.text,
+                        key: item.dataIndex,
+                        ellipsis: true,
+                        width: 180,
+                        render: ((text, record) => {
+                            if (item.text === "gmt_create" || item.text === "gmt_modify") {
+                                text = moment(text).format("YYYY-MM-DD HH:mm:ss");
+                            }
+
+                            return (
+                                <span>
+                                    {text}
+                                </span>
+                            );
+                        })
+                    };
+
+                    if (index === 0 && arr.length > 5) {
+                        obj["fixed"] = "left";
+                    }
+            
+                    return obj;
+                })
+            );
+        });
+    }, [database, tableName]);
 
     return (
         <div className="content-page">
             <Table
-                dataSource={tableContentList}
+                dataSource={records}
                 columns={columns}
                 size="middle"
                 scroll={{
-                    x: schema.length * 180
+                    x: columns.length * 180
                 }}
                 pagination={{
                     pageSize: 50,

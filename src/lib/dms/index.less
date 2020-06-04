@@ -8,13 +8,11 @@
         display: none;
     }
 
-    .simple-header {
-        & {
-            display: flex;
-            background: #F0F2F3;
-            box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.10), 0 10px 12px 0 rgba(170, 182, 206, 0.20);
-        }
-
+    &-header {
+        display: flex;
+        background: #F0F2F3;
+        box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.10), 0 10px 12px 0 rgba(170, 182, 206, 0.20);
+    
         .logo {
             & {
                 width: 200px;
@@ -89,17 +87,16 @@
         }
     }
 
-    .simple-body {
-        .body-sider {
-            background: #E8EBED;
-        }
+    &-body {
+        display: flex;
+    }
 
-        .body-main {
-            height: calc(~"100vh - 60px");
-            overflow-x: hidden;
-            overflow-y: auto;
-            background: #F3F5F6;
-            box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.10), 0 10px 24px 0 rgba(0, 0, 0, 0.06);
-        }
+    &-main {
+        flex: 1;
+        height: calc(~"100vh - 60px");
+        overflow-x: hidden;
+        overflow-y: auto;
+        background: #F3F5F6;
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.10), 0 10px 24px 0 rgba(0, 0, 0, 0.06);
     }
 }

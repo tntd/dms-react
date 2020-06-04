@@ -1,100 +1,90 @@
 .dms-page {
-    .body-main {
-        .query-page {
-            & {
-                display: flex;
+    .query-page {
+        display: flex;
+
+        .main-content {
+            flex: 1;
+
+            overflow: hidden;
+
+            .toolbar {
+                padding: 0 10px;
+                height: 48px;
+                line-height: 48px;
+                border-bottom: 1px solid #e6e6e6;
+                background: #fff;
+
+                .ant-btn {
+                    margin-right: 10px;
+                    font-size: 12px;
+                }
             }
 
-            .main-content {
-                flex: 1;
+            .main-content-body {
+                height: calc(~"100vh - 108px");
+                overflow-x: hidden;
+                overflow-y: auto;
 
-                overflow: hidden;
-
-                .toolbar {
-                    & {
-                        padding: 0 10px;
-                        height: 48px;
-                        line-height: 48px;
-                        border-bottom: 1px solid #e6e6e6;
-                        background: #fff;
-                    }
-
-                    .ant-btn {
-                        margin-right: 10px;
-                        font-size: 12px;
-                    }
-                }
-
-                .main-content-body {
-                    height: calc(~"100vh - 108px");
-                    overflow-x: hidden;
-                    overflow-y: auto;
-
-                    .sql-text {
-                        padding: 10px;
-                    }
-                }
-
-                .ant-alert {
-                    .ant-alert-description {
-                        span {
-                            width: 100px;
-                            text-align: left;
-                            display: inline-block;
-                        }
-                    }
-                }
-
-                .table-content {
+                .sql-text {
                     padding: 10px;
+                }
+            }
 
-                    .ant-radio-group {
-                        margin-bottom: 10px;
-                        font-size: 12px;
-                    }
-
-                    .ant-table {
-                        font-size: 12px;
-                        background: #fff;
-                        width: calc(~"100vw - 440px");
+            .ant-alert {
+                .ant-alert-description {
+                    span {
+                        width: 100px;
+                        text-align: left;
+                        display: inline-block;
                     }
                 }
             }
 
-            .sql-template-panel {
-                & {
-                    height: calc(~"100vh - 60px");
-                    overflow-x: hidden;
-                    overflow-y: auto;
-                    width: 200px;
-                    background: #fff;
+            .table-content {
+                padding: 10px;
+
+                .ant-radio-group {
+                    margin-bottom: 10px;
+                    font-size: 12px;
                 }
 
-                .panel-header {
-                    padding: 0 10px;
-                    height: 48px;
-                    line-height: 48px;
-                    border-bottom: 1px solid #e6e6e6;
+                .ant-table {
+                    font-size: 12px;
                     background: #fff;
-                    display: flex;
+                    width: calc(~"100vw - 440px");
+                }
+            }
+        }
 
-                    h3 {
-                        font-size: 14px;
-                        font-weight: normal;
-                        margin-right: 10px;
-                        margin-bottom: 0;
-                    }
+        .sql-template-panel {
+            height: calc(~"100vh - 60px");
+            overflow-x: hidden;
+            overflow-y: auto;
+            width: 200px;
+            background: #fff;
 
-                    span {
-                        position: relative;
-                        top: 2px;
-                        font-size: 12px;
-                        font-style: normal;
-                        color: #b4b4b4;
-                    }
+            .panel-header {
+                padding: 0 10px;
+                height: 48px;
+                line-height: 48px;
+                border-bottom: 1px solid #e6e6e6;
+                background: #fff;
+                display: flex;
+
+                h3 {
+                    font-size: 14px;
+                    font-weight: normal;
+                    margin-right: 10px;
+                    margin-bottom: 0;
                 }
 
-                .panel-body {}
+                span {
+                    position: relative;
+                    top: 2px;
+                    font-size: 12px;
+                    font-style: normal;
+                    color: #b4b4b4;
+                }
             }
         }
     }

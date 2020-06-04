@@ -1,3 +1,3 @@
-import Dms from "./dms";
+import Dms from './dms';
 
 export default Dms;
