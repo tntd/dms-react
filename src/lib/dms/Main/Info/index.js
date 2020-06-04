@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Row, Col } from "antd";
+import { Row, Col, Icon } from "antd";
 import moment from "moment";
 import { bytesToSize } from "@tntd/utils";
 import CodeMirror from "../components/CodeMirror";
@@ -24,6 +24,7 @@ export default props => {
                     >
                         <Col span={12}>
                             <div className="label">
+                                <Icon type="database" />
                                 <i className="iconfont icon-project"></i>
 									数据库
 								</div>
