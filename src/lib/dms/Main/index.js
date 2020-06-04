@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Empty } from "antd";
 import Home from "./Home";
-import Structure from "./Structure";
+import Columns from "./Columns";
 import Content from "./Content";
 import Relations from "./Relations";
 import Triggers from "./Triggers";
@@ -11,49 +11,27 @@ import Query from "./Query";
 export default props => {
     const { action, selectNav, columns, tableStatus, createSql, tableContentList, selectDatabase, selectTable } = props;
     console.log("createSql", props);
+    const MainContent = {
+        home: Home,
+        columns: Columns,
+        content: Content,
+        relations: Relations,
+        triggers: Triggers,
+        info: Info,
+        query: Query
+    }[selectNav] || Home;
 
     return (
-        <div className="body-main-content">
-            {
-                selectNav === "home" &&
-                // <Home />
-                <div>首页</div>
-            }
-            {
-                selectNav === "structure" &&
-                <Structure
-                    columns={columns}
-                    tableStatus={tableStatus}
-                />
-            }
-            {
-                selectNav === "content" &&
-                <Content tableContentList={tableContentList} />
-            }
-            {
-                selectNav === "relations" &&
-                <Relations />
-            }
-            {
-                selectNav === "triggers" &&
-                <Triggers />
-            }
-            {
-                selectNav === "info" &&
-                <Info
-                    createSql={createSql}
-                    columns={columns}
-                    tableStatus={tableStatus}
-                    selectDatabase={selectDatabase}
-                    selectTable={selectTable}
-                />
-            }
-            {
-                selectNav === "query" &&
-                <Query
-                    action={action}
-                />
-            }
+        <div className="dms-page-main">
+            <MainContent
+                action={action}
+                columns={columns}
+                tableStatus={tableStatus}
+                tableContentList={tableContentList}
+                createSql={createSql}
+                selectDatabase={selectDatabase}
+                selectTable={selectTable}
+            />
         </div>
     );
 }

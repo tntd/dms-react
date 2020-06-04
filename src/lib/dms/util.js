@@ -1,19 +1,32 @@
-import { isJSON } from "@tntd/utils";
+
+export const safeParseJSON = (str, defaultObj) => {
+	let result;
+
+	try {
+		result = JSON.parse(str);
+	} catch (err) {
+		console.warn('json parse error:', err);
+		result = typeof defaultObj === 'undefined' ? str : defaultObj;
+	}
+
+	return result || defaultObj;
+};
+
+export const getStorageItem = (key, defaultVal) => safeParseJSON(localStorage.getItem(key), defaultVal);
+
+export const setStorageItem = (key, value) => localStorage.setItem(
+    key,
+    value instanceof Object ? JSON.stringify(value) : value
+);
 
 export const saveToLocal = (field, value) => {
     // 缓存中是否存在currentApp
-    let dmsInfoObjStr = localStorage.getItem("dmsInfo");
-    if (dmsInfoObjStr && isJSON(dmsInfoObjStr)) {
-        // 存在的currentApp是否是标准JSON
-        const dmsInfoObj = JSON.parse(dmsInfoObjStr);
+    const dmsInfo = getStorageItem('dmsInfo', {});
 
-        dmsInfoObj[field] = value;
-        localStorage.setItem("dmsInfo", JSON.stringify(dmsInfoObj));
-    } else {
-        let params = {};
-        params[field] = value;
-        localStorage.setItem("dmsInfo", JSON.stringify(params));
-    }
+    setStorageItem('dmsInfo', {
+        ...dmsInfo,
+        [field]: value
+    });
 };
 
 export const getSchema = (dataSource = []) => {
@@ -29,4 +42,4 @@ export const getSchema = (dataSource = []) => {
         });
     }
     return schema;
-}
+};

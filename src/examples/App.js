@@ -1,6 +1,6 @@
 import React from "react";
 import Dms from "../lib";
-import { mockJson } from "./mock";
+import mockJsonBySql from "./mock";
 import 'antd/dist/antd.css';
 
 const App = () => (
@@ -8,9 +8,10 @@ const App = () => (
         isDevelopmentEnv={true}
         title='星辰DMS'
         action={({ value }) => {
+            console.log('excute sql:', value);
             return new Promise(resolve => {
                 resolve(
-                    mockJson
+                    mockJsonBySql(value)
                 );
             });
         }}
