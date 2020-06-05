@@ -12,7 +12,7 @@
         display: flex;
         background: #F0F2F3;
         box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.10), 0 10px 12px 0 rgba(170, 182, 206, 0.20);
-    
+
         .logo {
             & {
                 width: 200px;
@@ -98,5 +98,94 @@
         overflow-y: auto;
         background: #F3F5F6;
         box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.10), 0 10px 24px 0 rgba(0, 0, 0, 0.06);
+    }
+
+    // antd样式覆盖
+    .ant-btn {
+        & {
+            line-height: 1.499;
+            -webkit-box-shadow: 0 2px 0 rgba(0, 0, 0, .015);
+            box-shadow: 0 2px 0 rgba(0, 0, 0, .015);
+            height: 28px;
+            padding: 0 11px;
+            border-radius: 2px;
+            color: rgba(0, 0, 0, .65);
+            border: 1px solid #d9d9d9;
+        }
+
+        &:focus,
+        &:hover {
+            color: #43464d;
+            background-color: #fff;
+            border-color: #43464d;
+        }
+    }
+
+    // ant-radio-group
+    .ant-radio-group {
+        color: rgba(0, 0, 0, .65);
+        line-height: 1.5;
+    }
+
+    .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled):first-child {
+        border-color: #2e3341;
+    }
+
+    .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled) {
+        color: #2e3341;
+        border-color: #2e3341;
+        -webkit-box-shadow: -1px 0 0 0 #2e3341;
+        box-shadow: -1px 0 0 0 #2e3341;
+    }
+
+
+
+    .ant-radio-button-wrapper {
+        & {
+            height: 28px;
+            margin: 0;
+            padding: 0 11px;
+            color: rgba(0, 0, 0, .65);
+            line-height: 26px;
+            border: 1px solid #d9d9d9;
+            border-top: 1.02px solid #d9d9d9;
+        }
+
+        &:first-child {
+            border-left: 1px solid #d9d9d9;
+            border-radius: 2px 0 0 2px;
+        }
+
+        &:last-child {
+            border-width: 1px 1px 1px 0;
+            border-radius: 0 2px 2px 0 !important;
+        }
+    }
+
+    // select
+    .ant-select-selection--single {
+        height: 28px;
+    }
+
+    .ant-select-selection {
+        border-radius: 2px;
+
+        &:hover {
+            border-color: #2e3341;
+            border-right-width: 1px !important;
+        }
+    }
+
+    .ant-select-selection__rendered {
+        line-height: 26px;
+    }
+
+    // dropdown
+    .ant-dropdown-menu {
+        padding: 4px 0;
+        border-radius: 2px;
+        outline: none;
+        -webkit-box-shadow: 0 2px 8px rgba(0, 0, 0, .15);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, .15);
     }
 }
