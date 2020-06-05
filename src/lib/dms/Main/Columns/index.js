@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Table } from 'antd';
-import { getTableColumns } from '../../excuteActions';
+import ActionContext from '../../ActionContext';
 import './index.less';
 
 export default props => {
-    const { action, database, tableName } = props;
+    const { database, tableName } = props;
     const [dataSource, setDataSource] = useState([]);
     const columns = [
         {
@@ -70,9 +70,10 @@ export default props => {
             })
         }
     ];
+    const excuteActions = useContext(ActionContext);
 
     useEffect(() => {
-        getTableColumns(action, database, tableName).then(
+        excuteActions.getTableColumns(database, tableName).then(
             data => setDataSource(data)
         );
     }, [database, tableName]);
