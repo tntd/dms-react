@@ -51,7 +51,6 @@ class TreeDemo extends PureComponent {
                             return (
                                 <Icon
                                     type="file"
-                                    // className="iconfont icon-page"
                                     onDoubleClick={() => {
                                         this.props.onDbClick(item);
                                     }}

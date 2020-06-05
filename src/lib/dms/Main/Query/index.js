@@ -57,7 +57,6 @@ export default props => {
                 </div>
             </div>
             <Template
-                action={action}
                 querySqlInfo={querySqlInfo}
                 setQuerySqlInfo={setQuerySqlInfo}
             />
