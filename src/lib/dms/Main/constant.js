@@ -682,23 +682,521 @@ export const sqlTemplateList = [
             {
                 title: "数值型",
                 key: "group-2-1",
-                children: []
+                children: [
+                    {
+                        title: "abs",
+                        key: "group-2-1-0",
+                        content: "abs(x)"
+                    },
+                    {
+                        title: "acos",
+                        key: "group-2-1-1",
+                        content: "acos(x)"
+                    },
+                    {
+                        title: "asin",
+                        key: "group-2-1-2",
+                        content: "asin(x)"
+                    },
+                    {
+                        title: "atan",
+                        key: "group-2-1-3",
+                        content: "atan(x)"
+                    },
+                    {
+                        title: "atan2",
+                        key: "group-2-1-4",
+                        content: "atan2(y,x)"
+                    },
+                    {
+                        title: "ceiling",
+                        key: "group-2-1-5",
+                        content: "ceiling(x) ceil(x)"
+                    },
+                    {
+                        title: "cos",
+                        key: "group-2-1-6",
+                        content: "cos(x)"
+                    },
+                    {
+                        title: "cot",
+                        key: "group-2-1-7",
+                        content: "cot(x)"
+                    },
+                    {
+                        title: "crc32",
+                        key: "group-2-1-8",
+                        content: "crc32(expr)"
+                    },
+                    {
+                        title: "degrees",
+                        key: "group-2-1-9",
+                        content: "degrees(x)"
+                    },
+                    {
+                        title: "div",
+                        key: "group-2-1-10",
+                        content: "div"
+                    },
+                    {
+                        title: "exp",
+                        key: "group-2-1-11",
+                        content: "exp(x)"
+                    },
+                    {
+                        title: "floor",
+                        key: "group-2-1-12",
+                        content: "floor(x)"
+                    },
+                    {
+                        title: "log10",
+                        key: "group-2-1-13",
+                        content: "log10(x)"
+                    },
+                    {
+                        title: "log2",
+                        key: "group-2-1-14",
+                        content: "log2(x)"
+                    },
+                    {
+                        title: "mod",
+                        key: "group-2-1-15",
+                        content: "mod(n,m) , n % m n mod m"
+                    },
+                    {
+                        title: "pi",
+                        key: "group-2-1-16",
+                        content: "pi()"
+                    },
+                    {
+                        title: "pow",
+                        key: "group-2-1-17",
+                        content: "pow(x,y) , power(x,y)"
+                    },
+                    {
+                        title: "radians",
+                        key: "group-2-1-18",
+                        content: "radians(x)"
+                    },
+                    {
+                        title: "rand",
+                        key: "group-2-1-19",
+                        content: "rand() rand(n)"
+                    },
+                    {
+                        title: "round",
+                        key: "group-2-1-20",
+                        content: "round(x) round(x,d)"
+                    },
+                    {
+                        title: "sign",
+                        key: "group-2-1-21",
+                        content: "sign(x)"
+                    },
+                    {
+                        title: "sin",
+                        key: "group-2-1-22",
+                        content: "sin(x)"
+                    },
+                    {
+                        title: "sqrt",
+                        key: "group-2-1-23",
+                        content: "sqrt(x)"
+                    },
+                    {
+                        title: "tan",
+                        key: "group-2-1-24",
+                        content: "tan(x)"
+                    },
+                ]
             },
             {
                 title: "日期型",
                 key: "group-2-2",
-                children: []
+                children: [
+                    {
+                        title: "adddate",
+                        key: "group-2-2-0",
+                        content: "adddate(date,interval expr type)\nadddate(expr,days)"
+                    },
+                    {
+                        title: "addtime",
+                        key: "group-2-2-1",
+                        content: "addtime(expr,expr2)"
+                    },
+                    {
+                        title: "convert_tz",
+                        key: "group-2-2-2",
+                        content: "convert_tz(dt,from_tz,to_tz)"
+                    },
+                    {
+                        title: "curdate",
+                        key: "group-2-2-3",
+                        content: "curdate()"
+                    },
+                    {
+                        title: "current_date",
+                        key: "group-2-2-4",
+                        content: "current_date()"
+                    },
+                    {
+                        title: "current_time",
+                        key: "group-2-2-5",
+                        content: "current_time()"
+                    },
+                    {
+                        title: "current_timestamp",
+                        key: "group-2-2-6",
+                        content: "current_timestamp()"
+                    },
+                    {
+                        title: "curtime",
+                        key: "group-2-2-7",
+                        content: "curtime()"
+                    },
+                    {
+                        title: "date",
+                        key: "group-2-2-8",
+                        content: "date(expr)"
+                    },
+                    {
+                        title: "datediff",
+                        key: "group-2-2-9",
+                        content: "datediff(expr,expr2)"
+                    },
+                    {
+                        title: "date_add",
+                        key: "group-2-2-10",
+                        content: "date_add(date,interval expr type) "
+                    },
+                    {
+                        title: "date_format",
+                        key: "group-2-2-11",
+                        content: "date_format(date,format)"
+                    },
+                    {
+                        title: "date_add",
+                        key: "group-2-2-12",
+                        content: "date_add(date,interval expr type)"
+                    },
+                    {
+                        title: "day",
+                        key: "group-2-2-13",
+                        content: "day(date)"
+                    },
+                    {
+                        title: "dayname",
+                        key: "group-2-2-14",
+                        content: "dayname(date)"
+                    },
+                    {
+                        title: "dayofmonth",
+                        key: "group-2-2-15",
+                        content: "dayofmonth(date)"
+                    },
+                    {
+                        title: "dayofweek",
+                        key: "group-2-2-16",
+                        content: "dayofweek(date)"
+                    },
+                    {
+                        title: "dayofyear",
+                        key: "group-2-2-17",
+                        content: "dayofyear(date)"
+                    },
+                    {
+                        title: "extract",
+                        key: "group-2-2-18",
+                        content: "extract(type from date)"
+                    },
+                    {
+                        title: "from_days",
+                        key: "group-2-2-19",
+                        content: "from_days(n)"
+                    },
+                    {
+                        title: "from_unixtime",
+                        key: "group-2-2-20",
+                        content: "from_unixtime(unix_timestamp)\nfrom_unixtime(unix_timestamp,format)"
+                    },
+                    {
+                        title: "get_format",
+                        key: "group-2-2-21",
+                        content: "get_format(date|time|datetime, 'eur'|'usa'|'jis'|'iso'|'internal')"
+                    },
+                    {
+                        title: "hour",
+                        key: "group-2-2-22",
+                        content: "hour(time)"
+                    },
+                    {
+                        title: "last_day",
+                        key: "group-2-2-23",
+                        content: "last_day(date)"
+                    },
+                    {
+                        title: "ln",
+                        key: "group-2-2-24",
+                        content: "ln(x)"
+                    },
+                    {
+                        title: "localtime",
+                        key: "group-2-2-25",
+                        content: "localtime()"
+                    },
+                    {
+                        title: "localtimestamp",
+                        key: "group-2-2-26",
+                        content: "localtimestamp()"
+                    },
+                    {
+                        title: "log",
+                        key: "group-2-2-27",
+                        content: "log(x) log(b,x)"
+                    },
+                    {
+                        title: "makedate",
+                        key: "group-2-2-28",
+                        content: "makedate(year,dayofyear)"
+                    },
+                    {
+                        title: "maketime",
+                        key: "group-2-2-29",
+                        content: "maketime(hour,minute,second)"
+                    },
+                    {
+                        title: "microsecond",
+                        key: "group-2-2-30",
+                        content: "microsecond(expr)"
+                    },
+                    {
+                        title: "minute",
+                        key: "group-2-2-31",
+                        content: "minute(time)"
+                    },
+                    {
+                        title: "month",
+                        key: "group-2-2-32",
+                        content: "month(date)"
+                    },
+                    {
+                        title: "monthname",
+                        key: "group-2-2-33",
+                        content: "monthname(date)"
+                    },
+                    {
+                        title: "now",
+                        key: "group-2-2-34",
+                        content: "now()"
+                    },
+                    {
+                        title: "period_add",
+                        key: "group-2-2-35",
+                        content: "period_add(p,n)"
+                    },
+                    {
+                        title: "period_diff",
+                        key: "group-2-2-36",
+                        content: "period_diff(p1,p2)"
+                    },
+                    {
+                        title: "quarter",
+                        key: "group-2-2-37",
+                        content: "quarter(date)"
+                    },
+                    {
+                        title: "second",
+                        key: "group-2-2-38",
+                        content: "second(time)"
+                    },
+                    {
+                        title: "sec_to_time",
+                        key: "group-2-2-39",
+                        content: "sec_to_time(seconds)"
+                    },
+                    {
+                        title: "str_to_date",
+                        key: "group-2-2-40",
+                        content: "str_to_date(str,format)"
+                    },
+                    {
+                        title: "subdate",
+                        key: "group-2-2-41",
+                        content: "subdate(date,interval expr type) subdate(expr,days)"
+                    },
+                    {
+                        title: "subtime(expr,expr2)",
+                        key: "group-2-2-42",
+                        content: "c(expr,expr2)"
+                    },
+                    {
+                        title: "sysdate",
+                        key: "group-2-2-43",
+                        content: "sysdate()"
+                    },
+                    {
+                        title: "time",
+                        key: "group-2-2-44",
+                        content: "time(expr)"
+                    },
+                    {
+                        title: "timediff",
+                        key: "group-2-2-45",
+                        content: "timediff(expr,expr2)"
+                    },
+                    {
+                        title: "timestampadd",
+                        key: "group-2-2-46",
+                        content: "timestampadd(interval,int_expr,datetime_expr)"
+                    },
+                    {
+                        title: "time_format",
+                        key: "group-2-2-47",
+                        content: "time_format(time,format)"
+                    },
+                    {
+                        title: "time_to_sec",
+                        key: "group-2-2-48",
+                        content: "time_to_sec(time)"
+                    },
+                    {
+                        title: "to_days",
+                        key: "group-2-2-49",
+                        content: "to_days(date)"
+                    },
+                    {
+                        title: "truncate",
+                        key: "group-2-2-50",
+                        content: "truncate(x,d)"
+                    },
+                    {
+                        title: "unix_timestamp",
+                        key: "group-2-2-51",
+                        content: "unix_timestamp()\nunix_timestamp(date)"
+                    },
+                    {
+                        title: "utc_date",
+                        key: "group-2-2-52",
+                        content: "utc_date()"
+                    },
+                    {
+                        title: "utc_time",
+                        key: "group-2-2-53",
+                        content: "utc_time()"
+                    },
+                    {
+                        title: "utc_timestamp",
+                        key: "group-2-2-54",
+                        content: "utc_timestamp()"
+                    },
+                    {
+                        title: "week",
+                        key: "group-2-2-55",
+                        content: "week(date[,mode])"
+                    },
+                    {
+                        title: "weekday",
+                        key: "group-2-2-56",
+                        content: "weekday(date)"
+                    },
+                    {
+                        title: "weekofyear",
+                        key: "group-2-2-57",
+                        content: "weekofyear(date)"
+                    },
+                    {
+                        title: "year",
+                        key: "group-2-2-58",
+                        content: "year(date)"
+                    },
+                    {
+                        title: "yearweek",
+                        key: "group-2-2-59",
+                        content: "yearweek(date),\nyearweek(date,start)"
+                    }
+                ]
             },
             {
                 title: "统计函数",
                 key: "group-2-3",
-                children: []
+                children: [
+                    {
+                        title: "avg",
+                        key: "group-2-3-0",
+                        content: "avg([distinct] expr)"
+                    },
+                    {
+                        title: "bit_and",
+                        key: "group-2-3-1",
+                        content: "bit_and(expr)"
+                    },
+                    {
+                        title: "bit_or",
+                        key: "group-2-3-2",
+                        content: "bit_or(expr)"
+                    },
+                    {
+                        title: "bit_xor",
+                        key: "group-2-3-3",
+                        content: "bit_xor(expr)"
+                    },
+                    {
+                        title: "count",
+                        key: "group-2-3-4",
+                        content: "count(distinct expr,[expr...])"
+                    },
+                    {
+                        title: "group_concat",
+                        key: "group-2-3-5",
+                        content: "group_concat(expr)"
+                    },
+                    {
+                        title: "min",
+                        key: "group-2-3-6",
+                        content: "min([distinct] expr), max([distinct] expr)"
+                    },
+                    {
+                        title: "std",
+                        key: "group-2-3-7",
+                        content: "std(expr) stddev(expr)"
+                    },
+                    {
+                        title: "stddev_pop",
+                        key: "group-2-3-8",
+                        content: "stddev_pop(expr)"
+                    },
+                    {
+                        title: "stddev_samp",
+                        key: "group-2-3-9",
+                        content: "stddev_samp(expr)"
+                    },
+                    {
+                        title: "sum",
+                        key: "group-2-3-10",
+                        content: "sum([distinct] expr)"
+                    },
+                    {
+                        title: "variance",
+                        key: "group-2-3-11",
+                        content: "variance(expr)"
+                    },
+                    {
+                        title: "var_pop",
+                        key: "group-2-3-12",
+                        content: "var_pop(expr)"
+                    },
+                    {
+                        title: "var_samp",
+                        key: "group-2-3-13",
+                        content: "var_samp(expr)"
+                    }
+                ]
             },
-            {
-                title: "其他",
-                key: "group-2-4",
-                children: []
-            }
+            // {
+            //     title: "其他",
+            //     key: "group-2-4",
+            //     children: []
+            // }
         ]
     }
 ];
