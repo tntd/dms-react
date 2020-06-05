@@ -1,5 +1,5 @@
 import React, { PureComponent } from "react";
-import { Tree } from "antd";
+import { Tree, Icon } from "antd";
 import folderClose from "./folder-close.svg";
 import folderOpen from "./folder-open.svg";
 import "./index.less";
@@ -49,8 +49,9 @@ class TreeDemo extends PureComponent {
                     icon={
                         (props) => {
                             return (
-                                <i
-                                    className="iconfont icon-page"
+                                <Icon
+                                    type="file"
+                                    // className="iconfont icon-page"
                                     onDoubleClick={() => {
                                         this.props.onDbClick(item);
                                     }}

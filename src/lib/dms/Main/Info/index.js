@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Row, Col } from "antd";
+import { Row, Col, Icon } from "antd";
 import moment from "moment";
 import { bytesToSize } from "@tntd/utils";
 import ActionContext from '../../ActionContext';
@@ -35,7 +35,7 @@ export default props => {
                     >
                         <Col span={12}>
                             <div className="label">
-                                <i className="iconfont icon-project"></i>
+                                <Icon type='database' />
 									数据库
 								</div>
                             <div className="text">
@@ -44,7 +44,7 @@ export default props => {
                         </Col>
                         <Col span={12}>
                             <div className="label">
-                                <i className="iconfont icon-project"></i>
+                                <Icon type='table' />
 									表名
 								</div>
                             <div className="text">
@@ -53,7 +53,7 @@ export default props => {
                         </Col>
                         <Col span={12}>
                             <div className="label">
-                                <i className="iconfont icon-project"></i>
+                                <Icon type='project' />
 									引擎
 								</div>
                             <div className="text">
@@ -62,7 +62,7 @@ export default props => {
                         </Col>
                         <Col span={12}>
                             <div className="label">
-                                <i className="iconfont icon-tip"></i>
+                                <Icon type='bulb' />
 									字符集
 								</div>
                             <div className="text">
@@ -71,7 +71,7 @@ export default props => {
                         </Col>
                         <Col span={12}>
                             <div className="label">
-                                <i className="iconfont icon-tip"></i>
+                                <Icon type='control' />
 									校验规则
 								</div>
                             <div className="text">
@@ -80,7 +80,7 @@ export default props => {
                         </Col>
                         <Col span={12}>
                             <div className="label">
-                                <i className="iconfont icon-tip"></i>
+                                <Icon type="clock-circle" />
 									创建时间
 								</div>
                             <div className="text">
@@ -89,7 +89,7 @@ export default props => {
                         </Col>
                         <Col span={12}>
                             <div className="label">
-                                <i className="iconfont icon-tip"></i>
+                                <Icon type="clock-circle" />
 									更新时间
 								</div>
                             <div className="text">
@@ -98,7 +98,7 @@ export default props => {
                         </Col>
                         <Col span={12}>
                             <div className="label">
-                                <i className="iconfont icon-tip"></i>
+                                <Icon type='number' />
 									行数
 								</div>
                             <div className="text">
@@ -107,7 +107,7 @@ export default props => {
                         </Col>
                         <Col span={12}>
                             <div className="label">
-                                <i className="iconfont icon-tip"></i>
+                                <Icon type="container" />
 									数据容量
 								</div>
                             <div className="text">
@@ -116,7 +116,7 @@ export default props => {
                         </Col>
                         <Col span={12}>
                             <div className="label">
-                                <i className="iconfont icon-tip"></i>
+                                <Icon type="flag" />
 									主键自动
 								</div>
                             <div className="text">
@@ -125,7 +125,7 @@ export default props => {
                         </Col>
                         <Col span={24}>
                             <div className="label">
-                                <i className="iconfont icon-tip"></i>
+                                <Icon type='read' />
 									备注
 								</div>
                             <div className="text">
@@ -142,7 +142,7 @@ export default props => {
                     >
                         <Col span={24}>
                             <div className="label">
-                                <i className="iconfont icon-project"></i>
+                                <Icon type="file" />
 									建表语句
 							</div>
                             <div className="text">
