@@ -4,17 +4,22 @@ import Tree from "./Tree";
 import { sqlTemplateList } from "../../constant";
 
 export default props => {
-    const { action, querySqlInfo, setQuerySqlInfo } = props;
+    const { querySqlInfo, setQuerySqlInfo } = props;
     const { querySqlText } = querySqlInfo;
 
     const onDbClick = (item) => {
-        if (querySqlInfo.querySqlText) {
-            querySqlInfo.querySqlText = querySqlText + `\n${item.content}`;
+        let newText = querySqlText;
+        if (newText) {
+            newText = querySqlText + `\n${item.content}`;
         } else {
-            querySqlInfo.querySqlText = item.content;
+            newText = item.content;
         }
 
-        setQuerySqlInfo(querySqlInfo);
+        localStorage.setItem('querySqlText', querySqlInfo.querySqlText);
+        setQuerySqlInfo({
+            ...querySqlInfo,
+            querySqlText: newText
+        });
     }
 
     return (
