@@ -56,6 +56,7 @@ export default props => {
                         onTableChange={onTableChange}
                     />
                     <Main
+                        action={action}
                         selectNav={selectNav}
                         setSelectNav={setSelectNav}
                     />

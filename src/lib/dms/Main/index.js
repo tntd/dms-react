@@ -10,7 +10,7 @@ import Query from "./Query";
 
 export default props => {
     const { action, selectNav, columns, tableStatus, createSql, tableContentList, selectDatabase, selectTable } = props;
-    console.log("createSql", props);
+
     const MainContent = {
         home: Home,
         columns: Columns,
