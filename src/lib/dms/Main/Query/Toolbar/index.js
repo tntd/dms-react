@@ -9,6 +9,15 @@ export default props => {
     const { action, querySqlInfo, setQuerySqlInfo } = props;
     const { querySqlText } = querySqlInfo;
 
+
+    const saveToCollection = () => {
+        message.info("添加到自定义列表");
+    }
+
+    const collectionManagement = () => {
+        message.info("管理自定义列表");
+    }
+
     const menu = (
         <Menu>
             <SubMenu
@@ -23,11 +32,17 @@ export default props => {
                 <Menu.Item>SQL语句1</Menu.Item>
                 <Menu.Item>SQL语句2</Menu.Item>
             </SubMenu>
-            <Menu.Item key="add">
+            <Menu.Item
+                key="add"
+                onClick={saveToCollection}
+            >
                 <Icon type="plus-square" />
 				添加
 			</Menu.Item>
-            <Menu.Item key="manage">
+            <Menu.Item
+                key="manage"
+                onClick={collectionManagement}
+            >
                 <Icon type="build" />
 				管理
 			 </Menu.Item>

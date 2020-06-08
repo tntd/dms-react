@@ -37,6 +37,7 @@ export default props => {
                 afterClose={afterClose}
                 footer={null}
                 width={800}
+                className='dms-modal'
             >
                 <Table
                     className='border-table'
