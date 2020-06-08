@@ -1,10 +1,11 @@
 import React, { useState, Fragment } from "react";
 import { Table, Radio, Alert } from "antd";
 import moment from "moment";
+import SqlHistory from "../SqlHistory";
 
 export default props => {
     const { action, querySqlInfo, setQuerySqlInfo } = props;
-    const { querySqlText, loading, schema = [], content = [], resultTab = "result", errorInfo } = querySqlInfo;
+    const { querySqlText, loading, schema = [], content = [], resultTab = "history", errorInfo } = querySqlInfo;
 
     const columns = schema.map((item, index, arr) => {
         let obj = {
@@ -43,9 +44,14 @@ export default props => {
                     })
                 }}
             >
+                <Radio.Button value="history">执行历史</Radio.Button>
                 <Radio.Button value="result">执行结果</Radio.Button>
                 <Radio.Button value="message">消息</Radio.Button>
             </Radio.Group>
+            {
+                resultTab === "history" &&
+                <SqlHistory />
+            }
             {
                 resultTab === "result" &&
                 <Table

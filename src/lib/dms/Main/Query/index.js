@@ -12,7 +12,7 @@ export default props => {
         loading: false,
         schema: [],
         content: [],
-        resultTab: "result",
+        resultTab: "history",
         errorInfo: {}
     });
 

@@ -1,7 +1,9 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Button, Icon, Dropdown, Menu, message } from "antd";
 import { trim, get } from "lodash";
 import { getSchema } from "../../../util";
+
+const { SubMenu } = Menu;
 
 export default props => {
     const { action, querySqlInfo, setQuerySqlInfo } = props;
@@ -9,14 +11,25 @@ export default props => {
 
     const menu = (
         <Menu>
+            <SubMenu
+                title={
+                    <Fragment>
+                        <Icon type="star" />
+				        选择
+                    </Fragment>
+                }
+            >
+                <Menu.Item>SQL语句1</Menu.Item>
+                <Menu.Item>SQL语句2</Menu.Item>
+            </SubMenu>
             <Menu.Item key="add">
-                <Icon type="code" />
-					添加我的SQL
-			  </Menu.Item>
+                <Icon type="plus-square" />
+				添加
+			</Menu.Item>
             <Menu.Item key="manage">
-                <Icon type="code" />
-					管理我的SQL
-			  </Menu.Item>
+                <Icon type="build" />
+				管理
+			 </Menu.Item>
         </Menu>
     );
 
@@ -78,7 +91,9 @@ export default props => {
             <Button icon="interaction">
                 格式化
 			</Button>
-            <Dropdown overlay={menu}>
+            <Dropdown
+                overlay={menu}
+            >
                 <Button>
                     我的SQL <Icon type="down" />
                 </Button>
