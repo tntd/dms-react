@@ -12,6 +12,7 @@ export default props => {
     const menu = (
         <Menu>
             <SubMenu
+                className='dms-dropdown-submenu'
                 title={
                     <Fragment>
                         <Icon type="star" />
@@ -93,6 +94,7 @@ export default props => {
 			</Button>
             <Dropdown
                 overlay={menu}
+                overlayClassName="dms-dropdown"
             >
                 <Button>
                     我的SQL <Icon type="down" />
