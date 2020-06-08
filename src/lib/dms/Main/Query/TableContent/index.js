@@ -2,10 +2,13 @@ import React, { useState, Fragment } from "react";
 import { Table, Radio, Alert } from "antd";
 import moment from "moment";
 import SqlHistory from "../SqlHistory";
+import DetailModal from "./DetailModal";
 
 export default props => {
     const { action, querySqlInfo, setQuerySqlInfo } = props;
     const { querySqlText, loading, schema = [], content = [], resultTab = "history", errorInfo } = querySqlInfo;
+    const [detailModalVisible, setDetailModalVisible] = useState(false);
+    const [detailItem, setDetailItem] = useState({});
 
     const columns = schema.map((item, index, arr) => {
         let obj = {
@@ -28,9 +31,31 @@ export default props => {
         if (index === 0 && arr.length > 5) {
             obj["fixed"] = "left";
         }
-
         return obj;
     });
+    if (columns.length > 0) {
+        columns.push({
+            title: "操作",
+            dataIndex: "action ",
+            width: 120,
+            fixed: "right",
+            render: ((text, record) => {
+                return (
+                    <span>
+                        <a
+                            onClick={() => {
+                                setDetailModalVisible(true);
+                                setDetailItem(record);
+                            }}
+                        >
+                            查看详情
+                        </a>
+                    </span>
+                );
+            })
+        })
+    }
+
 
     return (
         <div className="table-content">
@@ -57,10 +82,10 @@ export default props => {
                 <Table
                     dataSource={content}
                     columns={columns}
-                    size="middle"
+                    size="small"
                     loading={loading}
                     scroll={{
-                        x: schema.length * 180
+                        x: schema.length * 180 + 120
                     }}
                     pagination={{
                         pageSize: 50,
@@ -115,6 +140,17 @@ export default props => {
                     }
                 </div>
             }
+            <DetailModal
+                visible={detailModalVisible}
+                schema={schema || []}
+                detailItem={detailItem}
+                onCancel={() => {
+                    setDetailModalVisible(false)
+                }}
+                afterClose={() => {
+                    setDetailItem({})
+                }}
+            />
         </div>
     );
 }

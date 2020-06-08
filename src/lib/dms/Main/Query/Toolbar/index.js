@@ -12,7 +12,7 @@ export default props => {
     const menu = (
         <Menu>
             <SubMenu
-                className='dms-dropdown-submenu'
+                popupClassName='dms-dropdown-submenu'
                 title={
                     <Fragment>
                         <Icon type="star" />
