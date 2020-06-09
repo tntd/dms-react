@@ -1,9 +1,10 @@
 import React, { useEffect, useState, Fragment } from "react";
-import { Table, Divider, message, Modal } from "antd";
+import { Table, Tooltip, message, Modal } from "antd";
 import moment from 'moment';
 
 export default props => {
-    const { pageSize, total, currentPage } = props;
+    const { pageSize, total, currentPage, querySqlInfo, setQuerySqlInfo } = props;
+    const { querySqlText } = querySqlInfo;
     const [tableLoading, setTableLoading] = useState(false);
 
     const dataSource = [
@@ -45,9 +46,36 @@ export default props => {
             width: 160
         },
         {
-            title: "SQL(双击SQL粘贴至上方)",
+            title: "SQL(点击SQL粘贴至上方)",
             dataIndex: "sql",
-            key: "sql"
+            key: "sql",
+            render: (text) => {
+                return (
+                    <Tooltip
+                        title='点击添加'
+                        placement='left'
+                    >
+                        <a
+                            onClick={() => {
+                                let newText = querySqlText;
+                                if (newText) {
+                                    newText = querySqlText + `\n${text}`;
+                                } else {
+                                    newText = text;
+                                }
+
+                                localStorage.setItem('querySqlText', querySqlInfo.querySqlText);
+                                setQuerySqlInfo({
+                                    ...querySqlInfo,
+                                    querySqlText: newText
+                                });
+                            }}
+                        >
+                            {text}
+                        </a>
+                    </Tooltip>
+                )
+            }
         },
         {
             title: "状态",

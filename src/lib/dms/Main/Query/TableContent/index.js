@@ -75,7 +75,10 @@ export default props => {
             </Radio.Group>
             {
                 resultTab === "history" &&
-                <SqlHistory />
+                <SqlHistory
+                    querySqlInfo={querySqlInfo}
+                    setQuerySqlInfo={setQuerySqlInfo}
+                />
             }
             {
                 resultTab === "result" &&
