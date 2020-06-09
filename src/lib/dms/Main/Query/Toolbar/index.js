@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import { Button, Icon, Dropdown, Menu, message } from "antd";
 import { trim, get } from "lodash";
+import sqlFormatter from "sql-formatter";
 import { getSchema } from "../../../util";
 
 const { SubMenu } = Menu;
@@ -104,7 +105,19 @@ export default props => {
             >
                 运行
 			</Button>
-            <Button icon="interaction">
+            <Button
+                icon="interaction"
+                onClick={() => {
+                    const formatValue = sqlFormatter.format(querySqlText, {
+                        language: "sql",
+                    });
+
+                    setQuerySqlInfo({
+                        ...querySqlInfo,
+                        querySqlText: formatValue
+                    });
+                }}
+            >
                 格式化
 			</Button>
             <Dropdown

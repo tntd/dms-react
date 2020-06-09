@@ -49,6 +49,7 @@ export default props => {
             title: "SQL(点击SQL粘贴至上方)",
             dataIndex: "sql",
             key: "sql",
+            ellipsis: true,
             render: (text) => {
                 return (
                     <Tooltip
@@ -64,7 +65,7 @@ export default props => {
                                     newText = text;
                                 }
 
-                                localStorage.setItem('querySqlText', querySqlInfo.querySqlText);
+                                localStorage.setItem('querySqlText', newText);
                                 setQuerySqlInfo({
                                     ...querySqlInfo,
                                     querySqlText: newText
