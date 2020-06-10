@@ -27,6 +27,7 @@ export default props => {
             ellipsis: true
         },
     ];
+    console.log('schema', schema)
 
     return (
         <div className="hook-modal">

@@ -1,7 +1,8 @@
-import React, { Fragment } from "react";
+import React, { useState, Fragment } from "react";
 import { Button, Icon, Dropdown, Menu, message } from "antd";
 import { trim, get } from "lodash";
 import sqlFormatter from "sql-formatter";
+import AddCollectionModal from './AddCollectionModal';
 import { getSchema } from "../../../util";
 
 const { SubMenu } = Menu;
@@ -9,10 +10,20 @@ const { SubMenu } = Menu;
 export default props => {
     const { action, querySqlInfo, setQuerySqlInfo } = props;
     const { querySqlText } = querySqlInfo;
+    const [addCollectionVisible, setAddCollectionVisible] = useState(false);
+    const [addCollectionItem, setAddCollectionItem] = useState({
+        title: null,
+        scope: 'all',
+        sql: null
+    });
 
 
-    const saveToCollection = () => {
-        message.info("添加到自定义列表");
+    const addCollection = () => {
+        setAddCollectionVisible(true);
+        setAddCollectionItem({
+            ...addCollectionItem,
+            sql: querySqlText
+        })
     }
 
     const collectionManagement = () => {
@@ -35,7 +46,7 @@ export default props => {
             </SubMenu>
             <Menu.Item
                 key="add"
-                onClick={saveToCollection}
+                onClick={addCollection}
             >
                 <Icon type="plus-square" />
 				添加
@@ -128,6 +139,21 @@ export default props => {
                     我的SQL <Icon type="down" />
                 </Button>
             </Dropdown>
+            <AddCollectionModal
+                visible={addCollectionVisible}
+                collectionItem={addCollectionItem}
+                setAddCollectionItem={setAddCollectionItem}
+                onCancel={() => {
+                    setAddCollectionVisible(false)
+                }}
+                afterClose={() => {
+                    setAddCollectionItem({
+                        title: null,
+                        scope: 'all',
+                        sql: null
+                    })
+                }}
+            />
         </div>
     );
 }

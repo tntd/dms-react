@@ -1,15 +1,15 @@
 
 export const safeParseJSON = (str, defaultObj) => {
-	let result;
+    let result;
 
-	try {
-		result = JSON.parse(str);
-	} catch (err) {
-		console.warn('json parse error:', err);
-		result = typeof defaultObj === 'undefined' ? str : defaultObj;
-	}
+    try {
+        result = JSON.parse(str);
+    } catch (err) {
+        console.warn('json parse error:', err);
+        result = typeof defaultObj === 'undefined' ? str : defaultObj;
+    }
 
-	return result || defaultObj;
+    return result || defaultObj;
 };
 
 export const getStorageItem = (key, defaultVal) => safeParseJSON(localStorage.getItem(key), defaultVal);
@@ -30,7 +30,8 @@ export const saveToLocal = (field, value) => {
 };
 
 export const getSchema = (dataSource = []) => {
-    const schema = []
+    const schema = [];
+    // console.log('dataSource', dataSource)
     if (dataSource && dataSource.length > 0) {
         Object.keys(dataSource[0]).forEach((key, index) => {
             schema.push({
