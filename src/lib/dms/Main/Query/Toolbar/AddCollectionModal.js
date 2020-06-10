@@ -52,6 +52,7 @@ const AddCollectionModal = props => {
             onCancel={onCancel}
             afterClose={afterClose}
             width={650}
+            className='dms-modal'
         >
             <Form.Item
                 {...formItemLayout}

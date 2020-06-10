@@ -3,6 +3,7 @@ import { Button, Icon, Dropdown, Menu, message } from "antd";
 import { trim, get } from "lodash";
 import sqlFormatter from "sql-formatter";
 import AddCollectionModal from './AddCollectionModal';
+import ViewCollectionModal from './ViewCollectionModal'
 import { getSchema } from "../../../util";
 
 const { SubMenu } = Menu;
@@ -17,6 +18,7 @@ export default props => {
         sql: null
     });
 
+    const [viewCollectionVisible, setViewCollectionVisible] = useState(false);
 
     const addCollection = () => {
         setAddCollectionVisible(true);
@@ -27,7 +29,7 @@ export default props => {
     }
 
     const collectionManagement = () => {
-        message.info("管理自定义列表");
+        setViewCollectionVisible(true);
     }
 
     const menu = (
@@ -152,6 +154,15 @@ export default props => {
                         scope: 'all',
                         sql: null
                     })
+                }}
+            />
+            <ViewCollectionModal
+                visible={viewCollectionVisible}
+                onCancel={() => {
+                    setViewCollectionVisible(false);
+                }}
+                afterClose={() => {
+
                 }}
             />
         </div>
