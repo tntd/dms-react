@@ -31,7 +31,7 @@ export default props => {
         setAddCollectionItem({
             ...addCollectionItem,
             sql: querySqlText
-        })
+        });
     }
 
     const collectionManagement = () => {
@@ -124,9 +124,6 @@ export default props => {
                         addData("sql_history", indexDbParams);
                         // 获取所有数据
                         getSqlHistoryList();
-                        // getAllData('sql_history', (list) => {
-                        //     console.log('list', list)
-                        // })
                     }).catch((res) => {
                         console.log('errr')
                         setQuerySqlInfo({
@@ -190,6 +187,20 @@ export default props => {
             />
             <ViewCollectionModal
                 visible={viewCollectionVisible}
+                useSql={(sql) => {
+                    let newText = querySqlText;
+                    if (newText) {
+                        newText = querySqlText + `\n${sql}`;
+                    } else {
+                        newText = sql;
+                    }
+
+                    localStorage.setItem('querySqlText', newText);
+                    setQuerySqlInfo({
+                        ...querySqlInfo,
+                        querySqlText: newText
+                    });
+                }}
                 onCancel={() => {
                     setViewCollectionVisible(false);
                 }}

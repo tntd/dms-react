@@ -1,29 +1,18 @@
 import React, { useEffect, useState, Fragment } from "react";
 import { Input, Table, Divider, Modal } from "antd";
+import { addData, getAllData } from "../../../indexDb";
 
 export default props => {
-    const { visible, onCancel, afterClose, schema, detailItem } = props;
+    const { visible, onCancel, afterClose, schema, useSql } = props;
+    const [dataSource, setDataSource] = useState([]);
 
-    let dataSource = [
-        {
-            id: 1,
-            title: 'test',
-            sql: 'test',
-            scope: 'all',
-        },
-        {
-            id: 2,
-            title: '测试的',
-            sql: 'SELECT * FROM user_info WHERE uid=666666',
-            scope: 'all',
-        },
-        {
-            id: 3,
-            title: 'test',
-            sql: 'SELECT * FROM user_info WHERE uid=666666',
-            scope: 'sinan',
+    useEffect(() => {
+        if (visible) {
+            getAllData('sql_collection', (list) => {
+                setDataSource(list);
+            });
         }
-    ];
+    }, [visible]);
 
     const columns = [
         {
@@ -54,7 +43,14 @@ export default props => {
             render: (record) => {
                 return (
                     <span>
-                        <a>使用</a>
+                        <a
+                            onClick={() => {
+                                useSql(record.sql);
+                                onCancel();
+                            }}
+                        >
+                            使用
+                        </a>
                         <Divider type='vitical' />
                         <a>编辑</a>
                         <Divider type='vitical' />

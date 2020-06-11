@@ -23,12 +23,12 @@ export const initIDB = (database = 'dms', callback) => {
         request.onsuccess = (event) => {
             db = request.result;
             console.log('request.result', db);
-            message.success('数据库打开成功');
+            // message.success('数据库打开成功');
             resolve(db);
         };
         // error 事件
         request.onerror = function (event) {
-            message.warning('数据库打开报错');
+            console.error('数据库打开报错');
             reject(event);
         };
 
@@ -78,7 +78,7 @@ export const getObjectStore = async (storeName, mode = "readwrite") => {
     return tx.objectStore(storeName);
 }
 
-export const addData = async (storeName, data) => {
+export const addData = async (storeName, data, callback) => {
     const store = await getObjectStore(storeName, 'readwrite');
 
     let req;
@@ -88,16 +88,22 @@ export const addData = async (storeName, data) => {
         throw e;
     }
 
-    req.onsuccess = function (evt) {
-        message.success("插入成功");
+    req.onsuccess = (evt) => {
+        console.log("插入成功");
+        if (callback) {
+            callback(true);
+        }
     };
-    req.onerror = function () {
-        message.warning("插入失败", this.error);
+    req.onerror = () => {
+        if (callback) {
+            callback(false);
+        }
+        console.log("插入失败", this.error);
     };
 }
 
 export const deleteDataById = async (storeName, id) => {
-    const db = await initIDB();
+    // const db = await initIDB();
     let store = getObjectStore(storeName, 'readwrite');
     let req = store.get(id);
 

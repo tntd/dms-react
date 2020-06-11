@@ -7,31 +7,10 @@ export default props => {
     const { querySqlText } = querySqlInfo;
     const [tableLoading, setTableLoading] = useState(false);
 
-    const dataSource = [
-        {
-            id: 1,
-            database: 'sinan',
-            sql: 'select * from user_info',
-            status: 1,
-            lines: 100,
-            executeTs: 50,
-            createdTs: 1591582486000
-        },
-        {
-            id: 2,
-            database: 'sinan',
-            sql: 'select * from book where id=2',
-            status: 0,
-            lines: 0,
-            executeTs: 40,
-            createdTs: 1591582489000
-        },
-    ];
-
     const columns = [
         {
             title: "执行时间",
-            dataIndex: "createdTs",
+            dataIndex: "created_ts",
             key: "执行时间",
             width: 120,
             ellipsis: true,
@@ -43,7 +22,7 @@ export default props => {
             title: "数据库/schema",
             dataIndex: "database",
             key: "database",
-            width: 160
+            width: 140
         },
         {
             title: "SQL(点击SQL粘贴至上方)",
@@ -89,16 +68,16 @@ export default props => {
         },
         {
             title: "行数",
-            dataIndex: "lines",
-            width: 100,
-            key: "lines"
+            dataIndex: "total",
+            width: 80,
+            key: "total"
         },
-        {
-            title: "耗时(ms)",
-            dataIndex: "executeTs",
-            key: "executeTs",
-            width: 120
-        },
+        // {
+        //     title: "耗时(ms)",
+        //     dataIndex: "executeTs",
+        //     key: "executeTs",
+        //     width: 100
+        // },
         {
             title: "操作",
             key: "action",

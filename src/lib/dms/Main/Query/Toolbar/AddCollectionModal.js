@@ -1,8 +1,8 @@
 import React, { useEffect, useState, Fragment } from "react";
 import { Input, Radio, message, Modal, Form } from "antd";
 import { safeStorage, isJSON } from "@tntd/utils";
+import { addData } from "../../../indexDb";
 
-const FormItem = Form.Item;
 const TextArea = Input.TextArea;
 
 const formItemLayout = {
@@ -29,7 +29,7 @@ const AddCollectionModal = props => {
         form.validateFields((err, values) => {
             const dmsInfoStr = safeStorage.getItem('dmsInfo', "{}");
             const dmsInfo = isJSON(dmsInfoStr) ? JSON.parse(dmsInfoStr) : {};
-            console.log(dmsInfo);
+
             if (!err && dmsInfo.selectDatabase) {
                 const params = {
                     title: values.title,
@@ -40,6 +40,13 @@ const AddCollectionModal = props => {
                     params.scope = dmsInfo.selectDatabase;
                 }
                 console.log('params', params);
+                // 将记录放到indexDB
+                addData("sql_collection", params, (success) => {
+                    if (success) {
+                        message.success('添加成功');
+                        onCancel();
+                    }
+                });
             }
         });
     }

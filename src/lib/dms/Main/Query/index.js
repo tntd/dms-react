@@ -28,7 +28,7 @@ export default props => {
         getAllData('sql_history', (list) => {
             console.log(list)
             setSqlHistoryList(list || [])
-        })
+        });
     };
 
     const init = () => {
