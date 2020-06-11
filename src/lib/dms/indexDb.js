@@ -1,5 +1,4 @@
 import { message } from "antd";
-import resolve from "resolve";
 
 let objectStore;
 let db;
