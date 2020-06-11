@@ -1,5 +1,6 @@
 import React, { useEffect, useState, Fragment } from "react";
-import { Table, Tooltip, message, Modal } from "antd";
+import { Table, Tooltip, message, Popconfirm } from "antd";
+import { deleteDataById } from "../../../indexDb";
 import moment from 'moment';
 
 export default props => {
@@ -78,14 +79,28 @@ export default props => {
         //     key: "executeTs",
         //     width: 100
         // },
-        {
-            title: "操作",
-            key: "action",
-            width: 100,
-            render: (text, record) => (
-                <a>删除</a>
-            )
-        }
+        // {
+        //     title: "操作",
+        //     key: "action",
+        //     width: 100,
+        //     render: (text, record) => (
+        //         <Popconfirm
+        //             title="确认要删除当前记录吗？"
+        //             onConfirm={() => {
+        //                 deleteDataById('sql-history', record.id);
+        //             }}
+        //             onCancel={() => {
+
+        //             }}
+        //             okText="删除"
+        //             cancelText="取消"
+        //             placement="top"
+        //         >
+        //             <a>删除</a>
+        //         </Popconfirm>
+
+        //     )
+        // }
     ];
 
     return (
