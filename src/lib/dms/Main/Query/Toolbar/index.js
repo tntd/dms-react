@@ -3,7 +3,9 @@ import { Button, Icon, Dropdown, Menu, message } from "antd";
 import { trim, get } from "lodash";
 import sqlFormatter from "sql-formatter";
 import AddCollectionModal from './AddCollectionModal';
-import ViewCollectionModal from './ViewCollectionModal'
+import ViewCollectionModal from './ViewCollectionModal';
+import { safeStorage, isJSON } from "@tntd/utils";
+import moment from 'moment';
 import { addData } from "../../../indexDb";
 import { getSchema } from "../../../util";
 
@@ -18,6 +20,9 @@ export default props => {
         scope: 'all',
         sql: null
     });
+
+    const dmsInfoStr = safeStorage.getItem('dmsInfo', "{}");
+    const dmsInfo = isJSON(dmsInfoStr) ? JSON.parse(dmsInfoStr) : {};
 
     const [viewCollectionVisible, setViewCollectionVisible] = useState(false);
 
@@ -83,6 +88,14 @@ export default props => {
                     action({
                         value: querySqlText
                     }).then((data) => {
+                        const indexDbParams = {
+                            database: dmsInfo.selectDatabase,
+                            sql: querySqlText,
+                            status: 1,
+                            total: data.length,
+                            execute_ts: 50,
+                            created_ts: moment()
+                        };
                         if (data.error) {
                             setQuerySqlInfo({
                                 loading: false,
@@ -91,7 +104,9 @@ export default props => {
                                 content: [],
                                 resultTab: "message",
                                 errorInfo: get(data, "error.original")
-                            })
+                            });
+                            indexDbParams.status = 0;
+                            indexDbParams.errorInfo = get(data, "error.original");
                         } else {
                             // 获取schema
                             const schema = getSchema(data);
@@ -103,17 +118,10 @@ export default props => {
                                 content: data,
                                 resultTab: "result",
                                 errorInfo: null
-                            })
+                            });
                         }
                         // 将记录放到indexDB
-                        addData("sql_history", {
-                            database: 'sinan',
-                            sql: 'select * from user_info',
-                            status: 1,
-                            total: 99,
-                            execute_ts: 50,
-                            created_ts: 1577808000
-                        });
+                        addData("sql_history", indexDbParams);
                     }).catch((res) => {
                         setQuerySqlInfo({
                             loading: false,
