@@ -1,63 +1,61 @@
-:global {
-    @line-height: 28px;
+@line-height: 28px;
 
-    body {
-        .ant-tree li {
-            padding: 0;
-            font-size: 12px;
+body {
+    .ant-tree li {
+        padding: 0;
+        font-size: 12px;
+    }
+
+    .ant-tree-child-tree>li:first-child {
+        padding-top: 0;
+    }
+
+    .ant-tree li .ant-tree-node-content-wrapper {
+        height: @line-height;
+        line-height: @line-height;
+    }
+
+    .group-folder-icon {
+        // width: 18px;
+        width: 16px;
+        position: relative;
+        top: -1px;
+    }
+
+    .ant-tree li span.ant-tree-switcher,
+    .ant-tree li span.ant-tree-iconEle {
+        height: @line-height;
+        line-height: @line-height;
+
+        .anticon {
+            color: #758fb5;
         }
+    }
 
-        .ant-tree-child-tree>li:first-child {
-            padding-top: 0;
+    .ant-tree.ant-tree-directory>li span.ant-tree-node-content-wrapper::before,
+    .ant-tree.ant-tree-directory .ant-tree-child-tree>li span.ant-tree-node-content-wrapper::before {
+        height: @line-height;
+        line-height: @line-height;
+    }
+
+    .ant-tree.ant-tree-directory>li.ant-tree-treenode-selected>span.ant-tree-node-content-wrapper::before,
+    .ant-tree.ant-tree-directory .ant-tree-child-tree>li.ant-tree-treenode-selected>span.ant-tree-node-content-wrapper::before {
+        background: #ebf2fe;
+    }
+
+    .ant-tree.ant-tree-directory>li span.ant-tree-node-content-wrapper.ant-tree-node-selected,
+    .ant-tree.ant-tree-directory .ant-tree-child-tree>li span.ant-tree-node-content-wrapper.ant-tree-node-selected {
+        color: #333;
+    }
+
+    .ant-tree.ant-tree-directory>li.ant-tree-treenode-selected>span.ant-tree-switcher,
+    .ant-tree.ant-tree-directory .ant-tree-child-tree>li.ant-tree-treenode-selected>span.ant-tree-switcher {
+        i {
+            color: #595959;
         }
+    }
 
-        .ant-tree li .ant-tree-node-content-wrapper {
-            height: @line-height;
-            line-height: @line-height;
-        }
-
-        .group-folder-icon {
-            // width: 18px;
-            width: 16px;
-            position: relative;
-            top: -1px;
-        }
-
-        .ant-tree li span.ant-tree-switcher,
-        .ant-tree li span.ant-tree-iconEle {
-            height: @line-height;
-            line-height: @line-height;
-
-            .anticon {
-                color: #758fb5;
-            }
-        }
-
-        .ant-tree.ant-tree-directory>li span.ant-tree-node-content-wrapper::before,
-        .ant-tree.ant-tree-directory .ant-tree-child-tree>li span.ant-tree-node-content-wrapper::before {
-            height: @line-height;
-            line-height: @line-height;
-        }
-
-        .ant-tree.ant-tree-directory>li.ant-tree-treenode-selected>span.ant-tree-node-content-wrapper::before,
-        .ant-tree.ant-tree-directory .ant-tree-child-tree>li.ant-tree-treenode-selected>span.ant-tree-node-content-wrapper::before {
-            background: #ebf2fe;
-        }
-
-        .ant-tree.ant-tree-directory>li span.ant-tree-node-content-wrapper.ant-tree-node-selected,
-        .ant-tree.ant-tree-directory .ant-tree-child-tree>li span.ant-tree-node-content-wrapper.ant-tree-node-selected {
-            color: #333;
-        }
-
-        .ant-tree.ant-tree-directory>li.ant-tree-treenode-selected>span.ant-tree-switcher,
-        .ant-tree.ant-tree-directory .ant-tree-child-tree>li.ant-tree-treenode-selected>span.ant-tree-switcher {
-            i {
-                color: #595959;
-            }
-        }
-
-        .ant-tree li .ant-tree-node-content-wrapper {
-            padding: 0 5px 0 0;
-        }
+    .ant-tree li .ant-tree-node-content-wrapper {
+        padding: 0 5px 0 0;
     }
 }
