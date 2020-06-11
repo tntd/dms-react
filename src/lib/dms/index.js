@@ -3,6 +3,7 @@ import Header from './Header';
 import Sider from './Sider';
 import Main from './Main';
 import { saveToLocal, getStorageItem, setStorageItem } from './util';
+import { initIDB } from "./indexDb";
 import ActionContext from './ActionContext';
 import excuteActions from './excuteActions';
 import './index.less';
@@ -14,6 +15,7 @@ export default props => {
     const [selectNav, setSelectNav] = useState(null);
 
     useEffect(() => {
+        initIDB('dms');
         const dmsInfo = getStorageItem('dmsInfo');
 
         if (dmsInfo) {

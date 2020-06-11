@@ -4,6 +4,7 @@ import { trim, get } from "lodash";
 import sqlFormatter from "sql-formatter";
 import AddCollectionModal from './AddCollectionModal';
 import ViewCollectionModal from './ViewCollectionModal'
+import { addData } from "../../../indexDb";
 import { getSchema } from "../../../util";
 
 const { SubMenu } = Menu;
@@ -104,6 +105,15 @@ export default props => {
                                 errorInfo: null
                             })
                         }
+                        // 将记录放到indexDB
+                        addData("sql_history", {
+                            database: 'sinan',
+                            sql: 'select * from user_info',
+                            status: 1,
+                            total: 99,
+                            execute_ts: 50,
+                            created_ts: 1577808000
+                        });
                     }).catch((res) => {
                         setQuerySqlInfo({
                             loading: false,
