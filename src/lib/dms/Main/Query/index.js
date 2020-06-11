@@ -3,7 +3,7 @@ import Toolbar from "./Toolbar";
 import TableContent from "./TableContent";
 import Template from "./Template";
 import CodeMirror from "../components/CodeMirror";
-import { initIDB, getAllData } from "../../indexDb";
+import { getAllData } from "../../indexDb";
 import "./index.less";
 
 export default props => {

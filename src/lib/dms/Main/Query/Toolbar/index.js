@@ -112,9 +112,7 @@ export default props => {
                         loading: true
                     })
 
-                    action({
-                        value: querySqlText
-                    }).then((data) => {
+                    action(querySqlText).then((data) => {
                         const indexDbParams = {
                             database: dmsInfo.selectDatabase,
                             sql: querySqlText,

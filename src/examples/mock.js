@@ -436,6 +436,7 @@ export const tableColumns = [
 ];
 
 export default sql => {
+    console.log('sql...', sql);
     if (/^SHOW DATABASES/i.test(sql)) {
         return databases;
     }

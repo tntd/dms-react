@@ -29,8 +29,8 @@ export default props => {
                 tableStatus={tableStatus}
                 tableContentList={tableContentList}
                 createSql={createSql}
-                selectDatabase={selectDatabase}
-                selectTable={selectTable}
+                database={selectDatabase}
+                tableName={selectTable}
             />
         </div>
     );
