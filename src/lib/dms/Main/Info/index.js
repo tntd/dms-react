@@ -1,23 +1,27 @@
-import React, { useState, useEffect, useContext } from "react";
-import { Row, Col, Icon } from "antd";
-import moment from "moment";
-import { bytesToSize } from "@tntd/utils";
+import React, { useState, useEffect, useContext } from 'react';
+import { Row, Col, Icon } from 'antd';
+import moment from 'moment';
+import { bytesToSize } from '@tntd/utils';
 import ActionContext from '../../ActionContext';
-import CodeMirror from "../components/CodeMirror";
-import "./index.less";
+import CodeMirror from '../components/CodeMirror';
+import './index.less';
 
 export default props => {
     const {
-        createSql = "No content",
         database,
         tableName
     } = props;
     const [tableStatus, setTableStatus] = useState({});
+    const [createSql, setCreaetSql] = useState('');
     const excuteActions = useContext(ActionContext);
-    // TODO这里的tableStatus需要从props引入
 
     useEffect(() => {
-        excuteActions.getTableStatus(database, tableName).then(data => setTableStatus(data));
+        excuteActions.getTableStatus(
+            database, tableName
+        ).then(data => setTableStatus(data || {}));
+        excuteActions.getCreateSql(database, tableName).then(
+            createSql => setCreaetSql(createSql)
+        );
     }, []);
 
     return (
@@ -147,7 +151,7 @@ export default props => {
 							</div>
                             <div className="text">
                                 <CodeMirror
-                                    value={'xxxxx'}
+                                    value={createSql}
                                     height={"auto"}
                                 />
                             </div>

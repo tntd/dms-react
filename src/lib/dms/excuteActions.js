@@ -13,7 +13,7 @@ export const getTableColumns = (action, database, tableName) => {
 };
 
 export const getTableStatus = (action, database, tableName) => {
-    return action(`SHOW TABLE STATUS FROM ${formatName(database)} LIKE "${formatName(tableName)}"`).then(data => data && data[0]);
+    return action(`SHOW TABLE STATUS FROM ${formatName(database)} LIKE "${tableName}"`).then(data => data && data[0]);
 };
 
 export const getCreateSql = (action, database, tableName) => {
