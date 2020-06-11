@@ -6,13 +6,13 @@ import AddCollectionModal from './AddCollectionModal';
 import ViewCollectionModal from './ViewCollectionModal';
 import { safeStorage, isJSON } from "@tntd/utils";
 import moment from 'moment';
-import { addData } from "../../../indexDb";
+import { addData, getAllData } from "../../../indexDb";
 import { getSchema } from "../../../util";
 
 const { SubMenu } = Menu;
 
 export default props => {
-    const { action, querySqlInfo, setQuerySqlInfo } = props;
+    const { action, querySqlInfo, setQuerySqlInfo, getSqlHistoryList } = props;
     const { querySqlText } = querySqlInfo;
     const [addCollectionVisible, setAddCollectionVisible] = useState(false);
     const [addCollectionItem, setAddCollectionItem] = useState({
@@ -94,7 +94,7 @@ export default props => {
                             status: 1,
                             total: data.length,
                             execute_ts: 50,
-                            created_ts: moment()
+                            created_ts: moment().format("YYYY-MM-DD HH:mm:ss")
                         };
                         if (data.error) {
                             setQuerySqlInfo({
@@ -122,7 +122,13 @@ export default props => {
                         }
                         // 将记录放到indexDB
                         addData("sql_history", indexDbParams);
+                        // 获取所有数据
+                        getSqlHistoryList();
+                        // getAllData('sql_history', (list) => {
+                        //     console.log('list', list)
+                        // })
                     }).catch((res) => {
+                        console.log('errr')
                         setQuerySqlInfo({
                             loading: false,
                             querySqlText,
@@ -130,7 +136,15 @@ export default props => {
                             content: [],
                             resultTab: "message",
                             errorInfo: null
-                        })
+                        });
+                        addData("sql_history", {
+                            database: dmsInfo.selectDatabase,
+                            sql: querySqlText,
+                            status: 0,
+                            total: 0,
+                            execute_ts: 50,
+                            created_ts: moment().format("YYYY-MM-DD HH:mm:ss")
+                        });
                     });
                 }}
             >

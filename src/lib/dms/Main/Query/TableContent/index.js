@@ -5,7 +5,7 @@ import SqlHistory from "../SqlHistory";
 import DetailModal from "./DetailModal";
 
 export default props => {
-    const { action, querySqlInfo, setQuerySqlInfo } = props;
+    const { action, querySqlInfo, setQuerySqlInfo, sqlHistoryList } = props;
     const { querySqlText, loading, schema = [], content = [], resultTab = "history", errorInfo } = querySqlInfo;
     const [detailModalVisible, setDetailModalVisible] = useState(false);
     const [detailItem, setDetailItem] = useState({});
@@ -76,6 +76,7 @@ export default props => {
             {
                 resultTab === "history" &&
                 <SqlHistory
+                    sqlHistoryList={sqlHistoryList}
                     querySqlInfo={querySqlInfo}
                     setQuerySqlInfo={setQuerySqlInfo}
                 />

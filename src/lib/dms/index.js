@@ -15,7 +15,6 @@ export default props => {
     const [selectNav, setSelectNav] = useState(null);
 
     useEffect(() => {
-        initIDB('dms');
         const dmsInfo = getStorageItem('dmsInfo');
 
         if (dmsInfo) {

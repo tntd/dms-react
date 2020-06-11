@@ -3,6 +3,7 @@ import Toolbar from "./Toolbar";
 import TableContent from "./TableContent";
 import Template from "./Template";
 import CodeMirror from "../components/CodeMirror";
+import { initIDB, getAllData } from "../../indexDb";
 import "./index.less";
 
 export default props => {
@@ -16,9 +17,19 @@ export default props => {
         errorInfo: {}
     });
 
+    const [sqlHistoryList, setSqlHistoryList] = useState([]);
+
     useEffect(() => {
         init();
+        getSqlHistoryList();
     }, []);
+
+    const getSqlHistoryList = () => {
+        getAllData('sql_history', (list) => {
+            console.log(list)
+            setSqlHistoryList(list || [])
+        })
+    };
 
     const init = () => {
         setQuerySqlInfo({
@@ -34,6 +45,7 @@ export default props => {
                     action={action}
                     querySqlInfo={querySqlInfo}
                     setQuerySqlInfo={setQuerySqlInfo}
+                    getSqlHistoryList={getSqlHistoryList}
                 />
                 <div className="main-content-body">
                     <div className="sql-text">
@@ -53,6 +65,7 @@ export default props => {
                         action={action}
                         querySqlInfo={querySqlInfo}
                         setQuerySqlInfo={setQuerySqlInfo}
+                        sqlHistoryList={sqlHistoryList}
                     />
                 </div>
             </div>

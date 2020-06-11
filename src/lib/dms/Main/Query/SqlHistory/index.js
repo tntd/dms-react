@@ -3,7 +3,7 @@ import { Table, Tooltip, message, Modal } from "antd";
 import moment from 'moment';
 
 export default props => {
-    const { pageSize, total, currentPage, querySqlInfo, setQuerySqlInfo } = props;
+    const { pageSize, total, currentPage, querySqlInfo, setQuerySqlInfo, sqlHistoryList } = props;
     const { querySqlText } = querySqlInfo;
     const [tableLoading, setTableLoading] = useState(false);
 
@@ -114,7 +114,7 @@ export default props => {
             <Table
                 className='border-table'
                 rowKey="id"
-                dataSource={dataSource}
+                dataSource={sqlHistoryList}
                 columns={columns}
                 loading={tableLoading}
                 size='small'
