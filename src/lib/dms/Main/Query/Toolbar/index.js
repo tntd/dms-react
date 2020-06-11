@@ -12,7 +12,7 @@ import { getSchema } from "../../../util";
 const { SubMenu } = Menu;
 
 export default props => {
-    const { action, querySqlInfo, setQuerySqlInfo, getSqlHistoryList } = props;
+    const { action, querySqlInfo, setQuerySqlInfo, getSqlHistoryList, sqlCollectionList, setSqlCollectionList } = props;
     const { querySqlText } = querySqlInfo;
     const [addCollectionVisible, setAddCollectionVisible] = useState(false);
     const [addCollectionItem, setAddCollectionItem] = useState({
@@ -38,6 +38,21 @@ export default props => {
         setViewCollectionVisible(true);
     }
 
+    const addSqlToQuery = (sqlText) => {
+        let newText = querySqlText;
+        if (newText) {
+            newText = querySqlText + `\n${sqlText}`;
+        } else {
+            newText = sqlText;
+        }
+
+        localStorage.setItem('querySqlText', newText);
+        setQuerySqlInfo({
+            ...querySqlInfo,
+            querySqlText: newText
+        });
+    }
+
     const menu = (
         <Menu>
             <SubMenu
@@ -49,8 +64,20 @@ export default props => {
                     </Fragment>
                 }
             >
-                <Menu.Item>SQL语句1</Menu.Item>
-                <Menu.Item>SQL语句2</Menu.Item>
+                {
+                    (sqlCollectionList || []).map((item, index) => {
+                        return (
+                            <Menu.Item
+                                key={index}
+                                onClick={() => {
+                                    addSqlToQuery(item.sql);
+                                }}
+                            >
+                                {item.title}
+                            </Menu.Item>
+                        )
+                    })
+                }
             </SubMenu>
             <Menu.Item
                 key="add"
@@ -188,18 +215,7 @@ export default props => {
             <ViewCollectionModal
                 visible={viewCollectionVisible}
                 useSql={(sql) => {
-                    let newText = querySqlText;
-                    if (newText) {
-                        newText = querySqlText + `\n${sql}`;
-                    } else {
-                        newText = sql;
-                    }
-
-                    localStorage.setItem('querySqlText', newText);
-                    setQuerySqlInfo({
-                        ...querySqlInfo,
-                        querySqlText: newText
-                    });
+                    addSqlToQuery(sql);
                 }}
                 onCancel={() => {
                     setViewCollectionVisible(false);

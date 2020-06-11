@@ -18,16 +18,23 @@ export default props => {
     });
 
     const [sqlHistoryList, setSqlHistoryList] = useState([]);
+    const [sqlCollectionList, setSqlCollectionList] = useState([]);
 
     useEffect(() => {
         init();
         getSqlHistoryList();
+        getSqlCollectionList();
     }, []);
 
     const getSqlHistoryList = () => {
         getAllData('sql_history', (list) => {
-            console.log(list)
-            setSqlHistoryList(list || [])
+            setSqlHistoryList(list || []);
+        });
+    };
+
+    const getSqlCollectionList = () => {
+        getAllData('sql_collection', (list) => {
+            setSqlCollectionList(list || []);
         });
     };
 
@@ -46,6 +53,8 @@ export default props => {
                     querySqlInfo={querySqlInfo}
                     setQuerySqlInfo={setQuerySqlInfo}
                     getSqlHistoryList={getSqlHistoryList}
+                    sqlCollectionList={sqlCollectionList}
+                    setSqlCollectionList={setSqlCollectionList}
                 />
                 <div className="main-content-body">
                     <div className="sql-text">
