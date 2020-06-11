@@ -102,12 +102,12 @@ export const addData = async (storeName, data, callback) => {
     };
 }
 
-export const deleteDataById = async (storeName, id) => {
-    // const db = await initIDB();
+export const deleteDataById = (storeName, id) => {
     let store = getObjectStore(storeName, 'readwrite');
-    let req = store.get(id);
+    // let req = store.index(id);
 
-    req.onsuccess = (evt) => {
+    // var req = store.delete(id);
+    store.get(id).onsuccess = (evt) => {
         let record = evt.target.result;
         console.log("record:", record);
 
@@ -115,15 +115,15 @@ export const deleteDataById = async (storeName, id) => {
             message.warning("No matching record found");
             return;
         }
-        req = store.delete(id);
-        req.onsuccess = (evt) => {
-            message.success("删除成功");
-        };
-        req.onerror = (evt) => {
-            console.error("deletePublication:", evt.target.errorCode);
-        };
+        // req = store.delete(id);
+        // req.onsuccess = (evt) => {
+        //     message.success("删除成功");
+        // };
+        // req.onerror = (evt) => {
+        //     console.error("deletePublication:", evt.target.errorCode);
+        // };
     };
-    req.onerror = (evt) => {
+    store.onerror = (evt) => {
         console.error("deletePublication:", evt.target.errorCode);
     };
 }
