@@ -39,6 +39,7 @@ export default props => {
                     style={{ width: "100%" }}
                     value={database}
                     placeholder="请选择数据库"
+                    showSearch
                     onChange={onDatabaseChange}
                 >
                     {

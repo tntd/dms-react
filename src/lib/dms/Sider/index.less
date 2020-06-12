@@ -1,6 +1,9 @@
 .dms-page-sider {
     width: 220px;
     background: #e8ebed;
+    display: flex;
+    flex-direction: column;
+    max-height: calc(100vh - 60px);
 
     &-header {
         padding: 10px;
@@ -8,11 +11,14 @@
     }
 
     &-body {
-        padding: 10 0 0px;
+        padding: 0;
+        flex: 1;
+        overflow: auto;
+
         .table-list {
             list-style: none;
             padding-left: 0;
-            height: calc(~"100vh - 109px");
+            height: 100%;
             overflow-x: hidden;
             overflow-y: auto;
             padding-top: 10px;

@@ -4,7 +4,7 @@ import { deleteDataById } from "../../../indexDb";
 import moment from 'moment';
 
 export default props => {
-    const { pageSize, total, currentPage, querySqlInfo, setQuerySqlInfo, sqlHistoryList } = props;
+    const { querySqlInfo, setQuerySqlInfo, sqlHistoryList } = props;
     const { querySqlText } = querySqlInfo;
     const [tableLoading, setTableLoading] = useState(false);
 
@@ -113,12 +113,8 @@ export default props => {
                 loading={tableLoading}
                 size='small'
                 pagination={{
-                    pageSize,
-                    total,
-                    current: currentPage,
+                    pageSize: 50,
                     showTotal: total => `共${total}条`,
-                    onChange: () => { },
-                    onShowSizeChange: () => { },
                     showQuickJumper: true,
                     showSizeChanger: true
                 }}
