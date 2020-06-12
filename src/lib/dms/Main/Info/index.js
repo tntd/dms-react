@@ -22,7 +22,7 @@ export default props => {
         excuteActions.getCreateSql(database, tableName).then(
             createSql => setCreaetSql(createSql)
         );
-    }, []);
+    }, [database, tableName]);
 
     return (
         <div className="info-page">

@@ -92,8 +92,7 @@ export default props => {
                         x: schema.length * 180 + 120
                     }}
                     pagination={{
-                        pageSize: 50,
-                        size: "small"
+                        pageSize: 50
                     }}
                     rowKey="dataIndex"
                 />
