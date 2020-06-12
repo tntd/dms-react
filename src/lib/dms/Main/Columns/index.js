@@ -85,7 +85,7 @@ export default props => {
                 columns={columns}
                 pagination={false}
                 rowKey="Field"
-                size="middle"
+                size="small"
             />
         </div>
     );
