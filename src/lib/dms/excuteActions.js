@@ -25,7 +25,7 @@ export const getTableContent = (action, database, tableName) => {
 };
 
 export const getColumnsByDatabase = (action, database) => {
-    return action(`select table_name, COLUMN_NAME from information_schema.COLUMNS where TABLE_SCHEMA = ${formatName(database)}`);
+    return action(`select table_name, COLUMN_NAME from information_schema.COLUMNS where TABLE_SCHEMA = '${database}'`);
 };
 
 export default action => ({
