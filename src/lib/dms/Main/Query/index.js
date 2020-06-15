@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import ActionContext from '../../ActionContext';
 import Toolbar from "./Toolbar";
 import TableContent from "./TableContent";
 import Template from "./Template";
@@ -7,7 +8,7 @@ import { getAllData } from "../../indexDb";
 import "./index.less";
 
 export default props => {
-    const { action } = props;
+    const { action, database } = props;
     const [querySqlInfo, setQuerySqlInfo] = useState({
         querySqlText: "",
         loading: false,
@@ -19,12 +20,25 @@ export default props => {
 
     const [sqlHistoryList, setSqlHistoryList] = useState([]);
     const [sqlCollectionList, setSqlCollectionList] = useState([]);
+    const [tablesHint, setTablesHint] = useState([]);
+    const excuteActions = useContext(ActionContext);
 
     useEffect(() => {
         init();
         getSqlHistoryList();
         getSqlCollectionList();
     }, []);
+
+    useEffect(() => {
+        excuteActions.getColumnsByDatabase(database).then(columns => {
+            setTablesHint(columns.reduce((acc, cur) => {
+                acc[cur.table_name] = acc[cur.table_name] || [];
+                acc[cur.table_name].push(cur.column_name);
+
+                return acc;
+            }, {}));
+        });
+    }, [database]);
 
     const getSqlHistoryList = () => {
         getAllData('sql_history', (list) => {
@@ -68,6 +82,7 @@ export default props => {
                                 localStorage.setItem("querySqlText", value);
                             }}
                             height={200}
+                            tablesHint={tablesHint}
                         />
                     </div>
                     <TableContent

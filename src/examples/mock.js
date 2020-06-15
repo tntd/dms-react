@@ -435,6 +435,1009 @@ export const tableColumns = [
     }
 ];
 
+export const allColumns = [
+    {
+        "table_name": "bifrost_custom_tree",
+        "column_name": "gmt_create"
+    },
+    {
+        "table_name": "bifrost_custom_tree",
+        "column_name": "gmt_modified"
+    },
+    {
+        "table_name": "bifrost_custom_tree",
+        "column_name": "uuid"
+    },
+    {
+        "table_name": "bifrost_custom_tree",
+        "column_name": "code"
+    },
+    {
+        "table_name": "bifrost_custom_tree",
+        "column_name": "name"
+    },
+    {
+        "table_name": "bifrost_custom_tree",
+        "column_name": "type"
+    },
+    {
+        "table_name": "bifrost_custom_tree",
+        "column_name": "flag"
+    },
+    {
+        "table_name": "bifrost_custom_tree",
+        "column_name": "sort_no"
+    },
+    {
+        "table_name": "bifrost_custom_tree",
+        "column_name": "parent_uuid"
+    },
+    {
+        "table_name": "bifrost_custom_tree",
+        "column_name": "create_by"
+    },
+    {
+        "table_name": "bifrost_custom_tree",
+        "column_name": "update_by"
+    },
+    {
+        "table_name": "bifrost_custom_tree",
+        "column_name": "en_name"
+    },
+    {
+        "table_name": "bifrost_custom_tree",
+        "column_name": "icon"
+    },
+    {
+        "table_name": "bifrost_custom_tree",
+        "column_name": "path"
+    },
+    {
+        "table_name": "bifrost_custom_tree",
+        "column_name": "des"
+    },
+    {
+        "table_name": "bifrost_custom_tree",
+        "column_name": "lang_env"
+    },
+    {
+        "table_name": "bifrost_custom_tree",
+        "column_name": "responsible_person"
+    },
+    {
+        "table_name": "bifrost_custom_tree",
+        "column_name": "menus"
+    },
+    {
+        "table_name": "bifrost_custom_tree",
+        "column_name": "apply_fields"
+    },
+    {
+        "table_name": "bifrost_custom_tree_menu_ref",
+        "column_name": "gmt_create"
+    },
+    {
+        "table_name": "bifrost_custom_tree_menu_ref",
+        "column_name": "gmt_modified"
+    },
+    {
+        "table_name": "bifrost_custom_tree_menu_ref",
+        "column_name": "create_by"
+    },
+    {
+        "table_name": "bifrost_custom_tree_menu_ref",
+        "column_name": "update_by"
+    },
+    {
+        "table_name": "bifrost_custom_tree_menu_ref",
+        "column_name": "custom_tree_uuid"
+    },
+    {
+        "table_name": "bifrost_custom_tree_menu_ref",
+        "column_name": "menu_uuid"
+    },
+    {
+        "table_name": "bifrost_custom_tree_menu_ref",
+        "column_name": "sort_no"
+    },
+    {
+        "table_name": "bifrost_function",
+        "column_name": "gmt_create"
+    },
+    {
+        "table_name": "bifrost_function",
+        "column_name": "gmt_modified"
+    },
+    {
+        "table_name": "bifrost_function",
+        "column_name": "uuid"
+    },
+    {
+        "table_name": "bifrost_function",
+        "column_name": "code"
+    },
+    {
+        "table_name": "bifrost_function",
+        "column_name": "name"
+    },
+    {
+        "table_name": "bifrost_function",
+        "column_name": "sort_no"
+    },
+    {
+        "table_name": "bifrost_function",
+        "column_name": "menu_uuid"
+    },
+    {
+        "table_name": "bifrost_function",
+        "column_name": "create_by"
+    },
+    {
+        "table_name": "bifrost_function",
+        "column_name": "update_by"
+    },
+    {
+        "table_name": "bifrost_function",
+        "column_name": "en_name"
+    },
+    {
+        "table_name": "bifrost_function",
+        "column_name": "method"
+    },
+    {
+        "table_name": "bifrost_function",
+        "column_name": "path"
+    },
+    {
+        "table_name": "bifrost_license",
+        "column_name": "uuid"
+    },
+    {
+        "table_name": "bifrost_license",
+        "column_name": "solution_info_uuid"
+    },
+    {
+        "table_name": "bifrost_license",
+        "column_name": "license"
+    },
+    {
+        "table_name": "bifrost_license",
+        "column_name": "app_code"
+    },
+    {
+        "table_name": "bifrost_license",
+        "column_name": "expiration"
+    },
+    {
+        "table_name": "bifrost_license",
+        "column_name": "app_name"
+    },
+    {
+        "table_name": "bifrost_license",
+        "column_name": "left_date"
+    },
+    {
+        "table_name": "bifrost_license",
+        "column_name": "status"
+    },
+    {
+        "table_name": "bifrost_license",
+        "column_name": "type"
+    },
+    {
+        "table_name": "bifrost_license",
+        "column_name": "app_num"
+    },
+    {
+        "table_name": "bifrost_license",
+        "column_name": "public_key"
+    },
+    {
+        "table_name": "bifrost_license",
+        "column_name": "private_key"
+    },
+    {
+        "table_name": "bifrost_license",
+        "column_name": "gmt_create"
+    },
+    {
+        "table_name": "bifrost_license",
+        "column_name": "gmt_modify"
+    },
+    {
+        "table_name": "bifrost_license",
+        "column_name": "gmt_modified"
+    },
+    {
+        "table_name": "bifrost_license_history",
+        "column_name": "id"
+    },
+    {
+        "table_name": "bifrost_license_history",
+        "column_name": "license"
+    },
+    {
+        "table_name": "bifrost_license_history",
+        "column_name": "snapshot"
+    },
+    {
+        "table_name": "bifrost_license_history",
+        "column_name": "timestamp"
+    },
+    {
+        "table_name": "bifrost_license_history",
+        "column_name": "secret_key"
+    },
+    {
+        "table_name": "bifrost_license_history",
+        "column_name": "secret_pwd"
+    },
+    {
+        "table_name": "bifrost_license_history",
+        "column_name": "gmt_create"
+    },
+    {
+        "table_name": "bifrost_license_history",
+        "column_name": "gmt_modified"
+    },
+    {
+        "table_name": "bifrost_license_history",
+        "column_name": "gmt_modify"
+    },
+    {
+        "table_name": "bifrost_menu",
+        "column_name": "uuid"
+    },
+    {
+        "table_name": "bifrost_menu",
+        "column_name": "parent_uuid"
+    },
+    {
+        "table_name": "bifrost_menu",
+        "column_name": "code"
+    },
+    {
+        "table_name": "bifrost_menu",
+        "column_name": "level"
+    },
+    {
+        "table_name": "bifrost_menu",
+        "column_name": "type"
+    },
+    {
+        "table_name": "bifrost_menu",
+        "column_name": "path"
+    },
+    {
+        "table_name": "bifrost_menu",
+        "column_name": "icon"
+    },
+    {
+        "table_name": "bifrost_menu",
+        "column_name": "name"
+    },
+    {
+        "table_name": "bifrost_menu",
+        "column_name": "en_name"
+    },
+    {
+        "table_name": "bifrost_menu",
+        "column_name": "target"
+    },
+    {
+        "table_name": "bifrost_menu",
+        "column_name": "sort_no"
+    },
+    {
+        "table_name": "bifrost_menu",
+        "column_name": "version"
+    },
+    {
+        "table_name": "bifrost_menu",
+        "column_name": "create_by"
+    },
+    {
+        "table_name": "bifrost_menu",
+        "column_name": "update_by"
+    },
+    {
+        "table_name": "bifrost_menu",
+        "column_name": "gmt_create"
+    },
+    {
+        "table_name": "bifrost_menu",
+        "column_name": "gmt_modify"
+    },
+    {
+        "table_name": "bifrost_menu",
+        "column_name": "gmt_modified"
+    },
+    {
+        "table_name": "bifrost_org",
+        "column_name": "uuid"
+    },
+    {
+        "table_name": "bifrost_org",
+        "column_name": "parent_uuid"
+    },
+    {
+        "table_name": "bifrost_org",
+        "column_name": "code"
+    },
+    {
+        "table_name": "bifrost_org",
+        "column_name": "level"
+    },
+    {
+        "table_name": "bifrost_org",
+        "column_name": "name"
+    },
+    {
+        "table_name": "bifrost_org",
+        "column_name": "create_by"
+    },
+    {
+        "table_name": "bifrost_org",
+        "column_name": "update_by"
+    },
+    {
+        "table_name": "bifrost_org",
+        "column_name": "gmt_create"
+    },
+    {
+        "table_name": "bifrost_org",
+        "column_name": "gmt_modify"
+    },
+    {
+        "table_name": "bifrost_org",
+        "column_name": "gmt_modified"
+    },
+    {
+        "table_name": "bifrost_org_menu_function",
+        "column_name": "uuid"
+    },
+    {
+        "table_name": "bifrost_org_menu_function",
+        "column_name": "custom_tree_uuid"
+    },
+    {
+        "table_name": "bifrost_org_menu_function",
+        "column_name": "org_uuid"
+    },
+    {
+        "table_name": "bifrost_org_menu_function",
+        "column_name": "menu_uuid"
+    },
+    {
+        "table_name": "bifrost_org_menu_function",
+        "column_name": "function_uuid"
+    },
+    {
+        "table_name": "bifrost_org_menu_function",
+        "column_name": "create_by"
+    },
+    {
+        "table_name": "bifrost_org_menu_function",
+        "column_name": "update_by"
+    },
+    {
+        "table_name": "bifrost_org_menu_function",
+        "column_name": "gmt_create"
+    },
+    {
+        "table_name": "bifrost_org_menu_function",
+        "column_name": "gmt_modify"
+    },
+    {
+        "table_name": "bifrost_org_menu_function",
+        "column_name": "gmt_modified"
+    },
+    {
+        "table_name": "bifrost_product",
+        "column_name": "id"
+    },
+    {
+        "table_name": "bifrost_product",
+        "column_name": "product_code"
+    },
+    {
+        "table_name": "bifrost_product",
+        "column_name": "product_name"
+    },
+    {
+        "table_name": "bifrost_product",
+        "column_name": "sort"
+    },
+    {
+        "table_name": "bifrost_product",
+        "column_name": "status"
+    },
+    {
+        "table_name": "bifrost_product",
+        "column_name": "created_by"
+    },
+    {
+        "table_name": "bifrost_product",
+        "column_name": "updated_by"
+    },
+    {
+        "table_name": "bifrost_product",
+        "column_name": "gmt_create"
+    },
+    {
+        "table_name": "bifrost_product",
+        "column_name": "gmt_modify"
+    },
+    {
+        "table_name": "bifrost_product_system",
+        "column_name": "id"
+    },
+    {
+        "table_name": "bifrost_product_system",
+        "column_name": "product_id"
+    },
+    {
+        "table_name": "bifrost_product_system",
+        "column_name": "menu_uuid"
+    },
+    {
+        "table_name": "bifrost_product_system",
+        "column_name": "status"
+    },
+    {
+        "table_name": "bifrost_product_system",
+        "column_name": "created_by"
+    },
+    {
+        "table_name": "bifrost_product_system",
+        "column_name": "updated_by"
+    },
+    {
+        "table_name": "bifrost_product_system",
+        "column_name": "gmt_create"
+    },
+    {
+        "table_name": "bifrost_product_system",
+        "column_name": "gmt_modify"
+    },
+    {
+        "table_name": "bifrost_role",
+        "column_name": "uuid"
+    },
+    {
+        "table_name": "bifrost_role",
+        "column_name": "org_uuid"
+    },
+    {
+        "table_name": "bifrost_role",
+        "column_name": "code"
+    },
+    {
+        "table_name": "bifrost_role",
+        "column_name": "name"
+    },
+    {
+        "table_name": "bifrost_role",
+        "column_name": "type"
+    },
+    {
+        "table_name": "bifrost_role",
+        "column_name": "create_by"
+    },
+    {
+        "table_name": "bifrost_role",
+        "column_name": "update_by"
+    },
+    {
+        "table_name": "bifrost_role",
+        "column_name": "gmt_create"
+    },
+    {
+        "table_name": "bifrost_role",
+        "column_name": "gmt_modify"
+    },
+    {
+        "table_name": "bifrost_role",
+        "column_name": "gmt_modified"
+    },
+    {
+        "table_name": "bifrost_role_menu_function",
+        "column_name": "uuid"
+    },
+    {
+        "table_name": "bifrost_role_menu_function",
+        "column_name": "custom_tree_uuid"
+    },
+    {
+        "table_name": "bifrost_role_menu_function",
+        "column_name": "role_uuid"
+    },
+    {
+        "table_name": "bifrost_role_menu_function",
+        "column_name": "menu_uuid"
+    },
+    {
+        "table_name": "bifrost_role_menu_function",
+        "column_name": "function_uuid"
+    },
+    {
+        "table_name": "bifrost_role_menu_function",
+        "column_name": "create_by"
+    },
+    {
+        "table_name": "bifrost_role_menu_function",
+        "column_name": "update_by"
+    },
+    {
+        "table_name": "bifrost_role_menu_function",
+        "column_name": "gmt_create"
+    },
+    {
+        "table_name": "bifrost_role_menu_function",
+        "column_name": "gmt_modify"
+    },
+    {
+        "table_name": "bifrost_role_menu_function",
+        "column_name": "gmt_modified"
+    },
+    {
+        "table_name": "bifrost_solution",
+        "column_name": "uuid"
+    },
+    {
+        "table_name": "bifrost_solution",
+        "column_name": "code"
+    },
+    {
+        "table_name": "bifrost_solution",
+        "column_name": "name"
+    },
+    {
+        "table_name": "bifrost_solution",
+        "column_name": "en_name"
+    },
+    {
+        "table_name": "bifrost_solution",
+        "column_name": "icon"
+    },
+    {
+        "table_name": "bifrost_solution",
+        "column_name": "path"
+    },
+    {
+        "table_name": "bifrost_solution",
+        "column_name": "type"
+    },
+    {
+        "table_name": "bifrost_solution",
+        "column_name": "flag"
+    },
+    {
+        "table_name": "bifrost_solution",
+        "column_name": "sort_no"
+    },
+    {
+        "table_name": "bifrost_solution",
+        "column_name": "parent_uuid"
+    },
+    {
+        "table_name": "bifrost_solution",
+        "column_name": "des"
+    },
+    {
+        "table_name": "bifrost_solution",
+        "column_name": "lang_env"
+    },
+    {
+        "table_name": "bifrost_solution",
+        "column_name": "responsible_person"
+    },
+    {
+        "table_name": "bifrost_solution",
+        "column_name": "menus"
+    },
+    {
+        "table_name": "bifrost_solution",
+        "column_name": "apply_fields"
+    },
+    {
+        "table_name": "bifrost_solution",
+        "column_name": "create_by"
+    },
+    {
+        "table_name": "bifrost_solution",
+        "column_name": "update_by"
+    },
+    {
+        "table_name": "bifrost_solution",
+        "column_name": "gmt_create"
+    },
+    {
+        "table_name": "bifrost_solution",
+        "column_name": "gmt_modify"
+    },
+    {
+        "table_name": "bifrost_solution",
+        "column_name": "product_id"
+    },
+    {
+        "table_name": "bifrost_solution",
+        "column_name": "display_type"
+    },
+    {
+        "table_name": "bifrost_solution",
+        "column_name": "env_type"
+    },
+    {
+        "table_name": "bifrost_user",
+        "column_name": "uuid"
+    },
+    {
+        "table_name": "bifrost_user",
+        "column_name": "org_uuid"
+    },
+    {
+        "table_name": "bifrost_user",
+        "column_name": "role_uuids"
+    },
+    {
+        "table_name": "bifrost_user",
+        "column_name": "account"
+    },
+    {
+        "table_name": "bifrost_user",
+        "column_name": "user_name"
+    },
+    {
+        "table_name": "bifrost_user",
+        "column_name": "pwd"
+    },
+    {
+        "table_name": "bifrost_user",
+        "column_name": "avatar"
+    },
+    {
+        "table_name": "bifrost_user",
+        "column_name": "expiration"
+    },
+    {
+        "table_name": "bifrost_user",
+        "column_name": "gender"
+    },
+    {
+        "table_name": "bifrost_user",
+        "column_name": "app_name"
+    },
+    {
+        "table_name": "bifrost_user",
+        "column_name": "status"
+    },
+    {
+        "table_name": "bifrost_user",
+        "column_name": "lang"
+    },
+    {
+        "table_name": "bifrost_user",
+        "column_name": "theme"
+    },
+    {
+        "table_name": "bifrost_user",
+        "column_name": "layout"
+    },
+    {
+        "table_name": "bifrost_user",
+        "column_name": "simplified"
+    },
+    {
+        "table_name": "bifrost_user",
+        "column_name": "phone"
+    },
+    {
+        "table_name": "bifrost_user",
+        "column_name": "role_type"
+    },
+    {
+        "table_name": "bifrost_user",
+        "column_name": "sign"
+    },
+    {
+        "table_name": "bifrost_user",
+        "column_name": "create_by"
+    },
+    {
+        "table_name": "bifrost_user",
+        "column_name": "update_by"
+    },
+    {
+        "table_name": "bifrost_user",
+        "column_name": "gmt_create"
+    },
+    {
+        "table_name": "bifrost_user",
+        "column_name": "gmt_modify"
+    },
+    {
+        "table_name": "bifrost_user",
+        "column_name": "gmt_modified"
+    },
+    {
+        "table_name": "bifrost_user_copy1",
+        "column_name": "gmt_create"
+    },
+    {
+        "table_name": "bifrost_user_copy1",
+        "column_name": "gmt_modify"
+    },
+    {
+        "table_name": "bifrost_user_copy1",
+        "column_name": "gmt_modified"
+    },
+    {
+        "table_name": "bifrost_user_copy1",
+        "column_name": "uuid"
+    },
+    {
+        "table_name": "bifrost_user_copy1",
+        "column_name": "account"
+    },
+    {
+        "table_name": "bifrost_user_copy1",
+        "column_name": "user_name"
+    },
+    {
+        "table_name": "bifrost_user_copy1",
+        "column_name": "pwd"
+    },
+    {
+        "table_name": "bifrost_user_copy1",
+        "column_name": "org_uuid"
+    },
+    {
+        "table_name": "bifrost_user_copy1",
+        "column_name": "role_uuids"
+    },
+    {
+        "table_name": "bifrost_user_copy1",
+        "column_name": "avatar"
+    },
+    {
+        "table_name": "bifrost_user_copy1",
+        "column_name": "expiration"
+    },
+    {
+        "table_name": "bifrost_user_copy1",
+        "column_name": "gender"
+    },
+    {
+        "table_name": "bifrost_user_copy1",
+        "column_name": "app_name"
+    },
+    {
+        "table_name": "bifrost_user_copy1",
+        "column_name": "status"
+    },
+    {
+        "table_name": "bifrost_user_copy1",
+        "column_name": "create_by"
+    },
+    {
+        "table_name": "bifrost_user_copy1",
+        "column_name": "update_by"
+    },
+    {
+        "table_name": "bifrost_user_copy1",
+        "column_name": "lang"
+    },
+    {
+        "table_name": "bifrost_user_copy1",
+        "column_name": "theme"
+    },
+    {
+        "table_name": "bifrost_user_copy1",
+        "column_name": "layout"
+    },
+    {
+        "table_name": "bifrost_user_copy1",
+        "column_name": "simplified"
+    },
+    {
+        "table_name": "bifrost_user_copy1",
+        "column_name": "phone"
+    },
+    {
+        "table_name": "bifrost_user_copy1",
+        "column_name": "sign"
+    },
+    {
+        "table_name": "bifrost_user_history",
+        "column_name": "uuid"
+    },
+    {
+        "table_name": "bifrost_user_history",
+        "column_name": "gmt_create"
+    },
+    {
+        "table_name": "bifrost_user_history",
+        "column_name": "gmt_modify"
+    },
+    {
+        "table_name": "bifrost_user_history",
+        "column_name": "gmt_modified"
+    },
+    {
+        "table_name": "bifrost_user_history",
+        "column_name": "account"
+    },
+    {
+        "table_name": "bifrost_user_history",
+        "column_name": "login_time"
+    },
+    {
+        "table_name": "bifrost_user_history",
+        "column_name": "ip_addr"
+    },
+    {
+        "table_name": "bifrost_user_operation_history",
+        "column_name": "uuid"
+    },
+    {
+        "table_name": "bifrost_user_operation_history",
+        "column_name": "menu_uuid"
+    },
+    {
+        "table_name": "bifrost_user_operation_history",
+        "column_name": "function_uuid"
+    },
+    {
+        "table_name": "bifrost_user_operation_history",
+        "column_name": "account"
+    },
+    {
+        "table_name": "bifrost_user_operation_history",
+        "column_name": "operation_time"
+    },
+    {
+        "table_name": "bifrost_user_operation_history",
+        "column_name": "operation_param"
+    },
+    {
+        "table_name": "bifrost_user_operation_history",
+        "column_name": "gmt_create"
+    },
+    {
+        "table_name": "bifrost_user_operation_history",
+        "column_name": "gmt_modify"
+    },
+    {
+        "table_name": "bifrost_user_operation_history",
+        "column_name": "gmt_modified"
+    },
+    {
+        "table_name": "license_solution_info",
+        "column_name": "uuid"
+    },
+    {
+        "table_name": "license_solution_info",
+        "column_name": "solution_uuid"
+    },
+    {
+        "table_name": "license_solution_info",
+        "column_name": "dingding_sequence"
+    },
+    {
+        "table_name": "license_solution_info",
+        "column_name": "apply_type"
+    },
+    {
+        "table_name": "license_solution_info",
+        "column_name": "apply_status"
+    },
+    {
+        "table_name": "license_solution_info",
+        "column_name": "apply_user"
+    },
+    {
+        "table_name": "license_solution_info",
+        "column_name": "check_user"
+    },
+    {
+        "table_name": "license_solution_info",
+        "column_name": "custom_code"
+    },
+    {
+        "table_name": "license_solution_info",
+        "column_name": "custom_name"
+    },
+    {
+        "table_name": "license_solution_info",
+        "column_name": "project_code"
+    },
+    {
+        "table_name": "license_solution_info",
+        "column_name": "project_name"
+    },
+    {
+        "table_name": "license_solution_info",
+        "column_name": "project_en_name"
+    },
+    {
+        "table_name": "license_solution_info",
+        "column_name": "env"
+    },
+    {
+        "table_name": "license_solution_info",
+        "column_name": "env_type"
+    },
+    {
+        "table_name": "license_solution_info",
+        "column_name": "license_day"
+    },
+    {
+        "table_name": "license_solution_info",
+        "column_name": "license_endtime"
+    },
+    {
+        "table_name": "license_solution_info",
+        "column_name": "delay"
+    },
+    {
+        "table_name": "license_solution_info",
+        "column_name": "app_limit"
+    },
+    {
+        "table_name": "license_solution_info",
+        "column_name": "product_limit"
+    },
+    {
+        "table_name": "license_solution_info",
+        "column_name": "other_limit"
+    },
+    {
+        "table_name": "license_solution_info",
+        "column_name": "mac_address"
+    },
+    {
+        "table_name": "license_solution_info",
+        "column_name": "ip_address"
+    },
+    {
+        "table_name": "license_solution_info",
+        "column_name": "hard_sequence"
+    },
+    {
+        "table_name": "license_solution_info",
+        "column_name": "remark"
+    },
+    {
+        "table_name": "license_solution_info",
+        "column_name": "permanent_reason"
+    },
+    {
+        "table_name": "license_solution_info",
+        "column_name": "mac_reason"
+    },
+    {
+        "table_name": "license_solution_info",
+        "column_name": "apply_field_values"
+    },
+    {
+        "table_name": "license_solution_info",
+        "column_name": "create_time"
+    },
+    {
+        "table_name": "license_solution_info",
+        "column_name": "update_time"
+    },
+    {
+        "table_name": "license_solution_info",
+        "column_name": "gmt_create"
+    },
+    {
+        "table_name": "license_solution_info",
+        "column_name": "gmt_modify"
+    }
+];
+
 export default sql => {
     console.log('sql...', sql);
     if (/^SHOW DATABASES/i.test(sql)) {
@@ -459,6 +1462,10 @@ export default sql => {
 
     if (/^SHOW CREATE TABLE/i.test(sql)) {
         return createTableSql;
+    }
+
+    if (/^select table_name, COLUMN_NAME from information_schema.COLUMNS/i.test(sql)) {
+        return allColumns;
     }
     
     return databases;

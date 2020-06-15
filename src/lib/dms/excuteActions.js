@@ -24,11 +24,16 @@ export const getTableContent = (action, database, tableName) => {
     return action(`select * from ${formatName(database)}.${formatName(tableName)} limit 499`).then(data => data || []);
 };
 
+export const getColumnsByDatabase = (action, database) => {
+    return action(`select table_name, COLUMN_NAME from information_schema.COLUMNS where TABLE_SCHEMA = ${formatName(database)}`);
+};
+
 export default action => ({
     getDatabaseList: getDatabaseList.bind(null, action),
     getTablesByDatabase: getTablesByDatabase.bind(null, action),
     getTableColumns: getTableColumns.bind(null, action),
     getTableStatus: getTableStatus.bind(null, action),
     getCreateSql: getCreateSql.bind(null, action),
-    getTableContent: getTableContent.bind(null, action)
+    getTableContent: getTableContent.bind(null, action),
+    getColumnsByDatabase: getColumnsByDatabase.bind(null, action)
 });
