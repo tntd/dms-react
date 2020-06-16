@@ -18,7 +18,7 @@ const formItemLayout = {
 };
 const EditForm = ({ form, values, ...props }) => {
     const { getFieldDecorator } = form;
-    const { Trigger, Timing, Event, Statement, isNew } = values || {};
+    const { Trigger, Timing, Event, Statement } = values || {};
     const SelectList = ({ options, ...rest }) => (
         <Select {...rest}>
             {
@@ -119,6 +119,7 @@ export default ({ visible, record, ...props }) => {
             className="dms-modal"
             title={record.isNew ? '新建' : '编辑'}
             visible={visible}
+            destroyOnClose
             {...props}
             onOk={onOk}
         >
