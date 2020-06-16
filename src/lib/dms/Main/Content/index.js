@@ -41,11 +41,13 @@ export default props => {
                 };
 
                 if (index === 0 && arr.length > 5) {
-                    obj["fixed"] = "left";
+                    obj.fixed = "left";
+                    obj.ellipsis = false;
                 }
 
                 return obj;
             });
+
             newColumns.push({
                 title: "操作",
                 dataIndex: "action",

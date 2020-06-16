@@ -66,8 +66,6 @@ export default props => {
         })
     };
 
-    console.log('querySqlInfo...', querySqlInfo);
-
     return (
         <div className="query-page">
             <div className="main-content">

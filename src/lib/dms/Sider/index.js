@@ -60,6 +60,7 @@ export default props => {
                         tables.map(name => (
                             <li
                                 key={name}
+                                title={name}
                                 onClick={() => onTableChange(name)}
                                 className={cn({ active: tableName === name })}
                             >
