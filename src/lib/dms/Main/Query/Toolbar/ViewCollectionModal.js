@@ -60,7 +60,6 @@ export default props => {
             }
         },
     ];
-    console.log('schema', schema)
 
     return (
         <div className="hook-modal">

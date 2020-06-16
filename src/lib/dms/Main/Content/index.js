@@ -18,7 +18,6 @@ export default props => {
 
     useEffect(() => {
         excuteActions.getTableContent(database, tableName).then(data => {
-            console.log('data...', data)
             setRecords(data);
             setSchema(getSchema(data));
             const newColumns = getSchema(data).map((item, index, arr) => {

@@ -156,7 +156,7 @@ export const getAllData = async (storename, callback) => {
     request.onsuccess = function (e) {
         let result = e.target.result;
         if (result && result !== null) {
-            data.push(result.value);
+            data.unshift(result.value);
             result.continue();
         } else {
             if (callback) {

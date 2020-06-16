@@ -31,7 +31,6 @@ export const saveToLocal = (field, value) => {
 
 export const getSchema = (dataSource = []) => {
     const schema = [];
-    // console.log('dataSource', dataSource)
     if (dataSource && dataSource.length > 0) {
         Object.keys(dataSource[0]).forEach((key, index) => {
             schema.push({

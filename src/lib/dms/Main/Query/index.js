@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext, useRef } from "react";
 import ActionContext from '../../ActionContext';
 import Toolbar from "./Toolbar";
 import TableContent from "./TableContent";
@@ -16,6 +16,9 @@ export default props => {
         content: [],
         resultTab: "history",
         errorInfo: {}
+    });
+    const dataRef = useRef({
+        setQuerySqlInfo
     });
 
     const [sqlHistoryList, setSqlHistoryList] = useState([]);
@@ -40,6 +43,10 @@ export default props => {
         });
     }, [database]);
 
+    useEffect(() => {
+        dataRef.current.querySqlInfo = querySqlInfo;
+    }, [querySqlInfo]);
+
     const getSqlHistoryList = () => {
         getAllData('sql_history', (list) => {
             setSqlHistoryList(list || []);
@@ -59,6 +66,8 @@ export default props => {
         })
     };
 
+    console.log('querySqlInfo...', querySqlInfo);
+
     return (
         <div className="query-page">
             <div className="main-content">
@@ -76,7 +85,7 @@ export default props => {
                             value={querySqlInfo.querySqlText || ""}
                             onChange={(value) => {
                                 setQuerySqlInfo({
-                                    ...querySqlInfo,
+                                    ...dataRef.current.querySqlInfo,
                                     querySqlText: value
                                 })
                                 localStorage.setItem("querySqlText", value);
