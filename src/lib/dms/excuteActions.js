@@ -29,7 +29,7 @@ export const getColumnsByDatabase = (action, database) => {
 };
 
 export const getTriggers = (action, database, tableName) => {
-    return action(`show triggers from ${formatName(database)}${tableName ? (' where `Table` = ' + tableName) : ''}`);
+    return action(`show triggers from ${formatName(database)}${tableName ? (' where `Table` = "' + tableName + '"') : ''}`);
 };
 
 export const createTrigger = (action, database, tableName, { Trigger, Timing, Event, Statement}) => {
@@ -37,9 +37,7 @@ export const createTrigger = (action, database, tableName, { Trigger, Timing, Ev
         CREATE TRIGGER ${Trigger} ${Timing} ${Event}
         ON ${'`' + database + '`'}.${tableName}
         FOR EACH ROW
-        BEGIN
-            ${Statement}
-        END;
+        ${Statement}
     `);
 };
 

@@ -33,17 +33,17 @@ export default ({ database, tableName } ) => {
                     })
                 };
 
-                if (index === 0 && arr.length > 5) {
-                    obj.fixed = "left";
+                if (obj.dataIndex === 'Trigger') {
+                    obj.fixed = 'left';
                     obj.ellipsis = false;
                 }
 
                 return obj;
-            }),
+            }).sort(a => a.dataIndex === 'Trigger' ? -1 : 0),
             {
                 title: "操作",
                 dataIndex: "action",
-                width: 160,
+                width: 130,
                 fixed: "right",
                 render: ((text, record) => (
                     <Fragment>
