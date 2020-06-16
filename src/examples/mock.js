@@ -1438,6 +1438,48 @@ export const allColumns = [
     }
 ];
 
+export const triggers = [
+    {
+        "character_set_client": "utf8",
+        "Trigger": "syncRole",
+        "Table": "bifrost_role",
+        "sql_mode": "STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION",
+        "Database Collation": "utf8_general_ci",
+        "Statement": "update bifrost_user set bifrost_user.avatar = new.uuid",
+        "Definer": "tongdun@%",
+        "Event": "INSERT",
+        "Timing": "AFTER",
+        "Created": 1592292522250,
+        "collation_connection": "utf8_general_ci"
+    },
+    {
+        "character_set_client": "utf8",
+        "Trigger": "ins_sum",
+        "Table": "bifrost_user",
+        "sql_mode": "STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION",
+        "Database Collation": "utf8_general_ci",
+        "Statement": "set @sum = @sum + new.account",
+        "Definer": "tongdun@%",
+        "Event": "INSERT",
+        "Timing": "BEFORE",
+        "Created": 1592290963730,
+        "collation_connection": "utf8_general_ci"
+    },
+    {
+        "character_set_client": "utf8",
+        "Trigger": "ins_sum1",
+        "Table": "bifrost_user",
+        "sql_mode": "STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION",
+        "Database Collation": "utf8_general_ci",
+        "Statement": "set @sum = @sum + new.account",
+        "Definer": "tongdun@%",
+        "Event": "UPDATE",
+        "Timing": "BEFORE",
+        "Created": 1592291229780,
+        "collation_connection": "utf8_general_ci"
+    }
+];
+
 export default sql => {
     console.log('sql...', sql);
     if (/^SHOW DATABASES/i.test(sql)) {
@@ -1466,6 +1508,10 @@ export default sql => {
 
     if (/^select table_name, COLUMN_NAME from information_schema.COLUMNS/i.test(sql)) {
         return allColumns;
+    }
+
+    if (/^show triggers/i.test(sql)) {
+        return triggers;
     }
     
     return databases;
