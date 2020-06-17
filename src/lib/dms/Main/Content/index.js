@@ -17,36 +17,29 @@ export default ({ database, tableName } ) => {
             setRecords(data);
             setColumns([
                 ...getSchema(data).map((item, index, arr) => {
-                    const obj = {
+                    const isFixed = index === 0 && arr.length > 5;
+    
+                    return {
                         title: item.text,
                         dataIndex: item.text,
                         key: item.dataIndex,
                         ellipsis: true,
+                        fixed: isFixed ? 'left' : null,
                         width: 180,
-                        render: ((text, record) => {
-                            if (item.text === "gmt_create" || item.text === "gmt_modify") {
-                                text = moment(text).format("YYYY-MM-DD HH:mm:ss");
+                        className: isFixed ? 'fixed-left-column' : '',
+                        render: text => {
+                            if (['gmt_create', 'gmt_modify'].includes(item.text)) {
+                                return moment(text).format('YYYY-MM-DD HH:mm:ss');
                             }
     
-                            return (
-                                <span>
-                                    {text}
-                                </span>
-                            );
-                        })
+                            return  text;
+                        }
                     };
-    
-                    if (index === 0 && arr.length > 5) {
-                        obj.fixed = "left";
-                        obj.ellipsis = false;
-                    }
-    
-                    return obj;
                 }),
                 {
                     title: "操作",
                     dataIndex: "action",
-                    width: 120,
+                    width: 80,
                     fixed: "right",
                     render: ((text, record) => (
                         <a onClick={() => setDetailItem(record)}>
