@@ -30,7 +30,7 @@ export const operatorMap = {
         },
         {
             "label": "不包含",
-            "value": "does not contain"
+            "value": "not contain"
         },
         {
             "label": "开始以",
@@ -57,20 +57,8 @@ export const operatorMap = {
             "value": "is not null"
         },
         {
-            "label": "是空的",
-            "value": "is empty"
-        },
-        {
-            "label": "不是空的",
-            "value": "is not empty"
-        },
-        {
             "label": "介于",
             "value": "between"
-        },
-        {
-            "label": "不介于",
-            "value": "not between"
         },
         {
             "label": "在列表",
@@ -135,10 +123,6 @@ export const operatorMap = {
             "value": "between"
         },
         {
-            "label": "不介于",
-            "value": "not between"
-        },
-        {
             "label": "在列表",
             "value": "in list"
         },
@@ -183,10 +167,6 @@ export const operatorMap = {
         {
             "label": "介于",
             "value": "between"
-        },
-        {
-            "label": "不介于",
-            "value": "not between"
         },
         {
             "label": "在列表",
