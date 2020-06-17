@@ -4,6 +4,7 @@ import moment from "moment";
 import ActionContext from '../../ActionContext';
 import { getSchema } from '../../util';
 import DetailModal from '../components/RowDetailModal';
+import { operatorMap } from "./constant";
 import './index.less';
 
 const { Search } = Input;
@@ -62,24 +63,9 @@ export default props => {
         });
     }, [database, tableName]);
 
-    const operationArr = ['=', '!=', '<', '<=', '>', '>=', '包含', '不包含', '开始以', '开始不是以', '是null', '不是null', '是空的', '不是空的', '介于', '不介于', '在列表', '不在列表'];
-
     return (
         <div className="content-page">
-            <div>
-                <Select
-                    value={"jack" || undefined}
-                    style={{ width: 120 }}
-                    onChange={() => {
-
-                    }}
-                    placeholder="请选择"
-                    showSearch
-                >
-                    <Option value="id">id</Option>
-                    <Option value="book_id">book_id</Option>
-                    <Option value="name">name</Option>
-                </Select>
+            <div className='content-page-search'>
                 <Select
                     value={"" || undefined}
                     style={{ width: 120 }}
@@ -87,24 +73,40 @@ export default props => {
 
                     }}
                     placeholder="请选择"
+                    showSearch
+                    className='search-field'
+                >
+                    <Option value="id">id</Option>
+                    <Option value="book_id">book_id</Option>
+                    <Option value="name">name</Option>
+                </Select>
+                <Select
+                    value={"=" || undefined}
+                    style={{ width: 120 }}
+                    onChange={() => {
+
+                    }}
+                    placeholder="请选择"
+                    className='search-operator'
                 >
                     {
-                        operationArr.map((text, index) => {
+                        operatorMap['string'].map((item, index) => {
                             return (
                                 <Option
-                                    value={text}
+                                    value={item.value}
                                     key={index}
                                 >
-                                    {text}
+                                    {item.label}
                                 </Option>
                             )
                         })
                     }
                 </Select>
                 <Search
-                    placeholder="input search text"
+                    placeholder="请输入搜索值..."
                     onSearch={value => console.log(value)}
                     style={{ width: 200 }}
+                    className='search-value'
                 />
             </div>
             <Table
