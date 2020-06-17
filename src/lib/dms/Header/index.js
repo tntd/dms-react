@@ -54,7 +54,7 @@ export default props => {
                 <img src={logoImage} alt="dms logo" />
                 <h3>
                     {title}
-                    <span><em>v 0.0.1</em></span>
+                    <span><em>V 0.0.1</em></span>
                 </h3>
             </div>
             <div className="nav">
