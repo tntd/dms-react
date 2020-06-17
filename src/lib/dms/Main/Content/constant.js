@@ -1,5 +1,5 @@
 export const operatorMap = {
-    "int": [
+    "number": [
         {
             "label": "=",
             "value": "="
@@ -84,7 +84,7 @@ export const operatorMap = {
         },
         {
             "label": "不包含",
-            "value": "does not contain"
+            "value": "not contain"
         },
         {
             "label": "开始以",
@@ -150,7 +150,7 @@ export const operatorMap = {
         },
         {
             "label": "之前或等于",
-            "value": "is befter or equal to "
+            "value": "is befter or equal to"
         },
         {
             "label": "之后或等于",
@@ -177,4 +177,31 @@ export const operatorMap = {
             "value": "not in list"
         }
     ]
+}
+
+export const sqlTypeMap = {
+    TINYINT: 'number',
+    SMALLINT: 'number',
+    MEDIUMINT: 'number',
+    INT: 'number',
+    INTEGER: 'number',
+    BIGINT: 'number',
+    FLOAT: 'number',
+    DOUBLE: 'number',
+    DECIMAL: 'number',
+    DATE: 'date',
+    TIME: 'date',
+    YEAR: 'date',
+    DATETIME: 'date',
+    TIMESTAMP: 'date',
+    CHAR: 'string',
+    VARCHAR: 'string',
+    TINYBLOB: 'string',
+    TINYTEXT: 'string',
+    BLOB: 'string',
+    TEXT: 'string',
+    MEDIUMBLOB: 'string',
+    MEDIUMTEXT: 'string',
+    LONGBLOB: 'string',
+    LONGTEXT: 'string'
 }

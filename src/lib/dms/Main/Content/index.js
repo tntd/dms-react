@@ -4,7 +4,7 @@ import moment from "moment";
 import ActionContext from '../../ActionContext';
 import { getSchema } from '../../util';
 import DetailModal from '../components/RowDetailModal';
-import { operatorMap } from "./constant";
+import { operatorMap, sqlTypeMap } from "./constant";
 import './index.less';
 
 const { Search } = Input;
@@ -20,7 +20,7 @@ export default props => {
     const [sqlColumns, setsqlColumns] = useState([]);
     const [searchParams, setSearchParams] = useState({
         field: null,
-        fieldType: 'string',
+        fieldType: 'VARCHAR',
         operator: '=',
         keyword: ''
     });
@@ -132,11 +132,11 @@ export default props => {
         } else if (operator === 'is after or equal to') {
             whereSql = `where ${field} >= ${keyword}`;
         }
-        console.log('sql', baseSql + whereSql);
         message.info(baseSql + whereSql);
     }
 
     console.log('sqlColumns', sqlColumns);
+    const currentFieldType = searchParams.fieldType ? searchParams.fieldType.toUpperCase() : 'VARCHAR';
 
     return (
         <div className="content-page">
@@ -182,7 +182,7 @@ export default props => {
                     className='search-operator'
                 >
                     {
-                        operatorMap['string'].map((item, index) => {
+                        operatorMap[sqlTypeMap[currentFieldType]].map((item, index) => {
                             return (
                                 <Option
                                     value={item.value}
