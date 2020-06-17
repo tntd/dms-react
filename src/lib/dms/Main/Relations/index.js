@@ -1,23 +1,42 @@
-import React, { useState } from "react";
-import { Empty } from "antd";
+import React, { useEffect, useState, useContext, useRef } from "react";
+import ActionContext from '../../ActionContext';
+import { Radio } from 'antd';
+import List from './List';
+import EntityRelationship from './EntityRelationship';
+import './index.less';
 
-import "./index.less";
+export default ({ database, tableName, tables }) => {
+    const [viewType, setViewType] = useState('list');
+    const [relations, setRelations] = useState([]);
+    const Content = {
+        list: List,
+        er: EntityRelationship
+    }[viewType] || List;
+    const excuteActions = useContext(ActionContext);
 
-export default props => {
+    useEffect(() => {
+        excuteActions.getEntityRelations(database).then(
+            relations => setRelations(relations)
+        );
+    }, [database]);
 
     return (
-        <div>
-            <Empty
-                imageStyle={{
-                    height: 100,
-                    margin: "20px 0"
-                }}
-                style={{ position: "relative", top: "50px" }}
-                description={
-                    <span>
-                        当前目录暂无开发接手
-					</span>
-                }
+        <div className="relations-page">
+            <div className="relations-page-toolbar">
+                <Radio.Group
+                    value={viewType}
+                    size="middle"
+                    onChange={evt => setViewType(evt.target.value)}
+                >
+                    <Radio.Button value="list">关系</Radio.Button>
+                    <Radio.Button value="er">ER图</Radio.Button>
+                </Radio.Group>
+            </div>
+            <Content
+                database={database}
+                excuteActions={excuteActions}
+                tables={tables}
+                relations={relations}
             />
         </div>
     );

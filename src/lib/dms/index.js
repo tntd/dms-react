@@ -5,14 +5,17 @@ import Main from './Main';
 import { saveToLocal, getStorageItem, setStorageItem } from './util';
 import './indexDb';
 import ActionContext from './ActionContext';
-import excuteActions from './excuteActions';
+import getExcuteActions from './excuteActions';
 import './index.less';
 
 export default props => {
-    const { action, title = '罗盘DMS' } = props;
+    const { action, title = '罗盘DMS', renderHome } = props;
     const [selectDatabase, setSelectDatabase] = useState(null);
     const [selectTable, setSelectTable] = useState(null);
     const [selectNav, setSelectNav] = useState(null);
+    const [tables, setTables] = useState([]);
+    const [columns, setColumns] = useState([]);
+    const excuteActions = getExcuteActions(action);
 
     useEffect(() => {
         const dmsInfo = getStorageItem('dmsInfo');
@@ -40,8 +43,22 @@ export default props => {
         setSelectTable(tableName);
     };
 
+    useEffect(() => {
+        if (selectDatabase) {
+            excuteActions.getTablesByDatabase(selectDatabase).then(
+                tables => setTables(tables)
+            );
+        }
+    }, [selectDatabase]);
+
+    useEffect(() => {
+        excuteActions.getTableColumns(selectDatabase, selectTable).then(
+            columns => setColumns(columns)
+        );
+    }, [selectTable]);
+
     return (
-        <ActionContext.Provider value={excuteActions(action)}>
+        <ActionContext.Provider value={excuteActions}>
             <div className="dms-page">
                 <Header
                     action={action}
@@ -53,6 +70,7 @@ export default props => {
                     <Sider
                         database={selectDatabase}
                         tableName={selectTable}
+                        tables={tables}
                         onDatabaseChange={onDatabaseChange}
                         onTableChange={onTableChange}
                     />
@@ -62,6 +80,9 @@ export default props => {
                         selectDatabase={selectDatabase}
                         selectTable={selectTable}
                         setSelectNav={setSelectNav}
+                        tables={tables}
+                        columns={columns}
+                        renderHome={renderHome}
                     />
                 </div>
             </div>

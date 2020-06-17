@@ -32,9 +32,9 @@ export const saveToLocal = (field, value) => {
 export const getSchema = (dataSource = []) => {
     const schema = [];
     if (dataSource && dataSource.length > 0) {
-        Object.keys(dataSource[0]).forEach((key, index) => {
+        Object.keys(dataSource[0]).forEach(key => {
             schema.push({
-                dataIndex: `COLUMN_${index}`,
+                dataIndex: key,
                 resizable: true,
                 sortable: true,
                 text: key,

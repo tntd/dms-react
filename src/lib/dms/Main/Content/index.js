@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from "react";
 import { Table, Select, Input, message } from "antd";
 import moment from "moment";
 import ActionContext from '../../ActionContext';
-import { getSchema } from '../../util';
 import DetailModal from '../components/RowDetailModal';
 import { operatorMap } from "./constant";
 import './index.less';
@@ -11,13 +10,11 @@ const { Search } = Input;
 const { Option } = Select;
 
 export default props => {
-    const { database, tableName } = props;
+    const { database, tableName, columns: sqlColumns } = props;
     const excuteActions = useContext(ActionContext);
     const [records, setRecords] = useState([]);
     const [columns, setColumns] = useState([]);
     const [detailItem, setDetailItem] = useState(null);
-    // 注意，后面columns通过props传过来
-    const [sqlColumns, setsqlColumns] = useState([]);
     const [searchParams, setSearchParams] = useState({
         field: null,
         fieldType: 'string',
@@ -26,25 +23,22 @@ export default props => {
     });
 
     useEffect(() => {
-        excuteActions.getTableColumns(database, tableName).then(data => {
-            setsqlColumns(data);
-        });
         excuteActions.getTableContent(database, tableName).then(data => {
             setRecords(data);
             setColumns([
-                ...getSchema(data).map((item, index, arr) => {
+                ...(sqlColumns || []).map(({ Field: columnKey }, index, arr) => {
                     const isFixed = index === 0 && arr.length > 5;
 
                     return {
-                        title: item.text,
-                        dataIndex: item.text,
-                        key: item.dataIndex,
+                        title: columnKey,
+                        dataIndex: columnKey,
+                        key: columnKey,
                         ellipsis: true,
                         fixed: isFixed ? 'left' : null,
                         width: 180,
                         className: isFixed ? 'fixed-left-column' : '',
                         render: text => {
-                            if (['gmt_create', 'gmt_modify'].includes(item.text)) {
+                            if (['gmt_create', 'gmt_modify'].includes(columnKey)) {
                                 return moment(text).format('YYYY-MM-DD HH:mm:ss');
                             }
 
@@ -53,10 +47,10 @@ export default props => {
                     };
                 }),
                 {
-                    title: "操作",
-                    dataIndex: "action",
+                    title: '操作',
+                    dataIndex: 'action',
                     width: 80,
-                    fixed: "right",
+                    fixed: 'right',
                     render: ((text, record) => (
                         <a onClick={() => setDetailItem(record)}>
                             查看详情
@@ -65,7 +59,7 @@ export default props => {
                 }
             ]);
         });
-    }, [database, tableName]);
+    }, [database, tableName, sqlColumns]);
 
     const startSearch = () => {
         console.log('searchParams', searchParams);
@@ -136,8 +130,6 @@ export default props => {
         message.info(baseSql + whereSql);
     }
 
-    console.log('sqlColumns', sqlColumns);
-
     return (
         <div className="content-page">
             <div className='content-page-search'>
@@ -145,11 +137,12 @@ export default props => {
                     value={searchParams.field || undefined}
                     style={{ width: 120 }}
                     onChange={(value) => {
-                        let selectObj = sqlColumns.find(item => item.Field === value);
+                        const selectObj = sqlColumns.find(item => item.Field === value);
+
                         setSearchParams({
                             ...searchParams,
                             field: value,
-                            fieldType: selectObj.Type ? selectObj.Type.split('(')[0] : 'string',
+                            fieldType: selectObj.Type || 'string'
                         })
                     }}
                     placeholder="请选择"
@@ -157,16 +150,11 @@ export default props => {
                     className='search-field'
                 >
                     {
-                        sqlColumns.map((item, index) => {
-                            return (
-                                <Option
-                                    value={item.Field}
-                                    key={index}
-                                >
-                                    {item.Field}
-                                </Option>
-                            )
-                        })
+                        sqlColumns.map(({ Field }, index) => (
+                            <Option value={Field} key={Field}>
+                                {Field}
+                            </Option>
+                        ))
                     }
                 </Select>
                 <Select

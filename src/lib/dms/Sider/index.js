@@ -11,11 +11,11 @@ export default props => {
     const {
         database,
         tableName,
+        tables,
         onDatabaseChange,
         onTableChange,
     } = props;
     const [databases, setDatabases] = useState([]);
-    const [tables, setTables] = useState([]);
     const exucteActions = useContext(ActionContext);
 
     useEffect(() => {
@@ -23,14 +23,6 @@ export default props => {
             setDatabases(databases);
         });
     }, []);
-
-    useEffect(() => {
-        if (database) {
-            exucteActions.getTablesByDatabase(database).then(
-                data => setTables(data)
-            );
-        }
-    }, [database]);
 
     return (
         <div className={prefixCls}>
