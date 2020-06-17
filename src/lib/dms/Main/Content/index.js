@@ -2,8 +2,8 @@ import React, { useState, useEffect, useContext } from "react";
 import { Table, Select, Input } from "antd";
 import moment from "moment";
 import ActionContext from '../../ActionContext';
-import { getSchema } from "../../util";
-import DetailModal from "./DetailModal";
+import { getSchema } from '../../util';
+import DetailModal from '../components/RowDetailModal';
 import './index.less';
 
 const { Search } = Input;
@@ -14,62 +14,51 @@ export default props => {
     const excuteActions = useContext(ActionContext);
     const [records, setRecords] = useState([]);
     const [columns, setColumns] = useState([]);
-    const [schema, setSchema] = useState([]);
-    const [detailModalVisible, setDetailModalVisible] = useState(false);
-    const [detailItem, setDetailItem] = useState({});
-
+    const [detailItem, setDetailItem] = useState(null);
 
     useEffect(() => {
         excuteActions.getTableContent(database, tableName).then(data => {
             setRecords(data);
-            setSchema(getSchema(data));
-            const newColumns = getSchema(data).map((item, index, arr) => {
-                const obj = {
-                    title: item.text,
-                    dataIndex: item.text,
-                    key: item.dataIndex,
-                    ellipsis: true,
-                    width: 180,
-                    render: ((text, record) => {
-                        if (item.text === "gmt_create" || item.text === "gmt_modify") {
-                            text = moment(text).format("YYYY-MM-DD HH:mm:ss");
-                        }
+            setColumns([
+                ...getSchema(data).map((item, index, arr) => {
+                    const obj = {
+                        title: item.text,
+                        dataIndex: item.text,
+                        key: item.dataIndex,
+                        ellipsis: true,
+                        width: 180,
+                        render: ((text, record) => {
+                            if (item.text === "gmt_create" || item.text === "gmt_modify") {
+                                text = moment(text).format("YYYY-MM-DD HH:mm:ss");
+                            }
 
-                        return (
-                            <span>
-                                {text}
-                            </span>
-                        );
-                    })
-                };
+                            return (
+                                <span>
+                                    {text}
+                                </span>
+                            );
+                        })
+                    };
 
-                if (index === 0 && arr.length > 5) {
-                    obj["fixed"] = "left";
+                    if (index === 0 && arr.length > 5) {
+                        obj.fixed = "left";
+                        obj.ellipsis = false;
+                    }
+
+                    return obj;
+                }),
+                {
+                    title: "操作",
+                    dataIndex: "action",
+                    width: 120,
+                    fixed: "right",
+                    render: ((text, record) => (
+                        <a onClick={() => setDetailItem(record)}>
+                            查看详情
+                        </a>
+                    ))
                 }
-
-                return obj;
-            });
-            newColumns.push({
-                title: "操作",
-                dataIndex: "action",
-                width: 120,
-                fixed: "right",
-                render: ((text, record) => {
-                    return (
-                        <span>
-                            <a
-                                onClick={() => {
-                                    setDetailModalVisible(true);
-                                    setDetailItem(record);
-                                }}
-                            >
-                                查看详情
-                            </a>
-                        </span>
-                    );
-                })
-            });
-            setColumns(newColumns);
+            ]);
         });
     }, [database, tableName]);
 
@@ -132,15 +121,9 @@ export default props => {
                 rowKey="dataIndex"
             />
             <DetailModal
-                visible={detailModalVisible}
-                schema={schema || []}
+                visible={!!detailItem}
                 detailItem={detailItem}
-                onCancel={() => {
-                    setDetailModalVisible(false)
-                }}
-                afterClose={() => {
-                    setDetailItem({})
-                }}
+                onCancel={() => setDetailItem(null)}
             />
         </div>
     );

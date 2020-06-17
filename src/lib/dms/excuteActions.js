@@ -28,6 +28,23 @@ export const getColumnsByDatabase = (action, database) => {
     return action(`select table_name, COLUMN_NAME from information_schema.COLUMNS where TABLE_SCHEMA = '${database}'`);
 };
 
+export const getTriggers = (action, database, tableName) => {
+    return action(`show triggers from ${formatName(database)}${tableName ? (' where `Table` = "' + tableName + '"') : ''}`);
+};
+
+export const createTrigger = (action, database, tableName, { Trigger, Timing, Event, Statement}) => {
+    return action(`
+        CREATE TRIGGER ${Trigger} ${Timing} ${Event}
+        ON ${'`' + database + '`'}.${tableName}
+        FOR EACH ROW
+        ${Statement}
+    `);
+};
+
+export const dropTrigger = (action, database, triggerName) => {
+    return action(`DROP TRIGGER IF EXISTS ${formatName(database)}.${formatName(triggerName)}`);
+};
+
 export default action => ({
     getDatabaseList: getDatabaseList.bind(null, action),
     getTablesByDatabase: getTablesByDatabase.bind(null, action),
@@ -35,5 +52,8 @@ export default action => ({
     getTableStatus: getTableStatus.bind(null, action),
     getCreateSql: getCreateSql.bind(null, action),
     getTableContent: getTableContent.bind(null, action),
-    getColumnsByDatabase: getColumnsByDatabase.bind(null, action)
+    getColumnsByDatabase: getColumnsByDatabase.bind(null, action),
+    getTriggers: getTriggers.bind(null, action),
+    createTrigger: createTrigger.bind(null, action),
+    dropTrigger: dropTrigger.bind(null, action)
 });
