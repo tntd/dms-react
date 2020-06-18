@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import * as go from 'gojs';
 
 const createDiagram = (dom, nodeDataArray, linkDataArray) => {
@@ -13,16 +13,23 @@ const createDiagram = (dom, nodeDataArray, linkDataArray) => {
             "undoManager.isEnabled": true
         }
     );
-    const colors = {
-      'red': '#be4b15',
-      'green': '#52ce60',
-      'blue': '#6ea5f8',
-      'lightred': '#fd8852',
-      'lightblue': '#afd4fe',
+    const colorMap = {
+      'int': '#be4b15',
+      'text': '#52ce60',
+      'longtext': '#6ea5f8',
+      'varchar': '#fd8852',
+      'timestamp': '#afd4fe',
       'lightgreen': '#b9e986',
       'pink': '#faadc1',
       'purple': '#d689ff',
       'orange': '#fdb400',
+    };
+    const figureMap = {
+        'varchar': 'Decision',
+        'int': 'Circle',
+        'text': 'Hexagon',
+        'longtext': 'Hexagon',
+        'timestamp': 'TriangleUp'
     };
 
     // the template for each attribute in a node's array of item data
@@ -32,15 +39,15 @@ const createDiagram = (dom, nodeDataArray, linkDataArray) => {
         $(
             go.Shape,
             {
-                desiredSize: new go.Size(15, 15),
+                desiredSize: new go.Size(10, 10),
                 strokeJoin: "round",
                 strokeWidth: 3,
                 stroke: null,
                 margin: 2
             },
-            new go.Binding("figure", "figure"),
-            new go.Binding("fill", "color"),
-            new go.Binding("stroke", "color")
+            new go.Binding("figure", "type", type => figureMap[type]),
+            new go.Binding("fill", "type", type => colorMap[type]),
+            new go.Binding("stroke", "type", type => colorMap[type])
         ),
         $(
             go.TextBlock,
@@ -49,6 +56,22 @@ const createDiagram = (dom, nodeDataArray, linkDataArray) => {
                 font: "bold 14px sans-serif"
             },
             new go.Binding("text", "field")
+        ),
+        $(
+            go.TextBlock,
+            {
+                stroke: "#999",
+                font: "bold 14px sans-serif"
+            },
+            new go.Binding("text", "type", type => `: ${type}`)
+        ),
+        $(
+            go.TextBlock,
+            {
+                stroke: "#999",
+                font: "bold 14px sans-serif"
+            },
+            new go.Binding("text", "maxlength", maxlength => `(${maxlength})`)
         )
     );
 
@@ -250,6 +273,6 @@ export default ({ database, relations, excuteActions }) => {
     }, [relations, tables]);
 
     return (
-        <div ref={graphRef} style={{ width: '100%', height: '100%' }}></div>
+        <div ref={graphRef} className="entity-relationship-graph" style={{ width: '100%', height: '100%' }}></div>
     );
 }
