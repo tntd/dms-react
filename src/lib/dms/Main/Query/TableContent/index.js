@@ -2,10 +2,10 @@ import React, { useState, Fragment } from "react";
 import { Table, Radio, Alert } from "antd";
 import moment from "moment";
 import SqlHistory from "../SqlHistory";
-import DetailModal from "./DetailModal";
+import DetailModal from "../../components/RowDetailModal";
 
 export default props => {
-    const { action, querySqlInfo, setQuerySqlInfo, sqlHistoryList } = props;
+    const { querySqlInfo, setQuerySqlInfo, sqlHistoryList } = props;
     const { querySqlText, loading, schema = [], content = [], resultTab = "history", errorInfo } = querySqlInfo;
     const [detailModalVisible, setDetailModalVisible] = useState(false);
     const [detailItem, setDetailItem] = useState({});
@@ -33,6 +33,7 @@ export default props => {
         }
         return obj;
     });
+
     if (columns.length > 0) {
         columns.push({
             title: "操作",
@@ -55,7 +56,6 @@ export default props => {
             })
         })
     }
-
 
     return (
         <div className="table-content">

@@ -107,7 +107,6 @@ export default ({ database, tableName } ) => {
                     pageSize: 50,
                     size: "small"
                 }}
-                rowKey="dataIndex"
             />
             <DetailModal
                 visible={!!detailItem}

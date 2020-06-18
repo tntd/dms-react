@@ -21,8 +21,18 @@ export default props => {
     useEffect(() => {
         exucteActions.getDatabaseList().then(databases => {
             setDatabases(databases);
+
+            if (!database && (databases && databases[0])) {
+                onDatabaseChange(databases[0]);
+            }
         });
     }, []);
+
+    useEffect(() => {
+        if (tables && tables.length && !tables.includes(tableName)) {
+            onTableChange(tables[0]);
+        }
+    }, [tables]);
 
     return (
         <div className={prefixCls}>

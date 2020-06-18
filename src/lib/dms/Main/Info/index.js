@@ -32,7 +32,6 @@ export default props => {
                 </div>
                 <div className="box-body">
                     <Row
-                        gutter="20"
                         style={{
                             maxWidth: "750px"
                         }}
@@ -141,9 +140,7 @@ export default props => {
             </div>
             <div className="section-box">
                 <div className="box-body">
-                    <Row
-                        gutter="20"
-                    >
+                    <Row>
                         <Col span={24}>
                             <div className="label">
                                 <Icon type="file" />

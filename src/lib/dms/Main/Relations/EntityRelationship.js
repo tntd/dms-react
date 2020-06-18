@@ -188,48 +188,7 @@ const createDiagram = (dom, nodeDataArray, linkDataArray) => {
             new go.Binding("text", "toText")
         )
     );
-
-    // create the model for the E-R diagram
-    // const nodeDataArray = [
-    //   {
-    //     key: "Products",
-    //     items: [
-    //         { name: "ProductID", iskey: true, figure: "Decision", color: colors.red },
-    //         { name: "ProductName", iskey: false, figure: "Hexagon", color: colors.blue },
-    //         { name: "SupplierID", iskey: false, figure: "Decision", color: "purple" },
-    //         { name: "CategoryID", iskey: false, figure: "Decision", color: "purple" }
-    //     ]
-    //   },
-    //   {
-    //     key: "Suppliers",
-    //     items: [{ name: "SupplierID", iskey: true, figure: "Decision", color: colors.red },
-    //     { name: "CompanyName", iskey: false, figure: "Hexagon", color: colors.blue },
-    //     { name: "ContactName", iskey: false, figure: "Hexagon", color: colors.blue },
-    //     { name: "Address", iskey: false, figure: "Hexagon", color: colors.blue }]
-    //   },
-    //   {
-    //     key: "Categories",
-    //     items: [{ name: "CategoryID", iskey: true, figure: "Decision", color: colors.red },
-    //     { name: "CategoryName", iskey: false, figure: "Hexagon", color: colors.blue },
-    //     { name: "Description", iskey: false, figure: "Hexagon", color: colors.blue },
-    //     { name: "Picture", iskey: false, figure: "TriangleUp", color: colors.pink }]
-    //   },
-    //   {
-    //     key: "Order Details",
-    //     items: [{ name: "OrderID", iskey: true, figure: "Decision", color: colors.red },
-    //     { name: "ProductID", iskey: true, figure: "Decision", color: colors.red },
-    //     { name: "UnitPrice", iskey: false, figure: "Circle", color: colors.green },
-    //     { name: "Quantity", iskey: false, figure: "Circle", color: colors.green },
-    //     { name: "Discount", iskey: false, figure: "Circle", color: colors.green }]
-    //   },
-    // ];
-    // const linkDataArray = [
-    //     { from: "Products", to: "Suppliers", text: "0..N", toText: "1" },
-    //     { from: "Products", to: "Categories", text: "0..N", toText: "1" },
-    //     { from: "Order Details", to: "Products", text: "0..N", toText: "1" }
-    // ];
-
-    console.log('nodeDataArray', nodeDataArray);
+    // console.log('nodeDataArray', nodeDataArray);
 
     myDiagram.model = $(
         go.GraphLinksModel,
@@ -273,6 +232,6 @@ export default ({ database, relations, excuteActions }) => {
     }, [relations, tables]);
 
     return (
-        <div ref={graphRef} className="entity-relationship-graph" style={{ width: '100%', height: '100%' }}></div>
+        <div ref={graphRef} className="entity-relationship-graph"></div>
     );
 }

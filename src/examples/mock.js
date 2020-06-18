@@ -6,10 +6,10 @@ const createTableSql = [
 
 export const databases = [
     {
-        "Database": "information_schema"
+        "Database": "sinan"
     },
     {
-        "Database": "sinan"
+        "Database": "information_schema"
     },
     {
         "Database": "test"
