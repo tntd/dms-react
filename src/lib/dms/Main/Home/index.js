@@ -1,8 +1,8 @@
 
 import React from 'react';
 
-export default () => {
-    return (
-        <h4>Home</h4>
-    );
-};
+export default props => (
+    <pre style={{ backgroundColor: '#fff', padding: '20px' }}>
+        {JSON.stringify(props, null, 4)}
+    </pre>
+);

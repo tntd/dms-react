@@ -4,9 +4,13 @@ import mockJsonBySql from './mock';
 import 'antd/dist/antd.css';
 
 const Home = props => (
-    <pre style={{ backgroundColor: '#fff', padding: '20px' }}>
-        {JSON.stringify(props, null, 4)}
-    </pre>
+    <div>
+        <h4>自定义Home</h4>
+        <pre style={{ backgroundColor: '#fff', padding: '20px' }}>
+            {JSON.stringify(props, null, 4)}
+        </pre>
+    </div>
+    
 );
 const App = () => (
     <Dms
