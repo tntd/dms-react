@@ -5,8 +5,8 @@ import List from './List';
 import EntityRelationship from './EntityRelationship';
 import './index.less';
 
-export default ({ database, tableName, tables }) => {
-    const [viewType, setViewType] = useState('list');
+export default ({ database, tables }) => {
+    const [viewType, setViewType] = useState('er');
     const [relations, setRelations] = useState([]);
     const Content = {
         list: List,
@@ -28,8 +28,8 @@ export default ({ database, tableName, tables }) => {
                     size="middle"
                     onChange={evt => setViewType(evt.target.value)}
                 >
-                    <Radio.Button value="list">关系</Radio.Button>
                     <Radio.Button value="er">ER图</Radio.Button>
+                    <Radio.Button value="list">关系</Radio.Button>
                 </Radio.Group>
             </div>
             <Content
