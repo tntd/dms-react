@@ -10,29 +10,13 @@ import './index.less';
 
 export default props => {
     const { action, title = '罗盘DMS', renderHome } = props;
-    const [selectDatabase, setSelectDatabase] = useState(null);
-    const [selectTable, setSelectTable] = useState(null);
-    const [selectNav, setSelectNav] = useState(null);
+    const dmsInfo = getStorageItem('dmsInfo');
+    const [selectDatabase, setSelectDatabase] = useState(dmsInfo.selectDatabase);
+    const [selectTable, setSelectTable] = useState(dmsInfo.selectTable);
+    const [selectNav, setSelectNav] = useState(dmsInfo.selectNav);
     const [tables, setTables] = useState([]);
     const [columns, setColumns] = useState([]);
     const excuteActions = getExcuteActions(action);
-
-    useEffect(() => {
-        const dmsInfo = getStorageItem('dmsInfo');
-
-        if (dmsInfo) {
-            const { selectDatabase, selectTable, selectNav } = dmsInfo;
-
-            setSelectDatabase(selectDatabase);
-            setSelectTable(selectTable);
-            setSelectNav(selectNav);
-        } else {
-            setStorageItem(
-                'dmsInfo',
-                { selectNav: 'home' }
-            );
-        }
-    }, []);
 
     const onDatabaseChange = database => {
         saveToLocal('selectDatabase', database);

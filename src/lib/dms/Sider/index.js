@@ -17,6 +17,7 @@ export default props => {
     } = props;
     const [databases, setDatabases] = useState([]);
     const exucteActions = useContext(ActionContext);
+    console.log('database render ...', database);
 
     useEffect(() => {
         exucteActions.getDatabaseList().then(databases => {
