@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import * as go from 'gojs';
 
-const createDiagram = (dom, nodeDataArray, linkDataArray) => {
+const createDiagram = (dom, data) => {
     const $ = go.GraphObject.make;  // for conciseness in defining templates
     const myDiagram = $(
         go.Diagram,
@@ -188,24 +188,47 @@ const createDiagram = (dom, nodeDataArray, linkDataArray) => {
             new go.Binding("text", "toText")
         )
     );
-    // console.log('nodeDataArray', nodeDataArray);
 
-    myDiagram.model = $(
-        go.GraphLinksModel,
-        {
-            copiesArrays: true,
-            copiesArrayObjects: true,
-            nodeDataArray: nodeDataArray,
-            linkDataArray: linkDataArray
-        }
-    );
+    myDiagram.setData = ({ nodeDataArray = [], linkDataArray = [] } = {}) => {
+        myDiagram.model = $(
+            go.GraphLinksModel,
+            {
+                copiesArrays: true,
+                copiesArrayObjects: true,
+                nodeDataArray: nodeDataArray,
+                linkDataArray: linkDataArray
+            }
+        );
+    };
+
+    myDiagram.setData(data);
 
     return myDiagram;
 };
 
+let diagram;
+
 export default ({ database, relations, excuteActions }) => {
     const graphRef = useRef(null);
     const [tables, setTables] = useState([]);
+    const generateDiagramData = (tables, relations) => ({
+        nodeDataArray: tables,
+        linkDataArray: relations.map(item => ({
+            from: item.table_name,
+            to: item.referenced_table_name,
+            text: '0..N',
+            toText: '1'
+        }))
+    });
+
+    useEffect(() => {
+        diagram = createDiagram(
+            graphRef.current,
+            generateDiagramData(tables, relations)
+        );
+
+        return () => diagram = undefined;
+    }, []);
 
     useEffect(() => {
         excuteActions.getColumnsGroupByTable(database).then(columnsMap => {
@@ -214,21 +237,10 @@ export default ({ database, relations, excuteActions }) => {
                 items: columnsMap[table] || []
             })));
         });
-    }, []);
+    }, [database]);
 
     useEffect(() => {
-        if (tables.length && relations) {
-            createDiagram(
-                graphRef.current,
-                tables,
-                relations.map(item => ({
-                    from: item.table_name,
-                    to: item.referenced_table_name,
-                    text: '0..N',
-                    toText: '1'
-                }))
-            );
-        }
+        diagram.setData(generateDiagramData(tables, relations));
     }, [relations, tables]);
 
     return (
