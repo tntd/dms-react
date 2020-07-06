@@ -149,7 +149,7 @@ export default props => {
                     className='search-operator'
                 >
                     {
-                        operatorMap[sqlTypeMap[currentFieldType]].map(
+                        (operatorMap[sqlTypeMap[currentFieldType]] || []).map(
                             ({ label, value }) => (
                                 <Option value={value} key={value}>
                                     {label}

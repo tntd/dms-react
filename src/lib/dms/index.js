@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Header from './Header';
 import Sider from './Sider';
 import Main from './Main';
-import { saveToLocal, getStorageItem, setStorageItem } from './util';
+import { saveToLocal, getStorageItem } from './util';
 import './indexDb';
 import ActionContext from './ActionContext';
 import getExcuteActions from './excuteActions';
@@ -10,7 +10,7 @@ import './index.less';
 
 export default props => {
     const { action, title = '罗盘DMS', renderHome } = props;
-    const dmsInfo = getStorageItem('dmsInfo');
+    const dmsInfo = getStorageItem('dmsInfo', {});
     const [selectDatabase, setSelectDatabase] = useState(dmsInfo.selectDatabase);
     const [selectTable, setSelectTable] = useState(dmsInfo.selectTable);
     const [selectNav, setSelectNav] = useState(dmsInfo.selectNav);
