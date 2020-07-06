@@ -1,59 +1,49 @@
-import React, { useState, Fragment } from "react";
-import { Table, Radio, Alert } from "antd";
-import moment from "moment";
-import SqlHistory from "../SqlHistory";
-import DetailModal from "../../components/RowDetailModal";
+import React, { useState, Fragment } from 'react';
+import { Table, Radio, Alert } from 'antd';
+import moment from 'moment';
+import SqlHistory from '../SqlHistory';
+import DetailModal from '../../components/RowDetailModal';
 
 export default props => {
     const { querySqlInfo, setQuerySqlInfo, sqlHistoryList } = props;
-    const { querySqlText, loading, schema = [], content = [], resultTab = "history", errorInfo } = querySqlInfo;
+    const { querySqlText, loading, schema = [], content = [], resultTab = 'history', errorInfo } = querySqlInfo;
     const [detailModalVisible, setDetailModalVisible] = useState(false);
     const [detailItem, setDetailItem] = useState({});
 
-    const columns = schema.map((item, index, arr) => {
-        let obj = {
-            title: item.text,
-            dataIndex: item.text,
-            key: item.dataIndex,
-            ellipsis: true,
-            width: 180,
-            render: ((text, record) => {
-                if (item.text === "gmt_create" || item.text === "gmt_modify") {
-                    text = moment(text).format("YYYY-MM-DD HH:mm:ss");
-                }
-                return (
-                    <span>
-                        {text}
-                    </span>
-                );
-            })
-        };
-        if (index === 0 && arr.length > 5) {
-            obj["fixed"] = "left";
+    const columns = schema.map((item, index, arr) => ({
+        title: item.text,
+        dataIndex: item.text,
+        key: item.dataIndex,
+        ellipsis: true,
+        fixed: index === 0 && arr.length > 5 ? 'left' : '',
+        width: 180,
+        render: (text, record) => {
+            if (['gmt_create', 'gmt_modify'].includes(item.text)) {
+                text = moment(text).format("YYYY-MM-DD HH:mm:ss");
+            }
+
+            return text;
         }
-        return obj;
-    });
+    }));
 
     if (columns.length > 0) {
         columns.push({
             title: "操作",
             dataIndex: "action ",
-            width: 120,
+            width: 80,
             fixed: "right",
-            render: ((text, record) => {
-                return (
-                    <span>
-                        <a
-                            onClick={() => {
-                                setDetailModalVisible(true);
-                                setDetailItem(record);
-                            }}
-                        >
-                            查看详情
-                        </a>
-                    </span>
-                );
-            })
+            render: ((text, record) => (
+                <span>
+                    <a
+                        onClick={() => {
+                            setDetailModalVisible(true);
+                            setDetailItem(record);
+                        }}
+                    >
+                        查看详情
+                    </a>
+                </span>
+            ))
         })
     }
 

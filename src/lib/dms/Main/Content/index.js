@@ -1,16 +1,16 @@
-import React, { useState, useEffect, useContext } from "react";
-import { Table, Select, Input, message } from "antd";
-import moment from "moment";
+import React, { useState, useEffect, useContext, Fragment } from 'react';
+import { Table, Select, Input, message } from 'antd';
+import moment from 'moment';
 import ActionContext from '../../ActionContext';
 import DetailModal from '../components/RowDetailModal';
-import { operatorMap, sqlTypeMap } from "./constant";
+import { operatorMap, sqlTypeMap } from './constant';
 import './index.less';
 
 const { Search } = Input;
 const { Option } = Select;
 
 export default props => {
-    const { database, tableName, columns: sqlColumns } = props;
+    const { action, database, tableName, columns: sqlColumns } = props;
     const excuteActions = useContext(ActionContext);
     const [records, setRecords] = useState([]);
     const [columns, setColumns] = useState([]);
@@ -19,7 +19,8 @@ export default props => {
         field: null,
         fieldType: 'VARCHAR',
         operator: '=',
-        keyword: ''
+        keyword: '',
+        keyword2: '' // between时两个参数
     });
 
     useEffect(() => {
@@ -62,72 +63,49 @@ export default props => {
     }, [database, tableName, sqlColumns]);
 
     const startSearch = () => {
-        console.log('searchParams', searchParams);
-        let baseSql = `select * from ${database}.${tableName} `;
-        let whereSql = '';
-        let { field, operator = '=', keyword } = searchParams;
+        const baseSql = `select * from ${database}.${tableName}`;
+        const { field, operator = '=', keyword, keyword2 } = searchParams;
 
         if (!field) {
             message.warning('请选择列');
             return;
         }
-        if (!keyword) {
+
+        if (!keyword || (operator === 'between' && !keyword2)) {
             message.warning('请输入搜索项');
             return;
         }
+
         // 根据operator组装
-        if (operator === '=') {
-            whereSql = `where ${field} = ${keyword}`;
-        } else if (operator === '!=') {
-            whereSql = `where ${field} != ${keyword}`;
-        } else if (operator === '>') {
-            whereSql = `where ${field} > ${keyword}`;
-        } else if (operator === '>=') {
-            whereSql = `where ${field} >= ${keyword}`;
-        } else if (operator === '<') {
-            whereSql = `where ${field} < ${keyword}`;
-        } else if (operator === '<=') {
-            whereSql = `where ${field} <= ${keyword}`;
-        } else if (operator === 'contains') {
-            // 第二个参数是一个单词，要用单引号括起来。
-            whereSql = `where contains(${field},'${keyword}')`;
-        } else if (operator === 'not contain') {
-            // 第二个参数是一个单词，要用单引号括起来。
-            whereSql = `where charindex(${field},'${keyword}')=0`;
-        } else if (operator === 'start with') {
-            // 开始以
-            whereSql = `where ${field} like '${keyword}%'`;
-        } else if (operator === 'start not with') {
-            // 开始不是以
-            whereSql = `where ${field} not like '${keyword}%'`;
-        } else if (operator === 'end with') {
-            // 结束以
-            whereSql = `where ${field} like '%${keyword}'`;
-        } else if (operator === 'end not with') {
-            // 结束不是以
-            whereSql = `where ${field} not like '%${keyword}'`;
-        } else if (operator === 'is null') {
-            whereSql = `where ${field} is null`;
-        } else if (operator === 'is not null') {
-            whereSql = `where ${field} is not null`;
-        } else if (operator === 'between') {
-            // 这里有两个参数
-            whereSql = `where ${field} is empty`;
-        } else if (operator === 'in list') {
-            whereSql = `where ${field} in (${keyword})`;
-        } else if (operator === 'not in list') {
-            whereSql = `where ${field} not in (${keyword})`;
-        } else if (operator === 'is before') {
-            whereSql = `where ${field} < ${keyword}`;
-        } else if (operator === 'is befter or equal to') {
-            whereSql = `where ${field} <= ${keyword}`;
-        } else if (operator === 'is after') {
-            whereSql = `where ${field} > ${keyword}`;
-        } else if (operator === 'is after or equal to') {
-            whereSql = `where ${field} >= ${keyword}`;
-        }
-        message.info(baseSql + whereSql);
-    }
+        const operatorSqlMap = {
+            '=': `${field} = ${keyword}`,
+            '!=': `${field} != ${keyword}`,
+            '>': `${field} > ${keyword}`,
+            '>=': `${field} >= ${keyword}`,
+            '<': `${field} < ${keyword}`,
+            '<=': `${field} <= ${keyword}`,
+            'contains': `contains(${field},'${keyword}')`,
+            'not contain': `charindex(${field},'${keyword}')=0`,
+            'start with': `${field} like '${keyword}%'`,
+            'start not with': `${field} not like '${keyword}%'`,
+            'end with': `${field} like '%${keyword}'`,
+            'end not with': `${field} not like '%${keyword}'`,
+            'is null': `${field} is null`,
+            'is not null': `${field} is not null`,
+            'between': `${field} between ${keyword} and ${keyword2}`,
+            'in list': `${field} in (${keyword})`,
+            'not in list': `${field} not in (${keyword})`,
+            'is before': `${field} < ${keyword}`,
+            'is befter or equal to': `${field} <= ${keyword}`,
+            'is after': `${field} > ${keyword}`,
+            'is after or equal to': `${field} >= ${keyword}`
+        };
+
+        // message.info(`${baseSql} where ${whereSql}`);
+        action(
+            `${baseSql} where ${operatorSqlMap[operator]}`
+        ).then(data => setRecords(data));
+    };
 
     const currentFieldType = searchParams.fieldType ? searchParams.fieldType.toUpperCase() : 'VARCHAR';
 
@@ -171,16 +149,13 @@ export default props => {
                     className='search-operator'
                 >
                     {
-                        operatorMap[sqlTypeMap[currentFieldType]].map((item, index) => {
-                            return (
-                                <Option
-                                    value={item.value}
-                                    key={index}
-                                >
-                                    {item.label}
+                        operatorMap[sqlTypeMap[currentFieldType]].map(
+                            ({ label, value }) => (
+                                <Option value={value} key={value}>
+                                    {label}
                                 </Option>
                             )
-                        })
+                        )
                     }
                 </Select>
                 <Search
@@ -197,6 +172,26 @@ export default props => {
                     }}
                     onSearch={startSearch}
                 />
+                {
+                    searchParams.operator === 'between' && (
+                        <Fragment>
+                            <span>AND</span>
+                            <Search
+                                placeholder="请输入搜索值..."
+                                value={searchParams.keyword2}
+                                style={{ width: 200 }}
+                                className='search-value'
+                                onChange={e => {
+                                    setSearchParams({
+                                        ...searchParams,
+                                        keyword2: e.target.value
+                                    });
+                                }}
+                                onSearch={startSearch}
+                            />
+                        </Fragment>
+                    )
+                }
             </div>
             <Table
                 dataSource={records}

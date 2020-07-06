@@ -24,14 +24,14 @@ export const operatorMap = {
             "label": ">=",
             "value": ">="
         },
-        {
-            "label": "包含",
-            "value": "contains"
-        },
-        {
-            "label": "不包含",
-            "value": "not contain"
-        },
+        // {
+        //     "label": "包含",
+        //     "value": "contains"
+        // },
+        // {
+        //     "label": "不包含",
+        //     "value": "not contain"
+        // },
         {
             "label": "开始以",
             "value": "start with"
@@ -177,7 +177,7 @@ export const operatorMap = {
             "value": "not in list"
         }
     ]
-}
+};
 
 export const sqlTypeMap = {
     TINYINT: 'number',
@@ -204,4 +204,4 @@ export const sqlTypeMap = {
     MEDIUMTEXT: 'string',
     LONGBLOB: 'string',
     LONGTEXT: 'string'
-}
+};
