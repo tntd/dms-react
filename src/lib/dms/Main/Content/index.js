@@ -67,12 +67,12 @@ export default props => {
         const { field, keyword, keyword2 } = searchParams;
         // 根据operator组装
         const operatorSqlMap = {
-            '=': `${field} = ${keyword}`,
-            '!=': `${field} != ${keyword}`,
-            '>': `${field} > ${keyword}`,
-            '>=': `${field} >= ${keyword}`,
-            '<': `${field} < ${keyword}`,
-            '<=': `${field} <= ${keyword}`,
+            '=': `${field} = '${keyword}'`,
+            '!=': `${field} != '${keyword}'`,
+            '>': `${field} > '${keyword}'`,
+            '>=': `${field} >= '${keyword}'`,
+            '<': `${field} < '${keyword}'`,
+            '<=': `${field} <= '${keyword}'`,
             'contains': `contains(${field},'${keyword}')`,
             'not contain': `charindex(${field},'${keyword}')=0`,
             'start with': `${field} like '${keyword}%'`,
@@ -81,13 +81,13 @@ export default props => {
             'end not with': `${field} not like '%${keyword}'`,
             'is null': `${field} is null`,
             'is not null': `${field} is not null`,
-            'between': `${field} between ${keyword} and ${keyword2}`,
-            'in list': `${field} in (${keyword})`,
-            'not in list': `${field} not in (${keyword})`,
-            'is before': `${field} < ${keyword}`,
-            'is befter or equal to': `${field} <= ${keyword}`,
-            'is after': `${field} > ${keyword}`,
-            'is after or equal to': `${field} >= ${keyword}`
+            'between': `${field} between '${keyword}' and '${keyword2}'`,
+            'in list': `${field} in (${keyword.split(',').map(item => `'${item}'`).join(',')})`,
+            'not in list': `${field} not in (${keyword.split(',').map(item => `'${item}'`).join(',')})`,
+            'is before': `${field} < '${keyword}'`,
+            'is befter or equal to': `${field} <= '${keyword}'`,
+            'is after': `${field} > '${keyword}'`,
+            'is after or equal to': `${field} >= '${keyword}'`
         };
         const getWhereSql = ({ field, operator, keyword, keyword2 }) => {
             if (!field) {
