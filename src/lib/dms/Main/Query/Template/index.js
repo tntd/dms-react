@@ -1,6 +1,5 @@
 import React from "react";
 import Tree from "./Tree";
-
 import { sqlTemplateList } from "../../constant";
 
 export default props => {

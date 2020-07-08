@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useContext, useRef } from "react";
+import { message } from 'antd';
 import ActionContext from '../../ActionContext';
 import Toolbar from "./Toolbar";
 import TableContent from "./TableContent";
@@ -17,6 +18,7 @@ export default props => {
         resultTab: "history",
         errorInfo: {}
     });
+    const sqlEditorRef = useRef();
     const dataRef = useRef({
         setQuerySqlInfo
     });
@@ -27,7 +29,10 @@ export default props => {
     const excuteActions = useContext(ActionContext);
 
     useEffect(() => {
-        init();
+        setQuerySqlInfo({
+            ...querySqlInfo,
+            querySqlText: localStorage.getItem("querySqlText")
+        });
         getSqlHistoryList();
         getSqlCollectionList();
     }, []);
@@ -59,18 +64,12 @@ export default props => {
         });
     };
 
-    const init = () => {
-        setQuerySqlInfo({
-            ...querySqlInfo,
-            querySqlText: localStorage.getItem("querySqlText")
-        })
-    };
-
     return (
         <div className="query-page">
             <div className="main-content">
                 <Toolbar
                     action={action}
+                    sqlEditorRef={sqlEditorRef}
                     querySqlInfo={querySqlInfo}
                     setQuerySqlInfo={setQuerySqlInfo}
                     getSqlHistoryList={getSqlHistoryList}
@@ -80,6 +79,7 @@ export default props => {
                 <div className="main-content-body">
                     <div className="sql-text">
                         <CodeMirror
+                            ref={sqlEditorRef}
                             value={querySqlInfo.querySqlText || ""}
                             onChange={(value) => {
                                 setQuerySqlInfo({

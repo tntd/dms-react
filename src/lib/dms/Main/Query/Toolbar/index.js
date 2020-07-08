@@ -6,13 +6,13 @@ import AddCollectionModal from './AddCollectionModal';
 import ViewCollectionModal from './ViewCollectionModal';
 import { safeStorage, isJSON } from "@tntd/utils";
 import moment from 'moment';
-import { addData, getAllData } from "../../../indexDb";
+import { addData } from "../../../indexDb";
 import { getSchema } from "../../../util";
 
 const { SubMenu } = Menu;
 
 export default props => {
-    const { action, querySqlInfo, setQuerySqlInfo, getSqlHistoryList, sqlCollectionList, setSqlCollectionList } = props;
+    const { action, querySqlInfo, setQuerySqlInfo, getSqlHistoryList, sqlCollectionList, sqlEditorRef } = props;
     const { querySqlText } = querySqlInfo;
     const [addCollectionVisible, setAddCollectionVisible] = useState(false);
     const [addCollectionItem, setAddCollectionItem] = useState({
@@ -96,80 +96,83 @@ export default props => {
         </Menu>
     );
 
+    const onExecute = () => {
+        const { editBox: codeInstance } = sqlEditorRef.current || {};
+        const executeSql = codeInstance.doc.getSelection() || querySqlText;
+
+        if (!executeSql || !executeSql.trim()) {
+            message.warning('请输入SQL语句');
+            return;
+        }
+
+        // 设置loading
+        setQuerySqlInfo({
+            ...querySqlInfo,
+            loading: true
+        });
+
+        action(executeSql).then(data => {
+            const indexDbParams = {
+                database: dmsInfo.selectDatabase,
+                sql: executeSql,
+                status: 1,
+                total: data instanceof Array ? data.length : Object.keys(data).length,
+                execute_ts: 50,
+                created_ts: moment().format("YYYY-MM-DD HH:mm:ss")
+            };
+
+            if (data.error) {
+                setQuerySqlInfo({
+                    loading: false,
+                    querySqlText,
+                    schema: [],
+                    content: [],
+                    resultTab: "message",
+                    errorInfo: get(data, "error.original")
+                });
+                indexDbParams.status = 0;
+                indexDbParams.errorInfo = get(data, "error.original");
+            } else {
+                // 获取schema
+                const schema = getSchema(data);
+
+                setQuerySqlInfo({
+                    querySqlText,
+                    loading: false,
+                    schema,
+                    content: data,
+                    resultTab: "result",
+                    errorInfo: null
+                });
+            }
+            // 将记录放到indexDB
+            addData("sql_history", indexDbParams);
+            // 获取所有数据
+            getSqlHistoryList();
+        }).catch((res) => {
+            console.log('errr')
+            setQuerySqlInfo({
+                loading: false,
+                querySqlText,
+                schema: [],
+                content: [],
+                resultTab: "message",
+                errorInfo: null
+            });
+            addData("sql_history", {
+                database: dmsInfo.selectDatabase,
+                sql: executeSql,
+                status: 0,
+                total: 0,
+                execute_ts: 50,
+                created_ts: moment().format("YYYY-MM-DD HH:mm:ss")
+            });
+        });
+    };
+
     return (
         <div className="toolbar">
-            <Button
-                icon="rocket"
-                onClick={() => {
-                    if (!querySqlText || !(querySqlText && trim(querySqlText))) {
-                        message.warning("请输入SQL语句");
-                        return;
-                    }
-
-                    // 设置loading
-                    setQuerySqlInfo({
-                        ...querySqlInfo,
-                        loading: true
-                    })
-
-                    action(querySqlText).then((data) => {
-                        const indexDbParams = {
-                            database: dmsInfo.selectDatabase,
-                            sql: querySqlText,
-                            status: 1,
-                            total: data.length,
-                            execute_ts: 50,
-                            created_ts: moment().format("YYYY-MM-DD HH:mm:ss")
-                        };
-                        if (data.error) {
-                            setQuerySqlInfo({
-                                loading: false,
-                                querySqlText,
-                                schema: [],
-                                content: [],
-                                resultTab: "message",
-                                errorInfo: get(data, "error.original")
-                            });
-                            indexDbParams.status = 0;
-                            indexDbParams.errorInfo = get(data, "error.original");
-                        } else {
-                            // 获取schema
-                            const schema = getSchema(data);
-
-                            setQuerySqlInfo({
-                                querySqlText,
-                                loading: false,
-                                schema,
-                                content: data,
-                                resultTab: "result",
-                                errorInfo: null
-                            });
-                        }
-                        // 将记录放到indexDB
-                        addData("sql_history", indexDbParams);
-                        // 获取所有数据
-                        getSqlHistoryList();
-                    }).catch((res) => {
-                        console.log('errr')
-                        setQuerySqlInfo({
-                            loading: false,
-                            querySqlText,
-                            schema: [],
-                            content: [],
-                            resultTab: "message",
-                            errorInfo: null
-                        });
-                        addData("sql_history", {
-                            database: dmsInfo.selectDatabase,
-                            sql: querySqlText,
-                            status: 0,
-                            total: 0,
-                            execute_ts: 50,
-                            created_ts: moment().format("YYYY-MM-DD HH:mm:ss")
-                        });
-                    });
-                }}
-            >
+            <Button icon="rocket" onClick={onExecute}>
                 运行
 			</Button>
             <Button
