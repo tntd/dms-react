@@ -63,19 +63,8 @@ export default props => {
     }, [database, tableName, sqlColumns]);
 
     const startSearch = () => {
-        const baseSql = `select * from ${database}.${tableName}`;
-        const { field, operator = '=', keyword, keyword2 } = searchParams;
-
-        if (!field) {
-            message.warning('请选择列');
-            return;
-        }
-
-        if (!keyword || (operator === 'between' && !keyword2)) {
-            message.warning('请输入搜索项');
-            return;
-        }
-
+        const baseSql = `select * from ${'`' + database + '`'}.${tableName}`;
+        const { field, keyword, keyword2 } = searchParams;
         // 根据operator组装
         const operatorSqlMap = {
             '=': `${field} = ${keyword}`,
@@ -100,10 +89,22 @@ export default props => {
             'is after': `${field} > ${keyword}`,
             'is after or equal to': `${field} >= ${keyword}`
         };
+        const getWhereSql = ({ field, operator, keyword, keyword2 }) => {
+            if (!field) {
+                // message.warning('请选择列');
+                return '';
+            }
+    
+            if (!keyword || (operator === 'between' && !keyword2)) {
+                // message.warning('请输入搜索项');
+                return '';
+            }
 
-        // message.info(`${baseSql} where ${whereSql}`);
+            return `where ${operatorSqlMap[operator]}`;
+        };
+
         action(
-            `${baseSql} where ${operatorSqlMap[operator]}`
+            `${baseSql} ${getWhereSql(searchParams)}`
         ).then(data => setRecords(data));
     };
 
