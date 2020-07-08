@@ -74,7 +74,7 @@ export default props => {
             '<': `${field} < '${keyword}'`,
             '<=': `${field} <= '${keyword}'`,
             // 'contains': `contains(${field},'${keyword}')`,
-            'contains': `${field} like '%{keyword}%'`,
+            'contains': `${field} like '%${keyword}%'`,
             // 'not contain': `charindex(${field},'${keyword}')=0`,
             'not contain': `${field} not like '%${keyword}%'`,
             'start with': `${field} like '${keyword}%'`,
