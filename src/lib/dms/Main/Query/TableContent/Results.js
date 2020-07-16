@@ -1,7 +1,7 @@
 import React from 'react';
 import { Table, Tabs } from 'antd';
 import moment from 'moment';
-import { getSchema } from "../../../util";
+import { getSchema } from '../../../util';
 
 const { TabPane } = Tabs;
 
