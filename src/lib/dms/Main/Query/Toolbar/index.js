@@ -1,13 +1,13 @@
 import React, { useState, Fragment } from "react";
 import { Button, Icon, Dropdown, Menu, message } from "antd";
-import { trim, get } from "lodash";
+import { get } from "lodash";
 import sqlFormatter from "sql-formatter";
 import AddCollectionModal from './AddCollectionModal';
 import ViewCollectionModal from './ViewCollectionModal';
 import { safeStorage, isJSON } from "@tntd/utils";
 import moment from 'moment';
 import { addData } from "../../../indexDb";
-import { getSchema } from "../../../util";
+import { getSchema, splitSqlBySemicolon } from "../../../util";
 
 const { SubMenu } = Menu;
 
@@ -111,7 +111,9 @@ export default props => {
             loading: true
         });
 
-        action(executeSql).then(data => {
+        action(executeSql, {
+            sqls: splitSqlBySemicolon(executeSql)
+        }).then(data => {
             const indexDbParams = {
                 database: dmsInfo.selectDatabase,
                 sql: executeSql,
@@ -149,8 +151,8 @@ export default props => {
             addData("sql_history", indexDbParams);
             // 获取所有数据
             getSqlHistoryList();
-        }).catch((res) => {
-            console.log('errr')
+        }).catch(err => {
+            console.log('errr', err);
             setQuerySqlInfo({
                 loading: false,
                 querySqlText,
@@ -167,6 +169,7 @@ export default props => {
                 execute_ts: 50,
                 created_ts: moment().format("YYYY-MM-DD HH:mm:ss")
             });
+            throw err;
         });
     };
 

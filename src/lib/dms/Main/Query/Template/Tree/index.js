@@ -1,14 +1,14 @@
-import React, { PureComponent } from "react";
-import { Tree, Icon } from "antd";
-import folderClose from "./folder-close.svg";
-import folderOpen from "./folder-open.svg";
-import "./index.less";
+import React, { PureComponent } from 'react';
+import { Tree, Icon } from 'antd';
+import folderClose from './folder-close.svg';
+import folderOpen from './folder-open.svg';
+import './index.less';
 
 const { TreeNode, DirectoryTree } = Tree;
 
 class TreeDemo extends PureComponent {
 
-    renderTreeNodes = data =>
+    renderTreeNodes = data => (
         data.map(item => {
             if (item.children) {
                 return (
@@ -17,51 +17,42 @@ class TreeDemo extends PureComponent {
                         key={item.key}
                         dataRef={item}
                         icon={
-                            (props) => {
-                                let expanded = props.expanded;
-
-                                return (
-                                    <img
-                                        className="group-folder-icon"
-                                        src={expanded ? folderOpen : folderClose}
-                                    />
-                                );
-                            }
+                            ({ expanded }) => (
+                                <img
+                                    className="group-folder-icon"
+                                    alt={item.title}
+                                    src={expanded ? folderOpen : folderClose}
+                                />
+                            )
                         }
                     >
                         {this.renderTreeNodes(item.children)}
                     </TreeNode>
                 );
             }
+
             return (
                 <TreeNode
                     title={
-                        <span
-                            onDoubleClick={() => {
-                                this.props.onDbClick(item);
-                            }}
-                        >
+                        <span onDoubleClick={() => this.props.onDbClick(item)}>
                             {item.title}
                         </span>
                     }
                     key={item.key}
                     dataRef={item}
-                    icon={
-                        (props) => {
-                            return (
-                                <Icon
-                                    type="file"
-                                    onDoubleClick={() => {
-                                        this.props.onDbClick(item);
-                                    }}
-                                />
-                            );
-                        }
-                    }
+                    icon={() => (
+                        <Icon
+                            type="file"
+                            onDoubleClick={() => {
+                                this.props.onDbClick(item);
+                            }}
+                        />
+                    )}
                     isLeaf
                 />
             );
-        });
+        })
+    )
 
     render() {
         const { treeMap, defaultExpandedKeys } = this.props;

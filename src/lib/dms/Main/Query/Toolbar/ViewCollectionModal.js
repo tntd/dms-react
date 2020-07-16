@@ -1,9 +1,9 @@
-import React, { useEffect, useState, Fragment } from "react";
-import { Input, Table, Divider, Modal } from "antd";
-import { addData, getAllData } from "../../../indexDb";
+import React, { useEffect, useState } from 'react';
+import { Table, Divider, Modal } from 'antd';
+import { getAllData } from '../../../indexDb';
 
 export default props => {
-    const { visible, onCancel, afterClose, schema, useSql } = props;
+    const { visible, onCancel, afterClose, useSql } = props;
     const [dataSource, setDataSource] = useState([]);
 
     useEffect(() => {

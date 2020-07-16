@@ -1,34 +1,33 @@
-import React, { useEffect, useState, Fragment } from "react";
-import { Table, Tooltip, message, Popconfirm } from "antd";
-import { deleteDataById } from "../../../indexDb";
+import React, { useState } from 'react';
+import { Table, Tooltip } from 'antd';
 import moment from 'moment';
 
 export default props => {
     const { querySqlInfo, setQuerySqlInfo, sqlHistoryList } = props;
     const { querySqlText } = querySqlInfo;
-    const [tableLoading, setTableLoading] = useState(false);
+    const [tableLoading] = useState(false);
 
     const columns = [
         {
-            title: "执行时间",
-            dataIndex: "created_ts",
-            key: "执行时间",
+            title: '执行时间',
+            dataIndex: 'created_ts',
+            key: '执行时间',
             width: 120,
             ellipsis: true,
             render: (text) => {
-                return text ? moment(text).fromNow() : "-"
+                return text ? moment(text).fromNow() : '-'
             }
         },
         {
-            title: "数据库/schema",
-            dataIndex: "database",
-            key: "database",
+            title: '数据库/schema',
+            dataIndex: 'database',
+            key: 'database',
             width: 140
         },
         {
-            title: "SQL(点击SQL粘贴至上方)",
-            dataIndex: "sql",
-            key: "sql",
+            title: 'SQL(点击SQL粘贴至上方)',
+            dataIndex: 'sql',
+            key: 'sql',
             ellipsis: true,
             render: (text) => {
                 return (
@@ -59,19 +58,19 @@ export default props => {
             }
         },
         {
-            title: "状态",
-            dataIndex: "status",
-            key: "status",
+            title: '状态',
+            dataIndex: 'status',
+            key: 'status',
             width: 100,
             render: (text) => {
                 return text === 1 ? '成功' : '失败'
             }
         },
         {
-            title: "行数",
-            dataIndex: "total",
+            title: '行数',
+            dataIndex: 'total',
             width: 80,
-            key: "total"
+            key: 'total'
         },
         // {
         //     title: "耗时(ms)",
