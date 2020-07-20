@@ -207,7 +207,6 @@ export default props => {
                     pageSize: 50,
                     size: "small"
                 }}
-                rowKey="dataIndex"
             />
             <DetailModal
                 visible={!!detailItem}

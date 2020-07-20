@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { Modal, Form, Input, Select } from 'antd';
 import CodeField from '../components/CodeMirror';
 import { TimingList, EventList } from './constant';
@@ -16,101 +16,25 @@ const formItemLayout = {
       sm: { span: 20 }
     }
 };
-const EditForm = ({ form, values, ...props }) => {
-    const { getFieldDecorator } = form;
-    const { Trigger, Timing, Event, Statement } = values || {};
-    const SelectList = ({ options, ...rest }) => (
-        <Select {...rest}>
-            {
-                options.map(option => (
-                    <Option value={option} key={option}>{option}</Option>
-                ))
-            }
-        </Select>
-    );
-
-    return (
-        <Form {...formItemLayout} {...props} >
-            <FormItem
-                label="名称"
-                name="Trigger"
-                getFieldDecorator={getFieldDecorator}
-            >
-                {
-                    getFieldDecorator('Trigger', {
-                        initialValue: Trigger,
-                        rules: [{ required: true }]
-                    })(
-                        <Input
-                            placeholder="请输入触发器名称"
-                        />
-                    )
-                }
-            </FormItem>
-            <FormItem
-                label="执行时机"
-                name="Timing"
-            >
-                {
-                    getFieldDecorator('Timing', {
-                        initialValue: Timing,
-                        rules: [{ required: true }]
-                    })(
-                        <SelectList
-                            placeholder="执行时机"
-                            options={TimingList}
-                        />
-                    )
-                }
-            </FormItem>
-            <FormItem
-                label="事件"
-                name="Event"
-            >
-                {
-                    getFieldDecorator('Event', {
-                        initialValue: Event,
-                        rules: [{ required: true }]
-                    })(
-                        <SelectList
-                            placeholder="事件"
-                            options={EventList}
-                        />
-                    )
-                }
-            </FormItem>
-            <FormItem
-                label="执行sql"
-                name="Statement"
-            >
-                {
-                    getFieldDecorator('Statement', {
-                        initialValue: Statement,
-                        rules: [{ required: true }]
-                    })(
-                        <CodeField
-                            placeholder="执行sql"
-                        />
-                    )
-                }
-            </FormItem>
-        </Form>
-    );
-};
-const WrappedEditForm = Form.create()(EditForm);
+const SelectList = ({ options, ...rest }) => (
+    <Select {...rest}>
+        {
+            options.map(option => (
+                <Option value={option} key={option}>{option}</Option>
+            ))
+        }
+    </Select>
+);
 
 export default ({ visible, record, ...props }) => {
     record = record || {};
-    const formRef = useRef(null);
+    const { Trigger, Timing, Event, Statement } = record || {};
+    const [form] = Form.useForm();
     const onOk = () => {
-        const form = formRef.current.getForm();
-
-        form.validateFieldsAndScroll((err, values) => {
-            if (!err) {
-                props.onOk(values).then(() => {
-                    props.onCancel();
-                });
-            }
+        form.validateFields().then(values => {
+            props.onOk(values).then(() => {
+                props.onCancel();
+            });
         });
     };
 
@@ -123,10 +47,52 @@ export default ({ visible, record, ...props }) => {
             {...props}
             onOk={onOk}
         >
-            <WrappedEditForm
-                ref={formRef}
-                values={record}
-            />
+            <Form
+                {...formItemLayout}
+                form={form}
+                initialValues={{
+                    Trigger, Timing, Event, Statement
+                }}
+            >
+                <FormItem
+                    required
+                    label="名称"
+                    name="Trigger"
+                    rules={[{ required: true }]}
+                >
+                    <Input placeholder="请输入触发器名称" />
+                </FormItem>
+                <FormItem
+                    required
+                    label="执行时机"
+                    name="Timing"
+                    rules={[{ required: true }]}
+                >
+                    <SelectList
+                        placeholder="执行时机"
+                        options={TimingList}
+                    />
+                </FormItem>
+                <FormItem
+                    required
+                    label="事件"
+                    name="Event"
+                    rules={[{ required: true }]}
+                >
+                    <SelectList
+                        placeholder="事件"
+                        options={EventList}
+                    />
+                </FormItem>
+                <FormItem
+                    required
+                    label="执行sql"
+                    name="Statement"
+                    rules={[{ required: true }]}
+                >
+                    <CodeField placeholder="执行sql" />
+                </FormItem>
+            </Form>
         </Modal>
     );
 };

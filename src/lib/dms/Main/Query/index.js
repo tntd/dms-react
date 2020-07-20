@@ -73,6 +73,7 @@ export default props => {
                     setQuerySqlInfo={setQuerySqlInfo}
                     getSqlHistoryList={getSqlHistoryList}
                     sqlCollectionList={sqlCollectionList}
+                    getSqlCollectionList={getSqlCollectionList}
                     setSqlCollectionList={setSqlCollectionList}
                 />
                 <div className="main-content-body">

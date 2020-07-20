@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext, Fragment } from 'react';
+import { PlusOutlined } from '@ant-design/icons';
 import { Table, Button, Divider, Popconfirm } from 'antd';
 import moment from 'moment';
 import ActionContext from '../../ActionContext';
@@ -50,11 +51,11 @@ export default ({ database, tableName } ) => {
                         <a onClick={() => setDetailItem(record)}>
                             详情
                         </a>
-                        <Divider type="horizon" />
+                        <Divider type="vertical" />
                         <a onClick={() => setEditItem(record)}>
                             编辑
                         </a>
-                        <Divider type="horizon" />
+                        <Divider type="vertical" />
                         <Popconfirm
                             title="确认删除该触发器吗?"
                             onConfirm={() => onDrop(record)}
@@ -94,7 +95,7 @@ export default ({ database, tableName } ) => {
     return (
         <div className="triggers-page">
             <div className="triggers-page-toolbar">
-                <Button icon="plus" onClick={() => setEditItem({ isNew: true })}>新建</Button>
+                <Button icon={<PlusOutlined />} onClick={() => setEditItem({ isNew: true })}>新建</Button>
             </div>
             <Table
                 dataSource={records}

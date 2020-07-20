@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
-import { Tree, Icon } from 'antd';
+import { FileOutlined } from '@ant-design/icons';
+import { Tree } from 'antd';
 import folderClose from './folder-close.svg';
 import folderOpen from './folder-open.svg';
 import './index.less';
@@ -41,12 +42,10 @@ class TreeDemo extends PureComponent {
                     key={item.key}
                     dataRef={item}
                     icon={() => (
-                        <Icon
-                            type="file"
+                        <FileOutlined
                             onDoubleClick={() => {
                                 this.props.onDbClick(item);
-                            }}
-                        />
+                            }} />
                     )}
                     isLeaf
                 />

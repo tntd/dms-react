@@ -1,42 +1,36 @@
 import React, { useState, Fragment } from "react";
-import { Button, Icon, Dropdown, Menu, message } from "antd";
-import { get } from "lodash";
-import sqlFormatter from "sql-formatter";
-import AddCollectionModal from './AddCollectionModal';
-import ViewCollectionModal from './ViewCollectionModal';
-import { safeStorage, isJSON } from "@tntd/utils";
+import {
+    BuildOutlined,
+    DownOutlined,
+    InteractionOutlined,
+    PlusSquareOutlined,
+    RocketOutlined,
+    StarOutlined,
+} from '@ant-design/icons';
+import { Button, Dropdown, Menu, message } from 'antd';
+import { get } from 'lodash';
+import sqlFormatter from 'sql-formatter';
+import EditCollectionModal from './EditCollectionModal';
+import CollectionsModal from './CollectionsModal';
 import moment from 'moment';
-import { addData } from "../../../indexDb";
-import { getSchema, splitSqlBySemicolon } from "../../../util";
+import { addData } from '../../../indexDb';
+import { getSchema, splitSqlBySemicolon, getStorageItem } from '../../../util';
 
 const { SubMenu } = Menu;
 
 export default props => {
     const { action, querySqlInfo, setQuerySqlInfo, getSqlHistoryList, sqlCollectionList, sqlEditorRef } = props;
     const { querySqlText } = querySqlInfo;
-    const [addCollectionVisible, setAddCollectionVisible] = useState(false);
-    const [addCollectionItem, setAddCollectionItem] = useState({
-        title: null,
-        scope: 'all',
-        sql: null
-    });
-
-    const dmsInfoStr = safeStorage.getItem('dmsInfo', "{}");
-    const dmsInfo = isJSON(dmsInfoStr) ? JSON.parse(dmsInfoStr) : {};
-
-    const [viewCollectionVisible, setViewCollectionVisible] = useState(false);
+    const dmsInfo = getStorageItem('dmsInfo', {});
+    const [editCollectionItem, setEditCollectionItem] = useState(null);
+    const [collectionsVisible, setCollectionsVisible] = useState(false);
 
     const addCollection = () => {
-        setAddCollectionVisible(true);
-        setAddCollectionItem({
-            ...addCollectionItem,
+        setEditCollectionItem({
+            ...editCollectionItem,
             sql: querySqlText
         });
-    }
-
-    const collectionManagement = () => {
-        setViewCollectionVisible(true);
-    }
+    };
 
     const addSqlToQuery = (sqlText) => {
         let newText = querySqlText;
@@ -51,7 +45,7 @@ export default props => {
             ...querySqlInfo,
             querySqlText: newText
         });
-    }
+    };
 
     const menu = (
         <Menu>
@@ -59,38 +53,36 @@ export default props => {
                 popupClassName='dms-dropdown-submenu'
                 title={
                     <Fragment>
-                        <Icon type="star" />
+                        <StarOutlined />
 				        选择
                     </Fragment>
                 }
             >
                 {
-                    (sqlCollectionList || []).map((item, index) => {
-                        return (
-                            <Menu.Item
-                                key={index}
-                                onClick={() => {
-                                    addSqlToQuery(item.sql);
-                                }}
-                            >
-                                {item.title}
-                            </Menu.Item>
-                        )
-                    })
+                    (sqlCollectionList || []).map((item, index) => (
+                        <Menu.Item
+                            key={index}
+                            onClick={() => {
+                                addSqlToQuery(item.sql);
+                            }}
+                        >
+                            {item.title}
+                        </Menu.Item>
+                    ))
                 }
             </SubMenu>
             <Menu.Item
                 key="add"
                 onClick={addCollection}
             >
-                <Icon type="plus-square" />
+                <PlusSquareOutlined />
 				添加
 			</Menu.Item>
             <Menu.Item
                 key="manage"
-                onClick={collectionManagement}
+                onClick={() => setCollectionsVisible(true)}
             >
-                <Icon type="build" />
+                <BuildOutlined />
 				管理
 			 </Menu.Item>
         </Menu>
@@ -173,24 +165,21 @@ export default props => {
         });
     };
 
+    const onFormat = () => {
+        setQuerySqlInfo({
+            ...querySqlInfo,
+            querySqlText: sqlFormatter.format(querySqlText, {
+                language: 'sql'
+            })
+        });
+    };
+
     return (
         <div className="toolbar">
-            <Button icon="rocket" onClick={onExecute}>
+            <Button icon={<RocketOutlined />} onClick={onExecute}>
                 运行
 			</Button>
-            <Button
-                icon="interaction"
-                onClick={() => {
-                    const formatValue = sqlFormatter.format(querySqlText, {
-                        language: "sql",
-                    });
-
-                    setQuerySqlInfo({
-                        ...querySqlInfo,
-                        querySqlText: formatValue
-                    });
-                }}
-            >
+            <Button icon={<InteractionOutlined />} onClick={onFormat}>
                 格式化
 			</Button>
             <Dropdown
@@ -198,35 +187,19 @@ export default props => {
                 overlayClassName="dms-dropdown"
             >
                 <Button>
-                    我的SQL <Icon type="down" />
+                    我的SQL <DownOutlined />
                 </Button>
             </Dropdown>
-            <AddCollectionModal
-                visible={addCollectionVisible}
-                collectionItem={addCollectionItem}
-                setAddCollectionItem={setAddCollectionItem}
-                onCancel={() => {
-                    setAddCollectionVisible(false)
-                }}
-                afterClose={() => {
-                    setAddCollectionItem({
-                        title: null,
-                        scope: 'all',
-                        sql: null
-                    })
-                }}
+            <EditCollectionModal
+                visible={!!editCollectionItem}
+                collectionItem={editCollectionItem}
+                onCancel={() => setEditCollectionItem(null)}
+                onOk={() => props.getSqlCollectionList()}
             />
-            <ViewCollectionModal
-                visible={viewCollectionVisible}
-                useSql={(sql) => {
-                    addSqlToQuery(sql);
-                }}
-                onCancel={() => {
-                    setViewCollectionVisible(false);
-                }}
-                afterClose={() => {
-
-                }}
+            <CollectionsModal
+                visible={collectionsVisible}
+                useSql={sql => addSqlToQuery(sql)}
+                onCancel={() => setCollectionsVisible(false)}
             />
         </div>
     );
