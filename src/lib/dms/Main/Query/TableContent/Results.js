@@ -1,7 +1,8 @@
 import React from 'react';
 import { Table, Tabs } from 'antd';
 import moment from 'moment';
-import { getSchema } from "../../../util";
+import { get } from 'lodash';
+import { getSchema } from '../../../util';
 
 const { TabPane } = Tabs;
 
@@ -80,11 +81,11 @@ export default ({ data, setDetailModalVisible, setDetailItem }) => {
     };
 
     if (data.length === 1) {
-        return <ResultItem value={data[0]} />;
+        return <ResultItem value={get(data, '0')} />;
     }
 
     return (
-        <Tabs defaultActiveKey={data[0].key} size="small">
+        <Tabs defaultActiveKey={get(data, '0.key')} size="small">
             {
                 data.map(({ key, value }) => (
                     <TabPane tab={key} key={key}>

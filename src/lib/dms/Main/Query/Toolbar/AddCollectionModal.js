@@ -1,7 +1,7 @@
-import React, { useEffect, useState, Fragment } from "react";
-import { Input, Radio, message, Modal, Form } from "antd";
-import { safeStorage, isJSON } from "@tntd/utils";
-import { addData } from "../../../indexDb";
+import React, { useEffect } from 'react';
+import { Input, Radio, message, Modal, Form } from 'antd';
+import { safeStorage, isJSON } from '@tntd/utils';
+import { addData } from '../../../indexDb';
 
 const TextArea = Input.TextArea;
 
@@ -15,7 +15,7 @@ const formItemLayout = {
 };
 
 const AddCollectionModal = props => {
-    const { visible, onCancel, afterClose, collectionItem, setAddCollectionItem, form } = props;
+    const { visible, onCancel, afterClose, collectionItem, form } = props;
     const { title, scope, sql } = collectionItem;
     const { getFieldDecorator } = form;
 

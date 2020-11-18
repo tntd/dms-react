@@ -3,7 +3,7 @@ import { Input, Table, Divider, Modal, message, Popconfirm } from "antd";
 import { addData, deleteDataById, getAllData } from "../../../indexDb";
 
 export default props => {
-    const { visible, onCancel, afterClose, schema, useSql } = props;
+    const { visible, onCancel, afterClose, useSql } = props;
     const [dataSource, setDataSource] = useState([]);
 
     useEffect(() => {

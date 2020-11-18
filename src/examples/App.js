@@ -16,8 +16,8 @@ const App = () => (
     <Dms
         isDevelopmentEnv={true}
         title="星辰DMS"
-        action={sql => {
-            console.log('excute sql:', sql);
+        action={(sql, { sqls } = {}) => {
+            console.log('excute sql:', sql, sqls);
             return new Promise(resolve => {
                 resolve(
                     mockJsonBySql(sql)

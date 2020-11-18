@@ -43,3 +43,21 @@ export const getSchema = (dataSource = []) => {
     }
     return schema;
 };
+
+export const trimSqlComment = sql => sql.replace(/--\s(.*)\n/gi, '').replace(/\/\*(.*)\*\//gi, '');
+
+export const splitSqlBySemicolon = sqlBlock => {
+    sqlBlock = trimSqlComment(sqlBlock);
+    sqlBlock += sqlBlock[sqlBlock.length - 1] !== ';' ? ';' : '';
+
+    const regExp = /(([^;']*('[^']*')?)*);/gi;
+    const sqls = [];
+    let execResult = regExp.exec(sqlBlock);
+
+    while (execResult) {
+        sqls.push(execResult[1]);
+        execResult = regExp.exec(sqlBlock);
+    }
+
+    return sqls;
+};
