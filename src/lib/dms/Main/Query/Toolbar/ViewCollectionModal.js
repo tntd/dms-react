@@ -1,6 +1,6 @@
 import React, { useEffect, useState, Fragment } from "react";
-import { Input, Table, Divider, Modal } from "antd";
-import { addData, getAllData } from "../../../indexDb";
+import { Input, Table, Divider, Modal, message, Popconfirm } from "antd";
+import { addData, deleteDataById, getAllData } from "../../../indexDb";
 
 export default props => {
     const { visible, onCancel, afterClose, schema, useSql } = props;
@@ -52,9 +52,28 @@ export default props => {
                             使用
                         </a>
                         <Divider type='vitical' />
-                        <a>编辑</a>
+                        <a
+                            onClick={() => {
+                                message.info("编辑sql");
+                            }}
+                        >
+                            编辑
+                        </a>
                         <Divider type='vitical' />
-                        <a>删除</a>
+                        <Popconfirm
+                            title="确认要删除当前SQl语句吗？"
+                            onConfirm={() => {
+                                message.info("删除sql action");
+                            }}
+                            onCancel={() => {
+                                console.log('取消删除');
+                            }}
+                            okText="Yes"
+                            cancelText="No"
+                            placement="top"
+                        >
+                            <a>删除</a>
+                        </Popconfirm>
                     </span>
                 )
             }

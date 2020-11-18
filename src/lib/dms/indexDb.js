@@ -101,7 +101,7 @@ export const addData = async (storeName, data, callback) => {
     };
 }
 
-export const deleteDataById = (storeName, id) => {
+export const deleteDataById = (storeName, id, callback) => {
     let store = getObjectStore(storeName, 'readwrite');
     // let req = store.index(id);
 
