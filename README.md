@@ -4,14 +4,14 @@
 ## 系统截图
 基本信息
 <div>
-    <a href="https://tnt.tongdun.me">
-        <img width="100%" src="https://raw.githubusercontent.com/tntd/npm-resource/main/dms-react/1.jpg">
+    <a href="https://tnt.tongdun.me" target="_blank">
+        <img width="100%" src="https://img03.sogoucdn.com/app/a/100520146/28b69dd369ad962f74d26bb0163160e9">
     </a>
 </div>
 SQL窗口
 <div>
-    <a href="https://tnt.tongdun.me">
-        <img width="100%" src="https://raw.githubusercontent.com/tntd/npm-resource/main/dms-react/2.jpg">
+    <a href="https://tnt.tongdun.me" target="_blank">
+        <img width="100%" src="https://img02.sogoucdn.com/app/a/100520146/8919d30035218b6e69cfda718e7c0042">
     </a>
 </div>
 
