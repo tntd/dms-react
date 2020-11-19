@@ -5,13 +5,13 @@
 基本信息
 <div>
     <a href="https://tnt.tongdun.me" target="_blank">
-        <img width="100%" src="https://img03.sogoucdn.com/app/a/100520146/28b69dd369ad962f74d26bb0163160e9">
+        <img width="100%" src="https://camo.githubusercontent.com/8df3b2d7d7a38dee77fa53091c4c7f67fbed736411a8cb8a2852e246370d37e7/68747470733a2f2f696d6730332e736f676f7563646e2e636f6d2f6170702f612f3130303532303134362f3238623639646433363961643936326637346432366262303136333136306539">
     </a>
 </div>
 SQL窗口
 <div>
     <a href="https://tnt.tongdun.me" target="_blank">
-        <img width="100%" src="https://img02.sogoucdn.com/app/a/100520146/8919d30035218b6e69cfda718e7c0042">
+        <img width="100%" src="https://camo.githubusercontent.com/69dcce1b201ebe98c29bab7f737528953fe39fd03077c1fb09ac6b8c5a0ee4a0/68747470733a2f2f696d6730322e736f676f7563646e2e636f6d2f6170702f612f3130303532303134362f3839313964333030333532313862366536396366646137313865376330303432">
     </a>
 </div>
 
