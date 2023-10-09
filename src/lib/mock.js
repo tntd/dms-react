@@ -203,7 +203,7 @@ export const tableContent = [
     {
         "id": "012d3e0ce24a49a0a6f25ae31e39aad9",
         "owner_id": null,
-        "name": "司南0.0.1",
+        "name": "TNT 1.0.0",
         "description": null,
         "cover": null,
         "tag_id": null,
