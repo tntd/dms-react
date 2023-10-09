@@ -1,13 +1,23 @@
+import imgNavHome from "./nav/home.svg";
+import imgNavColumns from "./nav/columns.svg";
+import imgNavContent from "./nav/content.svg";
+import imgNavRelations from "./nav/relations.svg";
+import imgNavTriggers from "./nav/triggers.svg";
+import imgNavInfo from "./nav/info.svg";
+import imgNavQuery from "./nav/query.svg";
+
+import imgDmsLogo from "./dms-logo.svg";
+import imgTable from "./table.svg";
+
 export const navImagesMap = {
-    home: require('./nav/home.svg'),
-    columns: require('./nav/columns.svg'),
-    content: require('./nav/content.svg'),
-    relations: require('./nav/relations.svg'),
-    triggers: require('./nav/triggers.svg'),
-    info: require('./nav/info.svg'),
-    query: require('./nav/query.svg')
+  home: imgNavHome,
+  columns: imgNavColumns,
+  content: imgNavContent,
+  relations: imgNavRelations,
+  triggers: imgNavTriggers,
+  info: imgNavInfo,
+  query: imgNavQuery,
 };
 
-export const logoImage = require('./dms-logo.svg');
-
-export const tableImage = require('./table.svg');
+export const logoImage = imgDmsLogo;
+export const tableImage = imgTable;
