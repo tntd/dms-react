@@ -70,23 +70,20 @@ import DMS from '@tntd/dms-react';
 import CryptoJS from 'crypto-js';
 import { message } from 'antd';
 import service from './service';    // 改成你自己使用的service
-import 'antd/es/tree/style/index.less';
-import 'antd/es/tabs/style/index.less';
 
 export default () => (
-	<DMS
-		isDevelopmentEnv={true}
-		title="司南DMS"
-		action={(sql, { sqls } = {}) => {
-			sqls = sqls || [sql];
+    <DMS
+        title="司南DMS"
+	    action={(sql, { sqls } = {}) => {
+		    sqls = sqls || [sql];
 
-			return service.executeSql({
-				values: sqls.filter(sql => sql && sql.trim()).map(
-					sql => CryptoJS.AES.encrypt(encodeURIComponent(sql), 'OrF7l2hF81yhVEtxfYKUYxsPsxfM4fZm').toString()
-				)
-			}).catch(err => message.error(err.message || err.toString()));
-		}}
-		renderHome={<div>自定义 home</div>}
-	/>
+		    return service.executeSql({
+		        values: sqls.filter(sql => sql && sql.trim()).map(
+		            sql => CryptoJS.AES.encrypt(encodeURIComponent(sql), 'OrF7l2hF81yhVEtxfYKUYxsPsxfM4fZm').toString()
+		        )
+		    }).catch(err => message.error(err.message || err.toString()));
+        }}
+        renderHome={<div>自定义 home</div>}
+    />
 );
 ```
