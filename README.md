@@ -48,3 +48,45 @@ const App = () => (
 
 export default App;
 ```
+
+## 前后端约定推荐
+```js
+url: /dms/execute
+method: post
+params: str
+```
+
+传入的参数使用```AES```进行加密
+```js
+import CryptoJS from "crypto-js";
+
+// Encrypt加密
+const ciphertext = CryptoJS.AES.encrypt(value, "OrF7l2hF81yhVEtxfYKUYxsPsxfM4fZm");
+```
+
+完整示例
+```js
+import DMS from '@tntd/dms-react';
+import CryptoJS from 'crypto-js';
+import { message } from 'antd';
+import service from './service';    // 改成你自己使用的service
+import 'antd/es/tree/style/index.less';
+import 'antd/es/tabs/style/index.less';
+
+export default () => (
+	<DMS
+		isDevelopmentEnv={true}
+		title="司南DMS"
+		action={(sql, { sqls } = {}) => {
+			sqls = sqls || [sql];
+
+			return service.executeSql({
+				values: sqls.filter(sql => sql && sql.trim()).map(
+					sql => CryptoJS.AES.encrypt(encodeURIComponent(sql), 'OrF7l2hF81yhVEtxfYKUYxsPsxfM4fZm').toString()
+				)
+			}).catch(err => message.error(err.message || err.toString()));
+		}}
+		renderHome={<div>自定义 home</div>}
+	/>
+);
+```
